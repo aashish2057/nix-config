@@ -2,7 +2,7 @@
 My nix config for macos
 
 
-# Installation
+### Installation
 
 These instructions should be run a fresh macos install. If you are not on a fresh macos install, these may not work for you.
 
@@ -18,9 +18,32 @@ nix shell nixpkgs#git
 git clone https://github.com/aashish2057/nix-config.git
 ```
 
-Cd to the root of the repo, install and apply nix-darwin to the system
+Disable nix.conf installed by Determinate Systems, doing so will disable experimental features like nix-command and flakes
+```bash
+sudo mv /etc/nix/nix.conf /etc/nix/nix.conf.before-nix-darwin
+```
+
+cd to the root of the repo and install [nix-darwin](https://github.com/LnL7/nix-darwin?tab=readme-ov-file#step-1-creating-flakenix) to the system
+use the --extra-experimental-features flag to enable nix-command and flakes since they are needed in the install
 ```bash
 cd nix-config
-nix run nix-darwin -- switch --flake .
+nix run nix-darwin --extra-experimental-features "nix-command flakes" -- switch --flake .
+```
+
+Apply nix-darwin
+```bash
 darwin-rebuild switch --flake .
+```
+
+
+### Uninstall
+
+Remove [nix-darwin](https://github.com/LnL7/nix-darwin?tab=readme-ov-file#uninstalling)
+```bash
+nix --extra-experimental-features "nix-command flakes" run nix-darwin#darwin-uninstaller
+```
+
+Remove nix using [Determinate Systems Uninstalled](https://github.com/DeterminateSystems/nix-installer?tab=readme-ov-file#uninstalling)
+```bash
+/nix/nix-installer uninstall
 ```
