@@ -12,9 +12,9 @@ curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix 
   sh -s -- install --determinate
 ```
 
-Use nix shell to temporary access git and clone the repo
+Use [nix env shell](https://nix.dev/manual/nix/2.25/command-ref/new-cli/nix3-env-shell) to temporary access git and clone the repo
 ```bash
-nix shell nixpkgs#git
+nix env shell nixpkgs#git
 git clone https://github.com/aashish2057/nix-config.git
 ```
 
