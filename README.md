@@ -23,7 +23,7 @@ Disable nix.conf installed by Determinate Systems, doing so will disable experim
 sudo mv /etc/nix/nix.conf /etc/nix/nix.conf.before-nix-darwin
 ```
 
-cd to the root of the repo, open flake.nix in your editor of choice and update `darwin.Configurations."<System Name>"` to your system name and then install [nix-darwin](https://github.com/LnL7/nix-darwin?tab=readme-ov-file#step-1-creating-flakenix) to the system
+cd to the root of the repo, open flake.nix in your editor of choice and update `darwin.Configurations."<System Name>"` to your system name and then install [nix-darwin](https://github.com/LnL7/nix-darwin?tab=readme-ov-file#getting-started) to the system
 use the --extra-experimental-features flag to enable nix-command and flakes since they are needed in the install
 ```bash
 cd nix-config
@@ -43,7 +43,7 @@ Remove [nix-darwin](https://github.com/LnL7/nix-darwin?tab=readme-ov-file#uninst
 nix --extra-experimental-features "nix-command flakes" run nix-darwin#darwin-uninstaller
 ```
 
-Remove nix using [Determinate Systems Uninstalled](https://github.com/DeterminateSystems/nix-installer?tab=readme-ov-file#uninstalling)
+Remove nix using [Determinate Systems](https://github.com/DeterminateSystems/nix-installer?tab=readme-ov-file#uninstalling)
 ```bash
 /nix/nix-installer uninstall
 ```
