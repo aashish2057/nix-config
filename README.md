@@ -2,7 +2,7 @@
 My nix config for macos
 
 
-### Installation
+### Install
 
 These instructions should be run a fresh macos install. If you are not on a fresh macos install, these may not work for you.
 
