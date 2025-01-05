@@ -1,5 +1,5 @@
 {
-  description = "Example nix-darwin system flake";
+  description = "Basic nix conf";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
@@ -20,14 +20,11 @@
           # List packages installed in system profile. To search by name, run:
           # $ nix-env -qaP | grep wget
           environment.systemPackages = [
-            pkgs.vim
+            pkgs.neovim
           ];
 
           # Necessary for using flakes on this system.
           nix.settings.experimental-features = "nix-command flakes";
-
-          # Enable alternative shell support in nix-darwin.
-          # programs.fish.enable = true;
 
           # Set Git commit hash for darwin-version.
           system.configurationRevision = self.rev or self.dirtyRev or null;
