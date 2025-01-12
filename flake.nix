@@ -43,11 +43,11 @@
     darwinConfigurations."Aashishs-MacBook-Pro" = nix-darwin.lib.darwinSystem {
       modules = [
         configuration
-        home-manager.nixosModules.home-manager
+        home-manager.darwinModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.Aashishs-MacBook-Pro = import ./home.nix;
+          home-manager.users.aashishsharma = import ./home.nix;
         }
       ];
     };
