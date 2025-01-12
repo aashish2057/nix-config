@@ -1,12 +1,14 @@
 {
   config,
   pkgs,
+  username,
+  homedir,
   ...
 }: {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
-  home.username = "aashishsharma";
-  home.homeDirectory = "/Users/aashishsharma";
+  home.username = username;
+  home.homeDirectory = homedir;
 
   home.packages = with pkgs; [
     git

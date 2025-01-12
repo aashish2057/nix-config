@@ -18,6 +18,12 @@
     nixpkgs,
     home-manager,
   }: let
+    # user specific variables
+    system = "aarch64-darwin";
+    username = "aashishsharma";
+    homedir = "/Users/{username}";
+    hostname = "Aashishs-Macbook-Pro";
+
     configuration = {pkgs, ...}: {
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
@@ -36,22 +42,23 @@
       system.stateVersion = 5;
 
       # The platform the configuration will be used on.
-      nixpkgs.hostPlatform = "aarch64-darwin";
+      nixpkgs.hostPlatform = system;
 
       # Needed for home manager see https://github.com/nix-community/home-manager/issues/6036
-      users.users.aashishsharma.home = "/Users/aashishsharma";
+      users.users.${username}.home = homedir;
     };
   in {
-    # Build darwin flake using:
-    # $ darwin-rebuild build --flake .#Aashishs-MacBook-Pro
-    darwinConfigurations."Aashishs-MacBook-Pro" = nix-darwin.lib.darwinSystem {
+    darwinConfigurations.${hostname} = nix-darwin.lib.darwinSystem {
       modules = [
         configuration
         home-manager.darwinModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.aashishsharma = import ./home.nix;
+          home-manager.extraSpecialArgs = {
+            inherit username homedir;
+          };
+          home-manager.users.${username} = import ./home.nix;
         }
       ];
     };
