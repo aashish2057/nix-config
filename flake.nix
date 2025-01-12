@@ -37,6 +37,9 @@
 
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = "aarch64-darwin";
+
+      # Needed for home manager see https://github.com/nix-community/home-manager/issues/6036
+      users.users.aashishsharma.home = "/Users/aashishsharma";
     };
   in {
     # Build darwin flake using:
