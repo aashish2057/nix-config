@@ -25,32 +25,25 @@
     homedir = "/Users/${username}";
     hostname = "Aashishs-Macbook-Pro";
 
+    specialArgs =
+      inputs
+      // {
+        inherit system username homedir hostname;
+      };
+
     configuration = {pkgs, ...}: {
-      # List packages installed in system profile. To search by name, run:
-      # $ nix-env -qaP | grep wget
-      environment.systemPackages = [
-        pkgs.neovim
-      ];
-
-      # Necessary for using flakes on this system.
-      nix.settings.experimental-features = "nix-command flakes";
-
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
 
       # Used for backwards compatibility, please read the changelog before changing.
       # $ darwin-rebuild changelog
       system.stateVersion = 5;
-
-      # The platform the configuration will be used on.
-      nixpkgs.hostPlatform = system;
-
-      # Needed for home manager see https://github.com/nix-community/home-manager/issues/6036
-      users.users.${username}.home = homedir;
     };
   in {
     darwinConfigurations.${hostname} = nix-darwin.lib.darwinSystem {
+      inherit specialArgs;
       modules = [
+        ./modules/nix-core.nix
         configuration
         home-manager.darwinModules.home-manager
         {
