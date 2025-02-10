@@ -30,21 +30,13 @@
       // {
         inherit system username homedir hostname;
       };
-
-    configuration = {pkgs, ...}: {
-      # Set Git commit hash for darwin-version.
-      system.configurationRevision = self.rev or self.dirtyRev or null;
-
-      # Used for backwards compatibility, please read the changelog before changing.
-      # $ darwin-rebuild changelog
-      system.stateVersion = 5;
-    };
   in {
     darwinConfigurations.${hostname} = nix-darwin.lib.darwinSystem {
       inherit specialArgs;
       modules = [
         ./modules/nix-core.nix
-        configuration
+        ./modules/system.nix
+
         home-manager.darwinModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
