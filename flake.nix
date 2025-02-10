@@ -17,6 +17,7 @@
     nix-darwin,
     nixpkgs,
     home-manager,
+    ...
   }: let
     # user specific variables
     system = "aarch64-darwin";
@@ -62,5 +63,6 @@
         }
       ];
     };
+    formatter.${system} = nixpkgs.legacyPackages.${system}.alejandra;
   };
 }
