@@ -22,7 +22,7 @@
     # user specific variables
     system = "aarch64-darwin";
     username = "aashishsharma";
-    homedir = "/Users/{username}";
+    homedir = "/Users/${username}";
     hostname = "Aashishs-Macbook-Pro";
 
     configuration = {pkgs, ...}: {
