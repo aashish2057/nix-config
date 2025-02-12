@@ -6,6 +6,7 @@
 }: {
   imports = [
     ./core.nix
+    ./git.nix
   ];
 
   home = {
