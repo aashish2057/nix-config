@@ -28,7 +28,7 @@ cd to the root of the repo, open flake.nix in your editor of choice and update t
 # user specific variables
 system = "aarch64-darwin";
 username = "aashishsharma"; # whoami
-homedir = "/Users/{username}"; # echo $HOME
+homedir = "/Users/${username}"; # echo $HOME
 hostname = "Aashishs-Macbook-Pro"; # echo $HOST, outputs <hostname>.
 ```
 
