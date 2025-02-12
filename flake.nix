@@ -21,9 +21,9 @@
   }: let
     # user specific variables
     system = "aarch64-darwin";
-    username = "aashishsharma";
+    username = "__whoami__";
     homedir = "/Users/${username}";
-    hostname = "Aashishs-Macbook-Pro";
+    hostname = "__$echo HOST__";
 
     specialArgs =
       inputs
