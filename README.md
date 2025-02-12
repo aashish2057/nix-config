@@ -27,9 +27,16 @@ cd to the root of the repo, open flake.nix in your editor of choice and update t
 ```bash
 # user specific variables
 system = "aarch64-darwin";
-username = "aashishsharma"; # whoami
-homedir = "/Users/${username}"; # echo $HOME
-hostname = "Aashishs-Macbook-Pro"; # echo $HOST, outputs <hostname>.
+username = "__whoami__";
+homedir = "/Users/${username}";
+hostname = "__$echo HOST__";
+```
+
+cd to home and open git.nix in your editor of choice and update the following variables
+```bash
+# user specific variables
+userName = "__git config user.name__";
+userEmail = "__git config user.email__";
 ```
 
 Install [nix-darwin](https://github.com/LnL7/nix-darwin?tab=readme-ov-file#getting-started) to the system
