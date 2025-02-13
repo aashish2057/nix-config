@@ -8,6 +8,9 @@
     history = {
       ignoreAllDups = true;
       ignoreSpace = true;
+      append = true;
+      size = 5000;
+      share = true;
     };
 
     initExtra = ''
