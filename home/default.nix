@@ -8,6 +8,7 @@
     ./core.nix
     ./git.nix
     ./shell.nix
+    ./starship.nix
   ];
 
   home = {
