@@ -39,6 +39,7 @@
       modules = [
         ./modules/nix-core.nix
         ./modules/system.nix
+        ./modules/homebrew.nix
 
         nix-homebrew.darwinModules.nix-homebrew
         {
