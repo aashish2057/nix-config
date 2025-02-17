@@ -6,10 +6,10 @@ My nix config for macos
 
 These instructions should be run a fresh macos install. If you are not on a fresh macos install, these may not work for you.
 
-Install the nix using the [Determinate Systems Installer](https://github.com/DeterminateSystems/nix-installer?tab=readme-ov-file#install-nix)
+Install the nix using the [Determinate Systems Installer](https://github.com/DeterminateSystems/nix-installer?tab=readme-ov-file#install-nix), make sure to say no when the installer asks to use determinate-nix
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | \
-  sh -s -- install --determinate
+  sh -s -- install
 ```
 
 Open a new terminal window and use [nix env shell](https://nix.dev/manual/nix/2.25/command-ref/new-cli/nix3-env-shell) to temporary access git and clone the repo
@@ -27,9 +27,9 @@ cd to the root of the repo, open flake.nix in your editor of choice and update t
 ```bash
 # user specific variables
 system = "aarch64-darwin";
-username = "__whoami__";
+username = "whoami";
 homedir = "/Users/${username}";
-hostname = "__$echo HOST__";
+hostname = "echo $HOST";
 ```
 
 cd to home and open git.nix in your editor of choice and update the following variables
