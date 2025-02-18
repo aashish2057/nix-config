@@ -12,9 +12,13 @@ curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix 
   sh -s -- install
 ```
 
-Open a new terminal window and use [nix env shell](https://nix.dev/manual/nix/2.25/command-ref/new-cli/nix3-env-shell) to temporary access git and clone the repo
+Install xcode-cli-tools, needed for homebrew
+```
+xcode-select --install
+```
+
+Clone the repo
 ```bash
-nix env shell nixpkgs#git
 git clone https://github.com/aashish2057/nix-config.git
 ```
 
