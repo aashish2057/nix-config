@@ -4,7 +4,7 @@
     enableZshIntegration = true;
     settings = {
       format = builtins.concatStringsSep "" [
-        " $username"
+        "  $username"
         "$hostname"
         "$localip"
         "$shlvl"
