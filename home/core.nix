@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   home.packages = with pkgs; [
     cowsay
     fzf
@@ -11,6 +15,12 @@
       enable = true;
       defaultEditor = true;
       vimAlias = true;
+    };
+  };
+
+  xdg.configFile = {
+    ghostty = {
+      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Desktop/nix-config/dotfiles/ghostty";
     };
   };
 }
