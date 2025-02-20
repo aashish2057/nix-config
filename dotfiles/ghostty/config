@@ -1,0 +1,7 @@
+theme = MaterialOcean
+window-decoration = false
+macos-titlebar-style = hidden
+font-family = GeistMono NFM
+shell-integration-features = no-cursor
+cursor-style = block
+cursor-style-blink = false
