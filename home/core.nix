@@ -18,6 +18,10 @@
     };
   };
 
+  home.file = {
+    ".hushlogin".text = "";
+  };
+
   xdg.configFile = {
     ghostty = {
       source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Desktop/nix-config/dotfiles/ghostty";
