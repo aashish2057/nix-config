@@ -8,6 +8,8 @@
     fzf
     zsh-fzf-history-search
     zsh-fzf-tab
+    tree-sitter
+    nodejs_23
   ];
 
   programs = {
