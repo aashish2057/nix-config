@@ -26,5 +26,8 @@
     ghostty = {
       source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Desktop/nix-config/dotfiles/ghostty";
     };
+    nvim = {
+      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Desktop/nix-config/dotfiles/nvim";
+    };
   };
 }
