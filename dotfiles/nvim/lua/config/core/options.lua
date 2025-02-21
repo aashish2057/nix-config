@@ -19,4 +19,4 @@ opt.smartcase = true
 
 -- apperance
 opt.termguicolors = true
-opt.signcolumn = "auto"
+opt.signcolumn = "yes"
