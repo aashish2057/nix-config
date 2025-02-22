@@ -8,10 +8,6 @@
     fzf
     zsh-fzf-history-search
     zsh-fzf-tab
-    tree-sitter
-    nodejs_23
-
-    lua-language-server
   ];
 
   programs = {
