@@ -5,6 +5,8 @@
     casks = [
       "raycast"
       "ghostty"
+      "arc"
+      "obsidian"
     ];
 
     onActivation.cleanup = "zap";
