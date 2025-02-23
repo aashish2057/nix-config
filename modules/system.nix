@@ -5,10 +5,21 @@
   system,
   ...
 }: {
-  # Set Git commit hash for darwin-version.
-  system.configurationRevision = self.rev or self.dirtyRev or null;
-
-  # Used for backwards compatibility, please read the changelog before changing.
-  # $ darwin-rebuild changelog
-  system.stateVersion = 5;
+  system = {
+    configurationRevision = self.rev or self.dirtyRev or null;
+    stateVersion = 5;
+    defaults = {
+      dock = {
+        autohide = true;
+        autohide-delay = 0.0;
+        autohide-time-modifier = 0.4;
+        largesize = 97;
+        magnification = true;
+        mru-spaces = false;
+        orientation = "left";
+        show-recents = false;
+        tilesize = 31;
+      };
+    };
+  };
 }
