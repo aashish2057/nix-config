@@ -21,5 +21,9 @@
         tilesize = 31;
       };
     };
+    keyboard = {
+      enableKeyMapping = true;
+      remapCapsLockToEscape = true;
+    };
   };
 }
