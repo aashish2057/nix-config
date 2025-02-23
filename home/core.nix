@@ -8,6 +8,7 @@
     fzf
     zsh-fzf-history-search
     zsh-fzf-tab
+    ripgrep
   ];
 
   programs = {
