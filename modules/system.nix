@@ -20,6 +20,16 @@
         show-recents = false;
         tilesize = 31;
       };
+      finder = {
+        AppleShowAllExtensions = true;
+        AppleShowAllFiles = true;
+        FXDefaultSearchScope = "SCcf";
+        FXPreferredViewStyle = "Nlsv";
+        NewWindowTarget = "Documents";
+        ShowPathbar = true;
+        ShowRemovableMediaOnDesktop = false;
+        ShowStatusBar = true;
+      };
     };
     keyboard = {
       enableKeyMapping = true;
