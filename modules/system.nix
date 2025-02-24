@@ -30,6 +30,10 @@
         ShowRemovableMediaOnDesktop = false;
         ShowStatusBar = true;
       };
+      NSGlobalDomain = {
+        InitialKeyRepeat = 15;
+        KeyRepeat = 3;
+      };
     };
     keyboard = {
       enableKeyMapping = true;
