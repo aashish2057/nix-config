@@ -34,6 +34,9 @@
         InitialKeyRepeat = 15;
         KeyRepeat = 3;
       };
+      WindowManager = {
+        EnableStandardClickToShowDesktop = false;
+      };
     };
     keyboard = {
       enableKeyMapping = true;
