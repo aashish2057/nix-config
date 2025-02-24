@@ -7,6 +7,7 @@
       "ghostty"
       "arc"
       "obsidian"
+      "font-geist-mono-nerd-font"
     ];
 
     onActivation.cleanup = "zap";
