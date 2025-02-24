@@ -10,8 +10,6 @@
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
   };
 
   outputs = inputs @ {
@@ -19,7 +17,6 @@
     nix-darwin,
     nixpkgs,
     home-manager,
-    nix-homebrew,
     ...
   }: let
     # user specific variables
@@ -40,14 +37,6 @@
         ./modules/nix-core.nix
         ./modules/system.nix
         ./modules/homebrew.nix
-
-        nix-homebrew.darwinModules.nix-homebrew
-        {
-          nix-homebrew = {
-            enable = true;
-            user = username;
-          };
-        }
 
         home-manager.darwinModules.home-manager
         {
