@@ -1,4 +1,4 @@
 ## Description
 
 ## Checklist
-- [ ] Tested changes on macos VM?
+- [ ] Tested changes?
