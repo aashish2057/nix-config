@@ -44,27 +44,27 @@ git clone https://github.com/aashish2057/nix-config.git
 There are a couple areas inside the repository you will need to change to match your system/settings. Open the repository in your editor of choice and edit the following. Each code block will have the file path at the top. The first two are so that Nix Darwin and Home Manager know the username of your user and the hostname of the machine to install on.
 ```bash
 # flake.nix
-username = "whoami"; # line 26
-hostname = "echo $HOST"; # line 28
+username = "aashishsharma"; # line 26
+hostname = "Aashishs-MacBook-Pro"; # line 28
 ```
 
 The next two are your git username and email. You can get these from a machine you already have git setup with by executing the commands in the double quotes.
 ```bash
 # home/git.nix
-userName = "__git config user.name__"; # line 5
-userEmail = "__git config user.email__"; # line 6
+userName = "aashishsharma"; # line 5
+userEmail = "aashish2057@gmail.com"; # line 6
 ```
 
 Lastly, remember when I told you to keep track of where you cloned the repo. Now make sure this path to your repo is correct. The repo is setup as if you cloned the repository in `/Desktop`.
 ```Bash
 # home/core.nix
-source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Desktop/nix-config/dotfiles/ghostty"; # line 52
-source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Desktop/nix-config/dotfiles/nvim"; # line 55
+source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Dev/nix-config/dotfiles/ghostty"; # line 52
+source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Dev/nix-config/dotfiles/nvim"; # line 55
 ```
 This allows you to access your configuration in neovim regardless of where you opened neovim. This makes it easy to make quit edits to your configuration.
 ```lua
--- dotfiles/nvim/lua/config/core/keyamps
-cwd = vim.fn.expand("~/Desktop/nix-config"),
+-- dotfiles/nvim/lua/config/core/keymaps
+cwd = vim.fn.expand("~/Dev/nix-config"),
 ```
 #### Nix-Darwin
 Now you are ready to install [Nix Darwin](https://github.com/LnL7/nix-darwin). At this point be sure that you want to proceed this could override your mac settings, program settings etc.

@@ -13,6 +13,6 @@ keymap.set("n", "<leader>gc", "<cmd>Telescope git_commits<cr>") -- list all git 
 keymap.set("n", "<leader>gfc", "<cmd>Telescope git_bcommits<cr>") -- list git commits for current file/buffer
 keymap.set("n", "<leader>ec", function() -- list files in ~/Desktop/nix-config directory
   require("telescope.builtin").find_files({
-    cwd = vim.fn.expand("~/Desktop/nix-config"),
+    cwd = vim.fn.expand("~/Dev/nix-config"),
   })
 end)
