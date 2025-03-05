@@ -49,10 +49,10 @@
 
   xdg.configFile = {
     ghostty = {
-      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Desktop/nix-config/dotfiles/ghostty";
+      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Dev/nix-config/dotfiles/ghostty";
     };
     nvim = {
-      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Desktop/nix-config/dotfiles/nvim";
+      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Dev/nix-config/dotfiles/nvim";
     };
   };
 }

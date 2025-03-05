@@ -2,8 +2,8 @@
   programs.git = {
     enable = true;
 
-    userName = "__git config user.name__";
-    userEmail = "__git config user.email__";
+    userName = "aashish2057";
+    userEmail = "aashish2057@gmail.com";
 
     extraConfig = {
       push.autoSetupRemote = true;
