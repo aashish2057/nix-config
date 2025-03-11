@@ -8,6 +8,7 @@
       "arc"
       "obsidian"
       "font-geist-mono-nerd-font"
+      "nikitabobko/tap/aerospace"
     ];
 
     onActivation.cleanup = "zap";
