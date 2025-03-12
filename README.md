@@ -9,6 +9,8 @@ After learning about nix and it's philosophy I became curious about using it. I 
 	- [Install](#install)
 		- [Dependencies](#dependencies)
 			- [Xcode](#xcode)
+			- [Homebrew](#homebrew)
+			- [Rosetta](#rosetta)
 			- [Nix](#nix)
 			- [Setting up the repository](#setting-up-the-repository)
 			- [Nix-Darwin](#nix-darwin)
@@ -29,6 +31,12 @@ xcode-select --install
 I use [homebrew](https://brew.sh/) to install gui applications, as using nixpkgs for them isn't the best right now for macOS.
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+#### Rosetta
+Enable rosettta 2 to run apps that haven't been ported to work with apple silicon like cold turkey blocker
+```bash
+sudo softwareupdate --install-rosetta 
 ```
 
 #### Nix
