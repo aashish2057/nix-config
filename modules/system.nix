@@ -37,6 +37,7 @@
       NSGlobalDomain = {
         InitialKeyRepeat = 15;
         KeyRepeat = 3;
+        _HIHideMenuBar = true;
       };
       WindowManager = {
         EnableStandardClickToShowDesktop = false;
