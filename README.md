@@ -12,7 +12,7 @@ After learning about nix and it's philosophy I became curious about using it. I 
 			- [Nix](#nix)
 			- [Setting up the repository](#setting-up-the-repository)
 			- [Nix-Darwin](#nix-darwin)
-	- [Other Settings](#Other Settings)
+	- [Others](#others)
 		- [Arc](#Arc)
 		- [Wallpaper](#Wallpaper)
 	- [Uninstall](#uninstall)
@@ -87,7 +87,7 @@ Now that you have install Nix Darwin you can just use the command below anytime 
 darwin-rebuild switch --flake .
 ```
 
-### Other Settings
+### Others
 
 #### Arc
 Custom shortcuts for Arc Browser
