@@ -12,6 +12,9 @@ After learning about nix and it's philosophy I became curious about using it. I 
 			- [Nix](#nix)
 			- [Setting up the repository](#setting-up-the-repository)
 			- [Nix-Darwin](#nix-darwin)
+	- [Other Settings](#Other Settings)
+		- [Arc](#Arc)
+		- [Wallpaper](#Wallpaper)
 	- [Uninstall](#uninstall)
 ### Install
 This configuration is meant for a Macbook Pro M2 running macOS Sonoma 14.6 and should be installed on a clean system. You will need to use the terminal to run the commands provided.
@@ -83,6 +86,32 @@ Now that you have install Nix Darwin you can just use the command below anytime 
 ```bash
 darwin-rebuild switch --flake .
 ```
+
+### Other Settings
+
+#### Arc
+Custom shortcuts for Arc Browser
+achieve tab - `ctrl - w`\
+find - `ctrl - f`\
+go back - `ctrl + shift - left`\
+go forward - `ctrl + shift - right`\
+new tab - `ctrl - t`\
+new window - `ctrl - n`\
+next space - `ctrl + cmd - right`\
+prev space - `ctrl + cmd - left`\
+next tab - `ctrl + cmd - up`\
+next tab - `ctrl + cmd - down`\
+open command bar - `ctrl + shift - l`\
+refresh the page - `ctrl + r`\
+restore last closed tab - `ctrl + shift - t`\
+show/hide sidebar - `ctrl - s`
+
+#### Wallpaper
+1. settings > screensaver > select the one with the highways/traffic
+2. Go > Computer > macHD > Library > application support > com .apple.idleassetsd > Customer > 4KSDR240FPS 
+3. delete 35693AEA-F8C4-4A80-B77D-C94B20A68956 .mov 
+4. drop in file
+
 ### Uninstall
 Uninstall all casks from homebrew. This gets rid of the cask and the user data
 ```bash
