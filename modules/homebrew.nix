@@ -9,6 +9,7 @@
       "obsidian"
       "font-geist-mono-nerd-font"
       "nikitabobko/tap/aerospace"
+      "cold-turkey-blocker"
     ];
 
     onActivation.cleanup = "zap";
