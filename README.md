@@ -90,7 +90,7 @@ darwin-rebuild switch --flake .
 ### Others
 
 #### Arc
-Custom shortcuts for Arc Browser
+Custom shortcuts for Arc Browser\
 achieve tab - `ctrl - w`\
 find - `ctrl - f`\
 go back - `ctrl + shift - left`\
