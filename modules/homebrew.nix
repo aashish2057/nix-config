@@ -8,9 +8,13 @@
       "arc"
       "obsidian"
       "font-geist-mono-nerd-font"
-      "nikitabobko/tap/aerospace"
+      "aerospace"
       "cold-turkey-blocker"
       "legcord"
+    ];
+
+    taps = [
+      "nikitabobko/tap"
     ];
 
     onActivation.cleanup = "zap";
