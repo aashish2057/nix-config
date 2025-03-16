@@ -10,6 +10,7 @@
       "font-geist-mono-nerd-font"
       "nikitabobko/tap/aerospace"
       "cold-turkey-blocker"
+      "legcord"
     ];
 
     onActivation.cleanup = "zap";
