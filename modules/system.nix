@@ -38,9 +38,5 @@
         EnableStandardClickToShowDesktop = false;
       };
     };
-    keyboard = {
-      enableKeyMapping = true;
-      remapCapsLockToEscape = true;
-    };
   };
 }
