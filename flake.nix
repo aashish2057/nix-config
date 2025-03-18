@@ -40,7 +40,7 @@
               home-manager.extraSpecialArgs = {
                 inherit username homedir;
               };
-              home-manager.users.${username} = import ./home;
+              home-manager.users.${username} = import ./users/${username}/home.nix;
             }
           ];
         };
