@@ -16,4 +16,8 @@
     userName = "aashish2057";
     userEmail = "aashish2057@gmail.com";
   };
+
+  home.packages = with pkgs; [
+    cowsay
+  ];
 }
