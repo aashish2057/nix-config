@@ -1,8 +1,18 @@
 {
   pkgs,
   config,
+  username,
+  homedir,
   ...
 }: {
+  home = {
+    username = username;
+    homeDirectory = homedir;
+    stateVersion = "24.11";
+  };
+
+  programs.home-manager.enable = true;
+
   home.packages = with pkgs; [
     fzf
     zsh-fzf-history-search
