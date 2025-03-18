@@ -21,4 +21,11 @@
       };
     };
   };
+
+  homebrew = {
+    casks = [
+      "cold-turkey-blocker"
+      "legcord"
+    ];
+  };
 }
