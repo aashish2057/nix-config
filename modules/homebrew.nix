@@ -9,8 +9,6 @@
       "obsidian"
       "font-geist-mono-nerd-font"
       "aerospace"
-      "cold-turkey-blocker"
-      "legcord"
     ];
 
     taps = [
