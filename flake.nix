@@ -29,9 +29,7 @@
         nix-darwin.lib.darwinSystem {
           inherit specialArgs;
           modules = [
-            ./modules/nix-core.nix
-            ./modules/system.nix
-            ./modules/homebrew.nix
+            ./hosts/aashishs-macbook-pro/default.nix
 
             home-manager.darwinModules.home-manager
             {
