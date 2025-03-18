@@ -20,3 +20,5 @@ opt.smartcase = true
 -- apperance
 opt.termguicolors = true
 opt.signcolumn = "yes"
+
+opt.clipboard:append("unnamedplus")
