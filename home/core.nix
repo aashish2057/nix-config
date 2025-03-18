@@ -4,7 +4,6 @@
   ...
 }: {
   home.packages = with pkgs; [
-    cowsay
     fzf
     zsh-fzf-history-search
     zsh-fzf-tab
