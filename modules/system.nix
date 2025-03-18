@@ -19,10 +19,6 @@
         orientation = "left";
         show-recents = false;
         tilesize = 31;
-        persistent-apps = [
-          "/Applications/Arc.app"
-          "/Applications/Ghostty.app"
-        ];
       };
       finder = {
         AppleShowAllExtensions = true;

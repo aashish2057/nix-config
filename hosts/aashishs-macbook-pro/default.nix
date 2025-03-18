@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  system,
   ...
 }: {
   imports = [
@@ -8,4 +9,15 @@
     ../../modules/system.nix
     ../../modules/homebrew.nix
   ];
+
+  system = {
+    defaults = {
+      dock = {
+        persistent-apps = [
+          "/Applications/Arc.app"
+          "/Applications/Ghostty.app"
+        ];
+      };
+    };
+  };
 }
