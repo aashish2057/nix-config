@@ -16,6 +16,7 @@
         persistent-apps = [
           "/Applications/Arc.app"
           "/Applications/Ghostty.app"
+          "/Applications/Obsidian.app"
         ];
       };
     };
