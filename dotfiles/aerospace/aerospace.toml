@@ -9,6 +9,10 @@ accordion-padding = 30
 default-root-container-orientation = 'auto'
 
 [[on-window-detected]]
+if.app-id="company.thebrowser.Browser"
+run = "move-node-to-workspace 1"
+
+[[on-window-detected]]
 if.app-id="com.mitchellh.ghostty"
 run= [
   "layout floating",
