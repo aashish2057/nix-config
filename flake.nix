@@ -29,7 +29,30 @@
         nix-darwin.lib.darwinSystem {
           inherit specialArgs;
           modules = [
-            ./hosts/aashishs-macbook-pro/default.nix
+            ./hosts/aashishs-macbook-pro
+
+            home-manager.darwinModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = {
+                inherit username homedir;
+              };
+              home-manager.users.${username} = import ./users/${username}/home.nix;
+            }
+          ];
+        };
+
+    Aashishs-Work-MacBook-Pro = let
+        username = "aashishsharmawork";
+        system = "aarch64-darwin";
+        homedir = "/Users/${username}";
+        specialArgs = {inherit username system homedir self;};
+      in
+        nix-darwin.lib.darwinSystem {
+          inherit specialArgs;
+          modules = [
+            ./hosts/aashishs-work-macbook-pro
 
             home-manager.darwinModules.home-manager
             {
