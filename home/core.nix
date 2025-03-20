@@ -18,6 +18,7 @@
     zsh-fzf-history-search
     zsh-fzf-tab
     ripgrep
+    gh
   ];
 
   programs = {
