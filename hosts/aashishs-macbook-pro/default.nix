@@ -26,6 +26,7 @@
     casks = [
       "cold-turkey-blocker"
       "legcord"
+      "utm"
     ];
   };
 }
