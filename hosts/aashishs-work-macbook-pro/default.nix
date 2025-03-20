@@ -16,8 +16,9 @@
         persistent-apps = [
           "/Applications/Arc.app"
           "/Applications/Ghostty.app"
+          "/Applications/Obsidian.app"
           "/Applications/Slack.app"
-          "/Applications/Zoom.app"
+          "/Applications/zoom.us.app"
         ];
       };
     };
