@@ -42,6 +42,29 @@
             }
           ];
         };
+
+      aashishsharmaworks-Virtual-Machine = let
+        username = "aashishsharmawork";
+        system = "aarch64-darwin";
+        homedir = "/Users/${username}";
+        specialArgs = {inherit username system homedir self;};
+      in
+        nix-darwin.lib.darwinSystem {
+          inherit specialArgs;
+          modules = [
+            ./hosts/aashishsharmawork-Virtual-Machine
+
+            home-manager.darwinModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = {
+                inherit username homedir;
+              };
+              home-manager.users.${username} = import ./users/${username}/home.nix;
+            }
+          ];
+        };
     };
     formatter.aarch64-darwin = nixpkgs.legacyPackages.aarch64-darwin.alejandra;
   };
