@@ -33,6 +33,7 @@
       NSGlobalDomain = {
         InitialKeyRepeat = 15;
         KeyRepeat = 3;
+        "com.apple.swipescrolldirection" = false;
       };
       WindowManager = {
         EnableStandardClickToShowDesktop = false;
