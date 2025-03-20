@@ -23,6 +23,14 @@ run= [
 if.app-id="md.obsidian"
 run = "move-node-to-workspace 3"
 
+[[on-window-detected]]
+if.app-id="com.tinyspeck.slackmacgap"
+run = "move-node-to-workspace 4"
+
+[[on-window-detected]]
+if.app-id="us.zoom.xos"
+run = "move-node-to-workspace 6"
+
 [gaps]
     inner.horizontal = 5
     inner.vertical =   5
@@ -50,12 +58,14 @@ run = "move-node-to-workspace 3"
     ctrl-alt-cmd-3 = 'workspace 3'
     ctrl-alt-cmd-4 = 'workspace 4'
     ctrl-alt-cmd-5 = 'workspace 5'
+    ctrl-alt-cmd-6 = 'workspace 5'
 
     ctrl-alt-cmd-shift-1 = ['move-node-to-workspace 1', 'workspace 1']
     ctrl-alt-cmd-shift-2 = ['move-node-to-workspace 2', 'workspace 2']
     ctrl-alt-cmd-shift-3 = ['move-node-to-workspace 3', 'workspace 3']
     ctrl-alt-cmd-shift-4 = ['move-node-to-workspace 4', 'workspace 4']
     ctrl-alt-cmd-shift-5 = ['move-node-to-workspace 5', 'workspace 5']
+    ctrl-alt-cmd-shift-6 = ['move-node-to-workspace 6', 'workspace 6']
 
     ctrl-alt-cmd-t = 'layout tiles horizontal vertical'
 
