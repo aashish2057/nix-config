@@ -28,6 +28,7 @@
     casks = [
       "slack"
       "zoom"
+      "tunnelblick"
     ];
   };
 }
