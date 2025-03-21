@@ -31,6 +31,9 @@ return {
       },
     },
     config = function()
+      vim.diagnostic.config({
+        virtual_text = false,
+      })
       local capabilities = require("blink.cmp").get_lsp_capabilities()
       require("mason").setup({
         registries = {
