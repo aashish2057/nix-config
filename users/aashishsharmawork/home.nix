@@ -21,5 +21,7 @@
     docker
     colima
     lazydocker
+
+    dotnet-sdk
   ];
 }
