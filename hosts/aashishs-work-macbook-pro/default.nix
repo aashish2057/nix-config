@@ -31,6 +31,7 @@
       "zoom"
       "tunnelblick"
       "datagrip"
+      "rider"
     ];
   };
 }
