@@ -58,7 +58,7 @@ run = "move-node-to-workspace 6"
     ctrl-alt-cmd-3 = 'workspace 3'
     ctrl-alt-cmd-4 = 'workspace 4'
     ctrl-alt-cmd-5 = 'workspace 5'
-    ctrl-alt-cmd-6 = 'workspace 5'
+    ctrl-alt-cmd-6 = 'workspace 6'
 
     ctrl-alt-cmd-shift-1 = ['move-node-to-workspace 1', 'workspace 1']
     ctrl-alt-cmd-shift-2 = ['move-node-to-workspace 2', 'workspace 2']
