@@ -21,7 +21,11 @@
     docker
     colima
     lazydocker
-
     dotnet-sdk
+    azurite
+    azure-cli
+    nodejs_22
+    pnpm
+    foreman
   ];
 }
