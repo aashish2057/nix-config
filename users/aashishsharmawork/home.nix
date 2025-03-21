@@ -18,6 +18,8 @@
   };
 
   home.packages = with pkgs; [
-    btop
+    docker
+    colima
+    lazydocker
   ];
 }
