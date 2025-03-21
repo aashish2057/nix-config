@@ -1,7 +1,11 @@
 return {
   "williamboman/mason.nvim",
   "williamboman/mason-lspconfig.nvim",
-  "seblyn/roslyn.nvim",
+  {
+    "seblyn/roslyn.nvim",
+    ft = "cs",
+    opts = {},
+  },
   {
     "neovim/nvim-lspconfig",
     dependencies = {
