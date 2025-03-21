@@ -29,6 +29,7 @@
       "slack"
       "zoom"
       "tunnelblick"
+      "datagrip"
     ];
   };
 }
