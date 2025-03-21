@@ -55,7 +55,7 @@ return {
         capabilities = capabilities,
         filetypes = { "lua" },
       })
-
+      -- Run :MasonInstall roslyn@4.14.0-2.25108.3
       require("roslyn").setup({
         capabilities = capabilities,
       })
