@@ -16,6 +16,7 @@
         persistent-apps = [
           "/Applications/Arc.app"
           "/Applications/Ghostty.app"
+          "/Applications/DataGrip.app"
           "/Applications/Obsidian.app"
           "/Applications/Slack.app"
           "/Applications/zoom.us.app"
