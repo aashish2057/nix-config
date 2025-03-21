@@ -43,7 +43,7 @@
           ];
         };
 
-    Aashishs-Work-MacBook-Pro = let
+      Aashishs-Work-MacBook-Pro = let
         username = "aashishsharmawork";
         system = "aarch64-darwin";
         homedir = "/Users/${username}";
