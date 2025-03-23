@@ -48,6 +48,7 @@ return {
       require("mason-lspconfig").setup({
         ensure_installed = {
           "lua_ls",
+          "ts_ls",
         },
         automatic_installation = true,
       })
@@ -57,6 +58,10 @@ return {
       })
       -- Run :MasonInstall roslyn@4.14.0-2.25108.3
       require("roslyn").setup({
+        capabilities = capabilities,
+      })
+
+      require("lspconfig").ts_ls.setup({
         capabilities = capabilities,
       })
     end,
