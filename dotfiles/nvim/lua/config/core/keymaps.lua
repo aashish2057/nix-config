@@ -4,7 +4,11 @@ vim.g.maplocalleader = "\\"
 
 local keymap = vim.keymap
 
+-- Show diagnostic
 keymap.set("n", "<leader>se", "<cmd>lua vim.diagnostic.open_float()<CR>")
+
+-- Clear trailing whitespace in file
+keymap.set("n", "<Leader>wc", [[:%s/\s\+$//e<cr>:noh<cr>]])
 
 -- Telescope
 keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>") -- find files within current working directory, respects .gitignore
