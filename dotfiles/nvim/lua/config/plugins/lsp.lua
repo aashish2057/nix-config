@@ -2,7 +2,7 @@ return {
   "williamboman/mason.nvim",
   "williamboman/mason-lspconfig.nvim",
   {
-    "seblyn/roslyn.nvim",
+    "seblyng/roslyn.nvim",
     ft = "cs",
     opts = {},
   },
