@@ -22,3 +22,12 @@ keymap.set("n", "<leader>ec", function() -- list files in ~/Desktop/nix-config d
     cwd = vim.fn.expand("~/Dev/nix-config"),
   })
 end)
+
+-- Lsp
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function()
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = 0 })
+    vim.keymap.set("n", "gr", vim.lsp.buf.definition, { buffer = 0 })
+    vim.keymap.set("n", "K", vim.lsp.buf.definition, { buffer = 0 })
+  end,
+})
