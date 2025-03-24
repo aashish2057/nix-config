@@ -27,6 +27,7 @@
       "cold-turkey-blocker"
       "legcord"
       "utm"
+      "anki"
     ];
   };
 }
