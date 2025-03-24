@@ -32,6 +32,8 @@
       "tunnelblick"
       "datagrip"
       "rider"
+      "google-chrome"
+      "microsoft-azure-storage-explorer"
     ];
   };
 }
