@@ -21,7 +21,7 @@
     docker
     colima
     lazydocker
-    dotnet-sdk_9
+    dotnet-sdk_8
     azurite
     azure-cli
     nodejs_22
