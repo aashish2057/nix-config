@@ -1,6 +1,5 @@
 {
   description = "Basic nix conf";
-
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-24.11-darwin";
     nix-darwin.url = "github:LnL7/nix-darwin/nix-darwin-24.11";
@@ -29,7 +28,7 @@
         nix-darwin.lib.darwinSystem {
           inherit specialArgs;
           modules = [
-            ./hosts/aashishs-macbook-pro
+            ./hosts/aashishs-macbook-pro.nix
 
             home-manager.darwinModules.home-manager
             {
@@ -52,7 +51,7 @@
         nix-darwin.lib.darwinSystem {
           inherit specialArgs;
           modules = [
-            ./hosts/aashishs-work-macbook-pro
+            ./hosts/aashishs-work-macbook-pro.nix
 
             home-manager.darwinModules.home-manager
             {

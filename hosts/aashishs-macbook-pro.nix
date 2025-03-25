@@ -5,9 +5,9 @@
   ...
 }: {
   imports = [
-    ../../modules/nix-core.nix
-    ../../modules/system.nix
-    ../../modules/homebrew.nix
+    ../modules/nix-core.nix
+    ../modules/system.nix
+    ../modules/homebrew.nix
   ];
 
   system = {
