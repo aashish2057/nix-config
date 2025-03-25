@@ -6,10 +6,10 @@
   ...
 }: {
   imports = [
-    ../../home/core.nix
-    ../../home/git.nix
-    ../../home/shell.nix
-    ../../home/starship.nix
+    ../home/core.nix
+    ../home/git.nix
+    ../home/shell.nix
+    ../home/starship.nix
   ];
 
   programs.git = {
