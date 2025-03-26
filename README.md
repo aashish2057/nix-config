@@ -51,26 +51,20 @@ At this point you should have access to git on your system, which was installed 
 ```bash
 git clone https://github.com/aashish2057/nix-config.git
 ```
+The 2 concepts that change depending on what sytem you are using are the users and the hosts. The users are located in the users folder and the hosts are located in the hosts folder. You will have to make your own entries into those and import them into the flake.nix file. Look at how 
+users/aashishsharma.nix, and hosts/aashish-sharma-macbook-pro.nix are imported into the flake.nix file. In order to get your sytsem username and hostname you can run the following commands in your terminal.
 
-There are a couple areas inside the repository you will need to change to match your system/settings. Open the repository in your editor of choice and edit the following. Each code block will have the file path at the top. The first two are so that Nix Darwin and Home Manager know the username of your user and the hostname of the machine to install on.
 ```bash
-# flake.nix
-username = "whoami"; # line 26
-hostname = "scutil --get LocalHostName"; # line 28
-```
-
-The next two are your git username and email. You can get these from a machine you already have git setup with by executing the commands in the double quotes.
-```bash
-# home/git.nix
-userName = "username"; # line 5
-userEmail = "email"; # line 6
+whoami # get username
+scutil --get LocalHostName # get hostname
 ```
 
 Lastly, remember when I told you to keep track of where you cloned the repo. Now make sure this path to your repo is correct. The repo is setup as if you cloned the repository in `/Desktop`.
 ```Bash
 # home/core.nix
-source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Dev/nix-config/dotfiles/ghostty"; # line 52
-source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Dev/nix-config/dotfiles/nvim"; # line 55
+source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Dev/nix-config/dotfiles/ghostty"; # line 38
+source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Dev/nix-config/dotfiles/nvim"; # line 41
+source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Dev/nix-config/dotfiles/aerospace"; # line 44
 ```
 This allows you to access your configuration in neovim regardless of where you opened neovim. This makes it easy to make quit edits to your configuration.
 ```lua
@@ -99,7 +93,7 @@ darwin-rebuild switch --flake .
 
 #### Arc
 Custom shortcuts for Arc Browser\
-achieve tab - `ctrl - w`\
+archive tab - `ctrl - w`\
 find - `ctrl - f`\
 go back - `ctrl + shift - left`\
 go forward - `ctrl + shift - right`\
