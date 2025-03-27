@@ -19,6 +19,7 @@
     zsh-fzf-tab
     ripgrep
     gh
+    alejandra
   ];
 
   programs = {
