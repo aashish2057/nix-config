@@ -22,6 +22,9 @@ return {
             extra_args = { "--indent-type", "Spaces", "--indent-width", "2" },
             filetypes = { "lua" },
           }),
+          formatting.alejandra.with({
+            filetypes = { "nix" },
+          }),
         },
 
         on_attach = function(current_client, bufnr)
