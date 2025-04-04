@@ -9,6 +9,7 @@
       "obsidian"
       "font-geist-mono-nerd-font"
       "aerospace"
+      "flux"
     ];
 
     taps = [
