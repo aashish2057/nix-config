@@ -9,6 +9,7 @@ return {
       require("mason-null-ls").setup({
         ensure_installed = {
           "stylua",
+          "eslint_d",
         },
         automatic_installation = true,
       })
@@ -24,6 +25,9 @@ return {
           }),
           formatting.alejandra.with({
             filetypes = { "nix" },
+          }),
+          formatting.eslint_d.with({
+            filetypes = { "javascript", "typescript", "typescriptreact", "javascriptreact" },
           }),
         },
 
