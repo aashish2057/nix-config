@@ -28,6 +28,7 @@
       "legcord"
       "utm"
       "anki"
+      "rode-central"
     ];
   };
 }
