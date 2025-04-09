@@ -23,11 +23,13 @@ keymap.set("n", "<leader>ec", function() -- list files in ~/Desktop/nix-config d
   })
 end)
 
--- Lsp
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function()
-    vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = 0 })
-    vim.keymap.set("n", "gr", vim.lsp.buf.definition, { buffer = 0 })
-    vim.keymap.set("n", "K", vim.lsp.buf.definition, { buffer = 0 })
+    keymap.set("n", "grn", vim.lsp.buf.rename)
+    keymap.set({ "n", "v" }, "gra", vim.lsp.buf.code_action)
+    keymap.set("n", "grr", vim.lsp.buf.references)
+    keymap.set("n", "gri", vim.lsp.buf.implementation)
+    keymap.set("n", "gO", vim.lsp.buf.document_symbol)
+    keymap.set("i", "<C-s>", vim.lsp.buf.signature_help)
   end,
 })
