@@ -2,11 +2,6 @@ return {
   "williamboman/mason.nvim",
   "williamboman/mason-lspconfig.nvim",
   {
-    "seblyng/roslyn.nvim",
-    ft = "cs",
-    opts = {},
-  },
-  {
     "neovim/nvim-lspconfig",
     dependencies = {
       {
@@ -55,10 +50,6 @@ return {
       require("lspconfig").lua_ls.setup({
         capabilities = capabilities,
         filetypes = { "lua" },
-      })
-      -- Run :MasonInstall roslyn@4.14.0-2.25108.3
-      require("roslyn").setup({
-        capabilities = capabilities,
       })
 
       require("lspconfig").ts_ls.setup({
