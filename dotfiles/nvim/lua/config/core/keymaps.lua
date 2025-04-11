@@ -33,3 +33,16 @@ vim.api.nvim_create_autocmd("LspAttach", {
     keymap.set("i", "<C-s>", vim.lsp.buf.signature_help)
   end,
 })
+
+vim.g["diagnostics_active"] = true
+function Toggle_diagnostics()
+  if vim.g.diagnostics_active then
+    vim.g.diagnostics_active = false
+    vim.diagnostic.enable(false)
+  else
+    vim.g.diagnostics_active = true
+    vim.diagnostic.enable()
+  end
+end
+
+keymap.set("n", "<leader>d", Toggle_diagnostics)
