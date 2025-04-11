@@ -2,6 +2,10 @@ return {
   "williamboman/mason.nvim",
   "williamboman/mason-lspconfig.nvim",
   {
+    "seblyng/roslyn.nvim",
+    ft = "cs",
+  },
+  {
     "neovim/nvim-lspconfig",
     dependencies = {
       {
@@ -37,6 +41,7 @@ return {
       require("mason").setup({
         registries = {
           "github:mason-org/mason-registry",
+          "github:Crashdummyy/mason-registry",
         },
       })
       require("mason-lspconfig").setup({
@@ -52,6 +57,10 @@ return {
       })
 
       require("lspconfig").ts_ls.setup({
+        capabilities = capabilities,
+      })
+
+      require("roslyn").setup({
         capabilities = capabilities,
       })
     end,
