@@ -20,6 +20,7 @@
     ripgrep
     gh
     alejandra
+    nodejs_22
   ];
 
   programs = {
