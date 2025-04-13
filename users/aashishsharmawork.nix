@@ -24,7 +24,6 @@
     dotnet-sdk_8
     azurite
     azure-cli
-    nodejs_22
     pnpm
     foreman
   ];
