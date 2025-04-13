@@ -46,3 +46,5 @@ function Toggle_diagnostics()
 end
 
 keymap.set("n", "<leader>d", Toggle_diagnostics)
+
+keymap.set("n", "<leader>n", "<cmd>Oil<cr>")
