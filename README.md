@@ -108,6 +108,13 @@ refresh the page - `ctrl + r`\
 restore last closed tab - `ctrl + shift - t`\
 show/hide sidebar - `ctrl - s`
 
+#### NPM global packages
+There are some packages I use from npm that need to be globally installed. For this first create a directory to install them to, I can't use the default one as the nix install of nodejs is immutable.
+```bash
+mkdir ~/.npm-global # create directory for global npm packages
+npm install -g @anthropic-ai/claude-code # claude code https://github.com/anthropics/claude-code
+```
+
 #### Wallpaper
 1. settings > screensaver > select the one with the highways/traffic
 2. Go > Computer > macHD > Library > application support > com .apple.idleassetsd > Customer > 4KSDR240FPS 
