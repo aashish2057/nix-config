@@ -11,7 +11,7 @@ keymap.set("n", "<Leader>wc", [[:%s/\s\+$//e<cr>:noh<cr>]])
 
 -- Snacks
 keymap.set("n", "<leader>ff", function() -- find files
-  Snacks.picker.smart()
+  Snacks.picker.files()
 end)
 keymap.set("n", "<leader>fs", function() -- grep
   Snacks.picker.grep()
