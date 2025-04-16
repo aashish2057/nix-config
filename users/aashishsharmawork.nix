@@ -21,7 +21,12 @@
     docker
     colima
     lazydocker
-    dotnet-sdk_8
+    # Work project is dotnet 8, roslyn lsp is dotnet 9
+    (with dotnetCorePackages;
+      combinePackages [
+        sdk_8_0
+        sdk_9_0
+      ])
     azurite
     azure-cli
     pnpm
