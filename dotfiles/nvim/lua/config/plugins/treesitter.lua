@@ -6,6 +6,9 @@ return {
       require("nvim-treesitter.configs").setup({
         ensure_installed = { "lua", "markdown", "nix", "c_sharp", "typescript", "html", "javascript" },
         auto_install = false,
+        sync_install = false,
+        ignore_install = {},
+        modules = {},
         highlight = {
           enable = true,
           disable = function(lang, buf)
