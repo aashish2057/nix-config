@@ -9,6 +9,7 @@ return {
       require("mason-null-ls").setup({
         ensure_installed = {
           "stylua",
+          "csharpier",
         },
         automatic_installation = true,
       })
@@ -24,6 +25,9 @@ return {
           }),
           formatting.alejandra.with({
             filetypes = { "nix" },
+          }),
+          formatting.csharpier.with({
+            filetypes = { "cs" },
           }),
         },
 
