@@ -19,7 +19,7 @@ After learning about nix and it's philosophy I became curious about using it. I 
 		- [Wallpaper](#Wallpaper)
 	- [Uninstall](#uninstall)
 ### Install
-This configuration is meant for a Macbook Pro M2 running macOS Sonoma 14.6 and should be installed on a clean system. You will need to use the terminal to run the commands provided.
+This configuration is meant for a Macbook Pro M2 running macOS Sequoia 15.4.1 and should be installed on a clean system. You will need to use the terminal to run the commands provided.
 ### Dependencies
 #### Xcode
 I originally was hoping I was going to be able to configure a system that didn't need Xcode clit tools however with the inclusion of [Homebrew](https://brew.sh/), this has to be included.
