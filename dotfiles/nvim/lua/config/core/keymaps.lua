@@ -31,6 +31,14 @@ end)
 keymap.set("n", "<leader>ec", function() -- neovim configuration
 	Snacks.picker.files({ cwd = vim.fn.stdpath("config") })
 end)
+keymap.set("n", "<leader>dc", function()
+	vim.cmd(
+		"edit "
+			.. vim.fn.expand(
+				"~/Dev/shelf/src/Shelf.Web/Shelf.Sql/EnvironmentConfigurations/DevConfigurationOverrides.yml"
+			)
+	)
+end)
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function()
