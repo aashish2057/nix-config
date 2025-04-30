@@ -113,6 +113,7 @@ There are some packages I use from npm that need to be globally installed. For t
 ```bash
 mkdir ~/.npm-global # create directory for global npm packages
 npm install -g @anthropic-ai/claude-code # claude code https://github.com/anthropics/claude-code
+npm install -g foreman # work only node foreman https://github.com/strongloop/node-foreman
 ```
 
 #### Wallpaper

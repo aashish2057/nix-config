@@ -30,6 +30,5 @@
     azurite
     azure-cli
     pnpm
-    foreman
   ];
 }
