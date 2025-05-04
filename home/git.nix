@@ -5,6 +5,8 @@
     extraConfig = {
       push.autoSetupRemote = true;
       pull.rebase = true;
+      commit.gpgSign = true;
+      tag.gpgSign = true;
       gpg.format = "ssh";
       user.signingKey = "~/.ssh/id_ed25519.pub";
     };
