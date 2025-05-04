@@ -5,6 +5,9 @@
     extraConfig = {
       push.autoSetupRemote = true;
       pull.rebase = true;
+      fetch.prune = true;
+      fetch.writeCommitGraph = true;
+      branch.sort = "-committerdate";
       commit.gpgSign = true;
       tag.gpgSign = true;
       gpg.format = "ssh";
