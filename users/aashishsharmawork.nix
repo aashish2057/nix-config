@@ -14,7 +14,7 @@
 
   programs.git = {
     userName = "aashish2057";
-    userEmail = "aashish.sharma@shelfengine.com";
+    userEmail = "aashish.sharma@gocrisp.com";
   };
 
   home.packages = with pkgs; [
