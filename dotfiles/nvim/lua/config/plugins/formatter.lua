@@ -7,6 +7,7 @@ return {
 				formatters_by_ft = {
 					lua = { "stylua" },
 					cs = { "csharpier" },
+					nix = { "alejandra" },
 				},
 
 				format_on_save = {
