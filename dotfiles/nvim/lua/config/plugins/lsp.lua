@@ -83,6 +83,7 @@ return {
 					"ts_ls",
 				},
 				automatic_installation = true,
+				automatic_enable = false,
 			})
 			require("lspconfig").lua_ls.setup({
 				capabilities = capabilities,
