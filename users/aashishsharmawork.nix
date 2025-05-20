@@ -27,6 +27,7 @@
         sdk_8_0
         sdk_9_0
       ])
+    dotnet-ef
     azurite
     azure-cli
     pnpm
