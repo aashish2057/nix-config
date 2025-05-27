@@ -35,6 +35,7 @@
       "google-chrome"
       "microsoft-azure-storage-explorer"
       "modern-csv"
+      "visual-studio-code"
     ];
   };
 }
