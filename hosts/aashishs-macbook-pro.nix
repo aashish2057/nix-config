@@ -28,6 +28,7 @@
       "legcord"
       "utm"
       "anki"
+      "mullvadvpn"
     ];
   };
 }
