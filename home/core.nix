@@ -21,6 +21,7 @@
     gh
     alejandra
     nodejs_22
+    yazi
   ];
 
   programs = {
