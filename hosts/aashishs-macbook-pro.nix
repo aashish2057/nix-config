@@ -2,6 +2,7 @@
   config,
   pkgs,
   system,
+  username,
   ...
 }: {
   imports = [
@@ -11,6 +12,7 @@
   ];
 
   system = {
+    primaryUser = username;
     defaults = {
       dock = {
         persistent-apps = [
