@@ -30,7 +30,7 @@
       "legcord"
       "utm"
       "anki"
-      "mullvadvpn"
+      "mullvad-vpn"
     ];
   };
 }
