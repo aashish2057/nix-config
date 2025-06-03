@@ -10,6 +10,7 @@
       "font-geist-mono-nerd-font"
       "aerospace"
       "flux"
+      "jordanbaird-ice"
     ];
 
     taps = [
