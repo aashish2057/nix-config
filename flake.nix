@@ -17,52 +17,23 @@
     nixpkgs,
     home-manager,
     ...
-  }: {
-    darwinConfigurations = {
-      Aashishs-MacBook-Pro = let
-        username = "aashishsharma";
-        system = "aarch64-darwin";
-        homedir = "/Users/${username}";
-        specialArgs = {inherit username system homedir self;};
-      in
-        nix-darwin.lib.darwinSystem {
-          inherit specialArgs;
-          modules = [
-            ./hosts/aashishs-macbook-pro.nix
-
-            home-manager.darwinModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = {
-                inherit username homedir;
-              };
-            }
-          ];
-        };
-
-      Aashishs-Work-MacBook-Pro = let
-        username = "aashishsharmawork";
-        system = "aarch64-darwin";
-        homedir = "/Users/${username}";
-        specialArgs = {inherit username system homedir self;};
-      in
-        nix-darwin.lib.darwinSystem {
-          inherit specialArgs;
-          modules = [
-            ./hosts/aashishs-work-macbook-pro.nix
-
-            home-manager.darwinModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = {
-                inherit username homedir;
-              };
-            }
-          ];
-        };
+  }: let
+    systems = import ./lib/systems.nix {
+      inherit nixpkgs nix-darwin home-manager self;
     };
+  in {
+    darwinConfigurations = {
+      Aashishs-MacBook-Pro = systems.mkDarwinSystem {
+        hostname = "aashishs-macbook-pro";
+        username = "aashishsharma";
+      };
+
+      Aashishs-Work-MacBook-Pro = systems.mkDarwinSystem {
+        hostname = "aashishs-work-macbook-pro";
+        username = "aashishsharmawork";
+      };
+    };
+
     formatter.aarch64-darwin = nixpkgs.legacyPackages.aarch64-darwin.alejandra;
   };
 }
