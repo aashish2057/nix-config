@@ -31,5 +31,8 @@
     azurite
     azure-cli
     pnpm
+    azure-cli
+    kubectl
+    kubelogin
   ];
 }
