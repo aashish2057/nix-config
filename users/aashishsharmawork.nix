@@ -34,5 +34,6 @@
     azure-cli
     kubectl
     kubelogin
+    k9s
   ];
 }
