@@ -2,6 +2,13 @@
 
 ### Overview
 After learning about nix and it's philosophy I became curious about using it. I soon learned about Nix Darwin and how I could use Nix, Nix Packages a Nix Darwin to get a declarative setup on my mac. This configuration is what I use on my personal machine every day. It was a pain to learn but once I did, it has been a joy to use. If you are intrigued by Nix on Mac this is good place to start. Browse through the readme to learn a thing or two. While I recommend you create your own configuration as that is the best way to learn, you can certainly use mine, just know this configuration is meant to work with my system and hardware not be a general purpose configuration for mac so you may run into issues.
+
+### Credits
+I would not have been able to start using nix without the work of others. These repos helped me get started and are much better resources than mine, there is likely more that I forgot to list here.
+https://github.com/mitchellh/nixos-config
+https://github.com/dmmulroy (used to have a nix configuration that helped me but has moved away from nix)
+https://github.com/ryan4yin/nixos-and-flakes-book
+
 ### Table of Contents
 - [Nix config for macOS](#nix-config-for-macos)
 	- [Overview](#overview)
