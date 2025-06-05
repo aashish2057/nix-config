@@ -51,8 +51,7 @@ At this point you should have access to git on your system, which was installed 
 ```bash
 git clone https://github.com/aashish2057/nix-config.git
 ```
-The 2 concepts that change depending on what sytem you are using are the users and the hosts. The users are located in the users folder and the hosts are located in the hosts folder. You will have to make your own entries into those and import them into the flake.nix file. Look at how 
-users/aashishsharma.nix, and hosts/aashish-sharma-macbook-pro.nix are imported into the flake.nix file. In order to get your sytsem username and hostname you can run the following commands in your terminal.
+Hosts are the various different machines I run. I combined users/hosts into one file as I don't have multiple users per host machine. You would need to create an entry into hosts/ for your system, where the file name is your hostname. In order to get your sytsem username and hostname you can run the following commands in your terminal.
 
 ```bash
 whoami # get username
@@ -112,7 +111,6 @@ show/hide sidebar - `ctrl - s`
 There are some packages I use from npm that need to be globally installed. For this first create a directory to install them to, I can't use the default one as the nix install of nodejs is immutable.
 ```bash
 mkdir ~/.npm-global # create directory for global npm packages
-npm install -g @anthropic-ai/claude-code # claude code https://github.com/anthropics/claude-code
 npm install -g foreman # work only node foreman https://github.com/strongloop/node-foreman
 ```
 
