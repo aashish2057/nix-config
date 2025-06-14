@@ -13,8 +13,13 @@
       "jordanbaird-ice"
     ];
 
+    brews = [
+      "opencode"
+    ];
+
     taps = [
       "nikitabobko/tap"
+      "sst/tap"
     ];
 
     onActivation.cleanup = "zap";
