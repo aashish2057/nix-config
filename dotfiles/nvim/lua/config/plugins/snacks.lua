@@ -9,6 +9,12 @@ return {
 				debug = {
 					scores = true,
 				},
+				sources = {
+					files = {
+						hidden = true,
+						no_ignore = false,
+					},
+				},
 			},
 		},
 	},
