@@ -2,6 +2,7 @@
   description = "nix configuration by aashish2057";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-25.05-darwin";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin.url = "github:LnL7/nix-darwin/nix-darwin-25.05";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -15,11 +16,12 @@
     self,
     nix-darwin,
     nixpkgs,
+    nixpkgs-unstable,
     home-manager,
     ...
   }: let
     systems = import ./lib/systems.nix {
-      inherit nixpkgs nix-darwin home-manager self;
+      inherit nixpkgs nixpkgs-unstable nix-darwin home-manager self;
     };
   in {
     darwinConfigurations = {
