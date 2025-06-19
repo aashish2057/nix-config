@@ -1,5 +1,6 @@
 {
   nixpkgs,
+  nixpkgs-unstable,
   nix-darwin,
   home-manager,
   self,
@@ -7,13 +8,15 @@
   mkDarwinSystem = {
     hostname,
     username,
-  }:
+  }: let
+    system = "aarch64-darwin";
+  in
     nix-darwin.lib.darwinSystem {
-      system = "aarch64-darwin";
+      inherit system;
       specialArgs = {
-        inherit username self;
-        system = "aarch64-darwin";
+        inherit username self system;
         homedir = "/Users/${username}";
+        pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
       };
       modules = [
         ../hosts/${hostname}.nix
@@ -24,6 +27,7 @@
           home-manager.extraSpecialArgs = {
             inherit username;
             homedir = "/Users/${username}";
+            pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
           };
         }
       ];
