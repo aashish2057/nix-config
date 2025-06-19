@@ -79,6 +79,7 @@
       kubectl
       kubelogin
       k9s
+      nodejs_22
     ];
   };
 }
