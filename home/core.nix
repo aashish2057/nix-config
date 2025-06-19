@@ -14,9 +14,7 @@
     zsh-fzf-history-search
     zsh-fzf-tab
     ripgrep
-    gh
     alejandra
-    nodejs_22
     yazi
     nh
   ];
