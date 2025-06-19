@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  pkgs-unstable,
   system,
   username,
   ...
@@ -44,6 +45,7 @@
   # Home Manager configuration
   home-manager.users.${username} = {
     pkgs,
+    pkgs-unstable,
     config,
     username,
     homedir,
@@ -61,25 +63,24 @@
       userEmail = "aashish.sharma@gocrisp.com";
     };
 
-    home.packages = with pkgs; [
-      docker
-      colima
-      lazydocker
+    home.packages = [
+      pkgs.docker
+      pkgs.colima
+      pkgs.lazydocker
       # Work project is dotnet 8, roslyn lsp is dotnet 9
-      (with dotnetCorePackages;
-        combinePackages [
+      (with pkgs.dotnetCorePackages;
+        pkgs.dotnetCorePackages.combinePackages [
           sdk_8_0
           sdk_9_0
         ])
-      dotnet-ef
-      azurite
-      azure-cli
-      pnpm
-      azure-cli
-      kubectl
-      kubelogin
-      k9s
-      nodejs_22
+      pkgs.dotnet-ef
+      pkgs.azurite
+      pkgs.azure-cli
+      pkgs.pnpm
+      pkgs.kubectl
+      pkgs.kubelogin
+      pkgs.k9s
+      pkgs.nodejs_22
     ];
   };
 }
