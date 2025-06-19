@@ -1,5 +1,6 @@
 {
   pkgs,
+  pkgs-unstable,
   config,
   username,
   homedir,
@@ -9,14 +10,14 @@
 
   programs.home-manager.enable = true;
 
-  home.packages = with pkgs; [
-    fzf
-    zsh-fzf-history-search
-    zsh-fzf-tab
-    ripgrep
-    alejandra
-    yazi
-    nh
+  home.packages = [
+    pkgs.fzf
+    pkgs.zsh-fzf-history-search
+    pkgs.zsh-fzf-tab
+    pkgs.ripgrep
+    pkgs.alejandra
+    pkgs.yazi
+    pkgs-unstable.nh
   ];
 
   programs = {

@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  pkgs-unstable,
   system,
   username,
   ...
@@ -37,6 +38,7 @@
   # Home Manager configuration
   home-manager.users.${username} = {
     pkgs,
+    pkgs-unstable,
     config,
     username,
     homedir,
@@ -54,8 +56,8 @@
       userEmail = "aashish2057@gmail.com";
     };
 
-    home.packages = with pkgs; [
-      cowsay
+    home.packages = [
+      pkgs.cowsay
     ];
   };
 }
