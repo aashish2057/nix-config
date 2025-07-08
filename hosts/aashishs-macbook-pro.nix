@@ -17,7 +17,7 @@
     defaults = {
       dock = {
         persistent-apps = [
-          "/Applications/Arc.app"
+          "/Applications/Helium.app"
           "/Applications/Ghostty.app"
           "/Applications/Obsidian.app"
         ];
