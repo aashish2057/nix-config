@@ -5,7 +5,6 @@
     casks = [
       "raycast"
       "ghostty"
-      "arc"
       "obsidian"
       "font-geist-mono-nerd-font"
       "aerospace"
