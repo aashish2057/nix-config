@@ -18,6 +18,7 @@
     pkgs.alejandra
     pkgs.yazi
     pkgs-unstable.nh
+    pkgs.nodejs_22
   ];
 
   programs = {
