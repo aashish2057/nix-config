@@ -65,3 +65,13 @@ end
 keymap.set("n", "<leader>d", Toggle_diagnostics)
 
 keymap.set("n", "<leader>n", "<cmd>Oil<cr>")
+
+keymap.set("n", "<leader>ac", function()
+	if vim.b.completion == true or vim.b.completion == nil then
+		vim.b.completion = false
+		vim.notify("Auto Completion Disabled")
+	else
+		vim.b.completion = true
+		vim.notify("Auto Completion Enabled")
+	end
+end)
