@@ -10,6 +10,7 @@
       "aerospace"
       "flux-app"
       "jordanbaird-ice"
+      "appcleaner"
     ];
 
     brews = [
