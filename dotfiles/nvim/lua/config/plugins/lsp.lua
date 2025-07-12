@@ -100,6 +100,10 @@ return {
 				capabilities = capabilities,
 			})
 
+			require("lspconfig").astro.setup({
+				capabilities = capabilities,
+			})
+
 			require("roslyn").setup({
 				capabilities = capabilities,
 			})
