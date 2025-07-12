@@ -14,6 +14,7 @@ return {
 					"javascript",
 					"yaml",
 					"c",
+					"astro",
 				},
 				auto_install = false,
 				sync_install = false,
