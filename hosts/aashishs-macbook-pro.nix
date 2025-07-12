@@ -32,7 +32,7 @@
       "utm"
       "anki"
       "mullvad-vpn"
-      "tailscale"
+      "tailscale-app"
     ];
   };
 
