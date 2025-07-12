@@ -8,7 +8,7 @@
       "obsidian"
       "font-geist-mono-nerd-font"
       "aerospace"
-      "flux"
+      "flux-app"
       "jordanbaird-ice"
     ];
 
