@@ -173,7 +173,9 @@
       };
 
       nix_shell = {
-        symbol = " ";
+        symbol = "";
+        impure_msg = "";
+        heuristic = true;
       };
 
       os = {
