@@ -19,6 +19,7 @@
     pkgs.yazi
     pkgs-unstable.nh
     pkgs.nodejs_22
+    pkgs.direnv
   ];
 
   programs = {
