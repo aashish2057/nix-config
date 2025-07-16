@@ -48,6 +48,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		keymap.set("n", "gri", vim.lsp.buf.implementation)
 		keymap.set("n", "gO", vim.lsp.buf.document_symbol)
 		keymap.set("i", "<C-s>", vim.lsp.buf.signature_help)
+		vim.b.completion = false
 	end,
 })
 
@@ -67,7 +68,7 @@ keymap.set("n", "<leader>d", Toggle_diagnostics)
 keymap.set("n", "<leader>n", "<cmd>Oil<cr>")
 
 keymap.set("n", "<leader>ac", function()
-	if vim.b.completion == true or vim.b.completion == nil then
+	if vim.b.completion == true then
 		vim.b.completion = false
 		vim.notify("Auto Completion Disabled")
 	else
