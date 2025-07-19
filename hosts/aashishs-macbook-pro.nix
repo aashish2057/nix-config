@@ -27,7 +27,6 @@
 
   homebrew = {
     casks = [
-      "cold-turkey-blocker"
       "legcord"
       "utm"
       "anki"
