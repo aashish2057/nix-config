@@ -8,6 +8,12 @@ return {
 					lua = { "stylua" },
 					cs = { "csharpier" },
 					nix = { "alejandra" },
+					astro = { "prettierd" },
+					html = { "prettierd" },
+					css = { "prettierd" },
+					js = { "prettierd" },
+					ts = { "prettierd" },
+					json = { "prettierd" },
 				},
 
 				format_on_save = {
