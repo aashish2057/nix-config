@@ -76,3 +76,12 @@ keymap.set("n", "<leader>ac", function()
 		vim.notify("Auto Completion Enabled")
 	end
 end)
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "http",
+	callback = function()
+		keymap.set("n", "<leader>sr", function()
+			require("kulala").run()
+		end)
+	end,
+})
