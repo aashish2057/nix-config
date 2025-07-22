@@ -2,6 +2,8 @@ return {
 	{
 		"mistweaverco/kulala.nvim",
 		ft = { "http", "rest" },
-		opts = {},
+		opts = {
+			kulala_keymaps = false,
+		},
 	},
 }
