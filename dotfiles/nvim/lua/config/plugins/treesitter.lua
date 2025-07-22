@@ -15,6 +15,7 @@ return {
 					"yaml",
 					"c",
 					"astro",
+					"http",
 				},
 				auto_install = false,
 				sync_install = false,
