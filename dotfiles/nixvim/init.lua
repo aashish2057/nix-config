@@ -11,6 +11,9 @@ local keymap = vim.keymap
 opt.number = true
 opt.relativenumber = true
 
+-- swap file
+opt.swapfile = false
+
 ----------PLUGINS----------
 
 -- colorscheme
