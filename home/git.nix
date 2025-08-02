@@ -17,6 +17,7 @@
     delta = {
       enable = true;
       options.features = "side-by-side";
+      options.tabs = 4;
     };
   };
 }
