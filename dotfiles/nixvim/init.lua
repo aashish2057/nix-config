@@ -69,3 +69,7 @@ require("oil").setup({
 })
 
 keymap.set("n", "<leader>n", "<cmd>Oil<cr>")
+
+require("nvim-treesitter.configs").setup({
+	highlight = { enable = true },
+})

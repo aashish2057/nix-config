@@ -55,6 +55,7 @@
           material-nvim
           oil-nvim
           conform-nvim
+          nvim-treesitter.withAllGrammars
         ];
       };
 
