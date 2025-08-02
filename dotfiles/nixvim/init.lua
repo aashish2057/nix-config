@@ -44,6 +44,7 @@ vim.lsp.enable("luals")
 require("conform").setup({
 	formatters_by_ft = {
 		lua = { "stylua" },
+		nix = { "alejandra" },
 	},
 
 	format_on_save = {
