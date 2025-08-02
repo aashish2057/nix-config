@@ -44,6 +44,7 @@
       lspsAndRuntimeDeps = {
         general = with pkgs; [
 	  lua-language-server
+	  stylua
         ];
       };
 
@@ -53,6 +54,7 @@
         general = with pkgs.vimPlugins; [
           material-nvim
           oil-nvim
+	  conform-nvim
         ];
       };
 
