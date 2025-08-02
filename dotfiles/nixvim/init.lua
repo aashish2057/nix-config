@@ -17,6 +17,11 @@ opt.swapfile = false
 -- appearance
 opt.signcolumn = "yes"
 
+-- tabs
+opt.softtabstop = 4
+opt.shiftwidth = 4
+opt.tabstop = 4
+
 ----------LSPs----------
 vim.lsp.config["luals"] = {
 	cmd = { "lua-language-server" },
