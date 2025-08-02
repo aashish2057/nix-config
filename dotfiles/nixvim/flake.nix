@@ -49,7 +49,9 @@
       # This is for plugins that will load at startup without using packadd:
       startupPlugins = {
         gitPlugins = with pkgs.neovimPlugins; [];
-        general = with pkgs.vimPlugins; [];
+        general = with pkgs.vimPlugins; [
+          material-nvim
+        ];
       };
 
       # not loaded automatically at startup.
@@ -114,7 +116,7 @@
         # and a set of categories that you want
         # (and other information to pass to lua)
         categories = {
-          general = false;
+          general = true;
           gitPlugins = false;
           customPlugins = false;
           test = false;
