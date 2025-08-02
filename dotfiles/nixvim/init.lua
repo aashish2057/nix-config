@@ -1,4 +1,4 @@
-----------OPTIONS----------
+----------OPTIONs----------
 
 -- leader key
 vim.g.mapleader = " "
@@ -14,20 +14,41 @@ opt.relativenumber = true
 -- swap file
 opt.swapfile = false
 
-----------PLUGINS----------
+-- appearance 
+opt.signcolumn = "yes"
+
+----------LSPs----------
+vim.lsp.config['luals'] = {
+  cmd = { 'lua-language-server' },
+  filetypes = { 'lua' },
+  settings = {
+    format = {
+      enable = false,
+    },
+    Lua = {
+      diagnostics = {
+        globals = { "vim" }
+      }
+    }
+  }
+}
+
+vim.lsp.enable('luals')
+
+----------PLUGINs----------
 
 -- colorscheme
 require("material").setup({
-	plugins = {},
+  plugins = {},
 })
 vim.g.material_style = "deep ocean"
 vim.cmd.colorscheme("material")
 
 -- file explorer
 require("oil").setup({
-	view_options = {
-		show_hidden = true,
-	},
+  view_options = {
+    show_hidden = true,
+  },
 })
 
 keymap.set("n", "<leader>n", "<cmd>Oil<cr>")
