@@ -51,6 +51,7 @@
         gitPlugins = with pkgs.neovimPlugins; [];
         general = with pkgs.vimPlugins; [
           material-nvim
+          oil-nvim
         ];
       };
 
