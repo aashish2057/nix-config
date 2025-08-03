@@ -97,6 +97,15 @@ end)
 keymap.set("n", "<leader>fs", function() -- grep
 	require("snacks").picker.grep()
 end)
+keymap.set("n", "<leader>fb", function() -- buffers
+	require("snacks").picker.buffers()
+end)
+keymap.set("n", "<leader>gl", function() -- list all git logs
+	require("snacks").picker.git_log()
+end)
+keymap.set("n", "<leader>glf", function() -- list all git logs for current file
+	require("snacks").picker.git_log_file()
+end)
 
 -- no neck pain
 require("no-neck-pain").setup({
