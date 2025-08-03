@@ -56,6 +56,7 @@
           oil-nvim
           conform-nvim
           nvim-treesitter.withAllGrammars
+          snacks-nvim
         ];
       };
 

@@ -73,3 +73,27 @@ keymap.set("n", "<leader>n", "<cmd>Oil<cr>")
 require("nvim-treesitter.configs").setup({
 	highlight = { enable = true },
 })
+
+require("snacks").setup({
+	picker = {
+		matcher = {
+			frecency = true,
+		},
+		debug = {
+			scores = true,
+		},
+		sources = {
+			files = {
+				hidden = true,
+				no_ignore = false,
+			},
+		},
+	},
+})
+
+keymap.set("n", "<leader>ff", function() -- find files
+	require("snacks").picker.files()
+end)
+keymap.set("n", "<leader>fs", function() -- grep
+	require("snacks").picker.grep()
+end)
