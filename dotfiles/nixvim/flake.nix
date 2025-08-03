@@ -58,6 +58,9 @@
           nvim-treesitter.withAllGrammars
           snacks-nvim
           no-neck-pain-nvim
+          mini-diff
+          mini-icons
+          mini-statusline
         ];
       };
 
