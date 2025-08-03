@@ -97,3 +97,11 @@ end)
 keymap.set("n", "<leader>fs", function() -- grep
 	require("snacks").picker.grep()
 end)
+
+-- no neck pain
+require("no-neck-pain").setup({
+	width = 200,
+	autocmds = {
+		enableOnVimEnter = true,
+	},
+})

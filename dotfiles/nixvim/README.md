@@ -4,4 +4,4 @@ Reproducable neovim configuration built with [nixCats](https://github.com/Birdee
 
 #### Startup times
 Barebones: 16.773 ms 
-Current: 37.039 ms
+Current: 43.207 ms

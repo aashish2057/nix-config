@@ -57,6 +57,7 @@
           conform-nvim
           nvim-treesitter.withAllGrammars
           snacks-nvim
+          no-neck-pain-nvim
         ];
       };
 
