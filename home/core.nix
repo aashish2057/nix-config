@@ -22,13 +22,11 @@
     pkgs.direnv
   ];
 
-  # programs = {
-  #   neovim = {
-  #     enable = true;
-  #     defaultEditor = true;
-  #     vimAlias = true;
-  #   };
-  # };
+  programs = {
+    neovim = {
+      enable = true;
+    };
+  };
 
   home.sessionVariables = {
     EDITOR = "nixvim";
@@ -43,9 +41,9 @@
     ghostty = {
       source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Dev/nix-config/dotfiles/ghostty";
     };
-    # nvim = {
-    #   source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Dev/nix-config/dotfiles/nvim";
-    # };
+    nvim = {
+      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Dev/nix-config/dotfiles/nvim";
+    };
     aerospace = {
       source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Dev/nix-config/dotfiles/aerospace";
     };
