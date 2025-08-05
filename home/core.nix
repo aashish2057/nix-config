@@ -25,9 +25,12 @@
   programs = {
     neovim = {
       enable = true;
-      defaultEditor = true;
-      vimAlias = true;
     };
+  };
+
+  home.sessionVariables = {
+    EDITOR = "nixvim";
+    MANPAGER = "nixvim +Man!";
   };
 
   home.file = {
