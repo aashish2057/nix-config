@@ -14,8 +14,6 @@
 
   users.users.${username}.home = homedir;
 
-  networking.hostName = "nixos";
-
   home-manager.users.${username} = {
     pkgs,
     pkgs-unstable,
