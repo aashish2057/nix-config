@@ -9,6 +9,7 @@
 }: {
   imports = [
     ./hardware.nix
+    ../modules/nixos.nix
   ];
 
   users.users.${username}.home = homedir;
