@@ -30,11 +30,6 @@
     };
   };
 
-  # home.sessionVariables = {
-  #   EDITOR = "nixvim";
-  #   MANPAGER = "nixvim +Man!";
-  # };
-
   home.file = {
     ".hushlogin".text = "";
   };
