@@ -42,7 +42,7 @@
     nixpkgs.lib.nixosSystem {
       inherit system;
       specialArgs = {
-        inherit username self system;
+        inherit username self hostname system;
         homedir = "/home/${username}";
         pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
       };
