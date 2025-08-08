@@ -25,6 +25,7 @@
   }: {
     imports = [
     ];
+    home.stateVersion = "25.05";
 
     programs.git = {
       userName = "aashish2057";
