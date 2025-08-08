@@ -23,7 +23,12 @@
     ...
   }: {
     imports = [
+      ../home/git.nix
+      ../home/shell.nix
+      ../home/starship.nix
     ];
+    programs.home-manager.enable = true;
+
     home.stateVersion = "25.05";
 
     programs.git = {
@@ -45,6 +50,11 @@
       btop
       wl-clipboard
       hyprpaper
+      fzf
+      zsh-fzf-history-search
+      zsh-fzf-tab
+      ripgrep
+      alejandra
     ];
   };
 }
