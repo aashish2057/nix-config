@@ -159,3 +159,6 @@ require("no-neck-pain").setup({
 require("mini.diff").setup()
 require("mini.icons").setup()
 require("mini.statusline").setup()
+
+-- roslyn
+require("roslyn").setup()
