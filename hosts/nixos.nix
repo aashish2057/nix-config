@@ -55,6 +55,24 @@
       zsh-fzf-tab
       ripgrep
       alejandra
+
+      (opencode.overrideAttrs (oldAttrs: {
+        version = "0.4.2";
+        src = fetchFromGitHub {
+          owner = "sst";
+          repo = "opencode";
+          rev = "7bbc643600a8a669f4dd9136a29f220a5b0e81ab";
+          sha256 = "1jn274p5396p9y1miylac68pqyl8ilaf5rm0f0jjrf26yr0yd9gj";
+        };
+
+        tui = oldAttrs.tui.overrideAttrs (oldTuiAttrs: {
+          vendorHash = "sha256-jGaTgKyAvBMt8Js5JrPFUayhVt3QhgyclFoNatoHac4=";
+        });
+
+        node_modules = oldAttrs.node_modules.overrideAttrs (oldNodeAttrs: {
+          outputHash = "sha256-LmNn4DdnSLVmGS5yqLyk/0e5pCiKfBzKIGRvvwZ6jHY=";
+        });
+      }))
     ];
   };
 }
