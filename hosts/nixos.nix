@@ -43,7 +43,7 @@
 
     home.packages = with pkgs; [
       ghostty
-      ungoogled-chromium
+      (ungoogled-chromium.override {enableWideVine = true;})
       discord
       git
       ddcutil
