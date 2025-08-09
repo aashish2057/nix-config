@@ -61,6 +61,8 @@
           mini-diff
           mini-icons
           mini-statusline
+          vim-fugitive
+          vim-rhubarb
         ];
       };
 
