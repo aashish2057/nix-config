@@ -45,6 +45,7 @@
         general = with pkgs; [
           lua-language-server
           stylua
+          roslyn-ls
         ];
       };
 
@@ -61,6 +62,9 @@
           mini-diff
           mini-icons
           mini-statusline
+          vim-fugitive
+          vim-rhubarb
+          roslyn-nvim
         ];
       };
 
