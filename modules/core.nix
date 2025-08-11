@@ -22,9 +22,9 @@
     ...
   }: {
     imports = [
-      ../home/git.nix
-      ../home/shell.nix
-      ../home/starship.nix
+      ./git.nix
+      ./shell.nix
+      ./starship.nix
     ];
 
     home = {
