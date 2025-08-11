@@ -55,6 +55,7 @@
       zsh-fzf-tab
       ripgrep
       alejandra
+      obsidian
 
       (pkgs-unstable.opencode.overrideAttrs (oldAttrs: {
         version = "0.4.12";
