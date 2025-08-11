@@ -73,6 +73,7 @@
           outputHash = "sha256-LmNn4DdnSLVmGS5yqLyk/0e5pCiKfBzKIGRvvwZ6jHY=";
         };
       }))
+      pkgs-unstable.hyprsunset
     ];
   };
 }
