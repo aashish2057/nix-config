@@ -17,7 +17,7 @@
         pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
       };
       modules = [
-        ../hosts/${hostname}.nix
+        ../modules/darwin.nix
         home-manager.darwinModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
