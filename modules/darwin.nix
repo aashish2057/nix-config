@@ -7,6 +7,26 @@
   isWork ? false,
   ...
 }: {
+  import = [
+    ./homebrew.nix
+  ];
+
+  home.file = {
+    ".hushlogin".text = "";
+  };
+
+  xdg.configFile = {
+    ghostty = {
+      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Dev/nix-config/dotfiles/ghostty";
+    };
+    nvim = {
+      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Dev/nix-config/dotfiles/nvim";
+    };
+    aerospace = {
+      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Dev/nix-config/dotfiles/aerospace";
+    };
+  };
+
   system = {
     configurationRevision = self.rev or self.dirtyRev or null;
     stateVersion = 5;
