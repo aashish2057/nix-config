@@ -7,7 +7,7 @@
   ...
 }: {
   imports = [
-    ../modules/common/core.nix
+    ../modules/core.nix
     ../modules/darwin.nix
     ../modules/homebrew.nix
   ];
