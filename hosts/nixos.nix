@@ -23,9 +23,7 @@
     ...
   }: {
     imports = [
-      ../home/git.nix
-      ../home/shell.nix
-      ../home/starship.nix
+      ../modules/core.nix
     ];
     programs.home-manager.enable = true;
 
