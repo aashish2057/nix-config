@@ -11,20 +11,4 @@
     ../modules/darwin.nix
     ../modules/homebrew.nix
   ];
-
-  system = {
-    primaryUser = username;
-    defaults = {
-      dock = {
-        persistent-apps = [
-          "/Applications/Helium.app"
-          "/Applications/Ghostty.app"
-          "/Applications/DataGrip.app"
-          "/Applications/Obsidian.app"
-          "/Applications/Slack.app"
-          "/Applications/zoom.us.app"
-        ];
-      };
-    };
-  };
 }
