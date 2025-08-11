@@ -24,14 +24,4 @@
       };
     };
   };
-
-  homebrew = {
-    casks = [
-      "legcord"
-      "utm"
-      "anki"
-      "mullvad-vpn"
-      "tailscale-app"
-    ];
-  };
 }
