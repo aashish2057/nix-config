@@ -56,17 +56,17 @@
       ripgrep
       alejandra
 
-      (opencode.overrideAttrs (oldAttrs: {
-        version = "0.4.2";
+      (pkgs-unstable.opencode.overrideAttrs (oldAttrs: {
+        version = "0.4.12";
         src = fetchFromGitHub {
           owner = "sst";
           repo = "opencode";
-          rev = "7bbc643600a8a669f4dd9136a29f220a5b0e81ab";
-          sha256 = "1jn274p5396p9y1miylac68pqyl8ilaf5rm0f0jjrf26yr0yd9gj";
+          rev = "4580c88c0b38519e8187d2df1035e9538b51ec2a";
+          sha256 = "19398lii5xsqhrs4jyk7v1djga3rd8wjzqxvqn66yj3g9qfip3yy";
         };
 
         tui = oldAttrs.tui.overrideAttrs {
-          vendorHash = "sha256-jGaTgKyAvBMt8Js5JrPFUayhVt3QhgyclFoNatoHac4=";
+          vendorHash = "sha256-jINbGug/SPGBjsXNsC9X2r5TwvrOl5PJDL+lrOQP69Q=";
         };
 
         node_modules = oldAttrs.node_modules.overrideAttrs {
