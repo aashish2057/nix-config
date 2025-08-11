@@ -27,18 +27,4 @@
       };
     };
   };
-
-  homebrew = {
-    casks = [
-      "slack"
-      "zoom"
-      "tunnelblick"
-      "datagrip"
-      "rider"
-      "google-chrome"
-      "microsoft-azure-storage-explorer"
-      "modern-csv"
-      "visual-studio-code"
-    ];
-  };
 }
