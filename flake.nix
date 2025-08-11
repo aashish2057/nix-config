@@ -38,6 +38,7 @@
         hostname = "aashishs-work-macbook-pro";
         username = "aashishsharmawork";
         system = "aarch64-darwin";
+        isWork = true;
       };
     };
 
