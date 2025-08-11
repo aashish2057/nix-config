@@ -31,11 +31,13 @@
       Aashishs-MacBook-Pro = systems.mkDarwinSystem {
         hostname = "aashishs-macbook-pro";
         username = "aashishsharma";
+        system = "aarch64-darwin";
       };
 
       Aashishs-Work-MacBook-Pro = systems.mkDarwinSystem {
         hostname = "aashishs-work-macbook-pro";
         username = "aashishsharmawork";
+        system = "aarch64-darwin";
       };
     };
 
@@ -43,6 +45,7 @@
       nixos = systems.mkNixosSystem {
         hostname = "nixos";
         username = "aashishsharma";
+        system = "x86_64-linux";
       };
     };
 

@@ -8,11 +8,9 @@
   mkDarwinSystem = {
     hostname,
     username,
-  }: let
-    system = "aarch64-darwin";
-  in
+    system,
+  }:
     nix-darwin.lib.darwinSystem {
-      inherit system;
       specialArgs = {
         inherit username self system;
         homedir = "/Users/${username}";
@@ -36,11 +34,9 @@
   mkNixosSystem = {
     hostname,
     username,
-  }: let
-    system = "x86_64-linux";
-  in
+    system,
+  }:
     nixpkgs.lib.nixosSystem {
-      inherit system;
       specialArgs = {
         inherit username self hostname system;
         homedir = "/home/${username}";
