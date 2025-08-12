@@ -1,11 +1,8 @@
 {
-  config,
   pkgs,
   pkgs-unstable,
   lib,
-  system,
   username,
-  homedir,
   isWork,
   ...
 }: {
