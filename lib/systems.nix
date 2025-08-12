@@ -4,6 +4,28 @@
   home-manager,
   ...
 }: {
+  mkDarwinSystem = {
+    hostname,
+    username,
+    system,
+    isWork ? false,
+  }:
+    nix-darwin.lib.darwinSystem {
+      specialArgs = {
+        inherit username self system isWork;
+        homedir = "/Users/${username}";
+        pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
+      };
+      modules = [
+        ../hosts/${hostname}/${hostname}.nix
+        home-manager.darwinModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+        }
+      ];
+    };
+
   mkNixosSystem = {
     hostname,
     username,
