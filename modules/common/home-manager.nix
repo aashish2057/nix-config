@@ -8,7 +8,6 @@
 }: {
   home-manager.users.${username} = {
     imports = [
-      ./shell.nix
       ./starship.nix
     ];
 
