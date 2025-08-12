@@ -7,10 +7,6 @@
   ...
 }: {
   home-manager.users.${username} = {
-    imports = [
-      ./starship.nix
-    ];
-
     programs.home-manager.enable = true;
 
     home = {
