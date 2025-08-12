@@ -9,31 +9,16 @@
     ./hardware.nix
     ../../modules/common/core.nix
     ../../modules/linux/hyprland.nix
+    ../../modules/linux/nvidia.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.cudaSupport = true;
 
   hardware.i2c.enable = true;
   boot.kernelModules = ["i2c-dev"];
-
-  hardware.graphics = {
-    enable = true;
-  };
-
-  services.xserver.videoDrivers = ["nvidia"];
-
-  hardware.nvidia = {
-    modesetting.enable = true;
-    powerManagement.enable = false;
-    powerManagement.finegrained = false;
-    open = false;
-    nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-  };
 
   networking.hostName = hostname;
   networking.networkmanager.enable = true;
