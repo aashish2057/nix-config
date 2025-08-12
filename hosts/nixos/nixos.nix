@@ -7,7 +7,8 @@
 }: {
   imports = [
     ./hardware.nix
-    ../../modules/core.nix
+    ../../modules/common/core.nix
+    ../../modules/linux/hyprland.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
@@ -71,11 +72,6 @@
     description = "Aashish Sharma";
     extraGroups = ["networkmanager" "wheel"];
     shell = pkgs.zsh;
-  };
-
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
   };
 
   fonts.packages = with pkgs; [
