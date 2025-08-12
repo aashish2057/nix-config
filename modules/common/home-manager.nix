@@ -9,16 +9,6 @@
   isWork,
   ...
 }: {
-  nix.settings.experimental-features = "nix-command flakes";
-  nixpkgs.hostPlatform = system;
-  # Needed for home manager see https://github.com/nix-community/home-manager/issues/6036
-  users.users.${username}.home = homedir;
-
-  nixpkgs.config.allowUnfree = true;
-
-  programs.zsh.enable = true;
-  system.stateVersion = "25.05";
-
   home-manager.users.${username} = {
     imports = [
       ./shell.nix

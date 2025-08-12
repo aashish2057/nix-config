@@ -7,7 +7,8 @@
 }: {
   imports = [
     ./hardware.nix
-    ../../modules/common/core.nix
+    ../../modules/common/nix-core.nix
+    ../../modules/common/home-manager.nix
     ../../modules/common/fonts.nix
     ../../modules/linux/hyprland.nix
     ../../modules/linux/nvidia.nix
