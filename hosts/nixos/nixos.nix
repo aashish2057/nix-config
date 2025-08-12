@@ -6,7 +6,8 @@
   ...
 }: {
   imports = [
-    ../hosts/hardware.nix
+    ./hardware.nix
+    ../../modules/core.nix
   ];
 
   boot.loader.systemd-boot.enable = true;

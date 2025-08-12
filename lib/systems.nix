@@ -17,8 +17,7 @@
         pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
       };
       modules = [
-        ../modules/core.nix
-        ../modules/nixos.nix
+        ../hosts/${hostname}/${hostname}.nix
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
