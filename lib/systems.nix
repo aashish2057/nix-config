@@ -2,7 +2,7 @@
   nixpkgs,
   nixpkgs-unstable,
   home-manager,
-  self,
+  ...
 }: {
   mkNixosSystem = {
     hostname,
@@ -12,7 +12,7 @@
   }:
     nixpkgs.lib.nixosSystem {
       specialArgs = {
-        inherit username self hostname system isWork;
+        inherit username hostname system isWork;
         homedir = "/home/${username}";
         pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
       };

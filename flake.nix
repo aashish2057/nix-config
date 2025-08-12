@@ -11,14 +11,13 @@
   };
 
   outputs = inputs @ {
-    self,
     nixpkgs,
     nixpkgs-unstable,
     home-manager,
     ...
   }: let
     systems = import ./lib/systems.nix {
-      inherit nixpkgs nixpkgs-unstable home-manager self;
+      inherit nixpkgs nixpkgs-unstable home-manager;
     };
   in {
     nixosConfigurations = {
