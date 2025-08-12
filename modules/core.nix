@@ -2,10 +2,11 @@
   config,
   pkgs,
   pkgs-unstable,
+  lib,
   system,
   username,
   homedir,
-  isWork ? false,
+  isWork,
   ...
 }: {
   nix.settings.experimental-features = "nix-command flakes";
@@ -51,7 +52,7 @@
           pkgs-unstable.hyprsunset
           (pkgs-unstable.opencode.overrideAttrs (oldAttrs: {
             version = "0.4.12";
-            src = fetchFromGitHub {
+            src = pkgs.fetchFromGitHub {
               owner = "sst";
               repo = "opencode";
               rev = "4580c88c0b38519e8187d2df1035e9538b51ec2a";

@@ -12,7 +12,7 @@
   }:
     nixpkgs.lib.nixosSystem {
       specialArgs = {
-        inherit username self hostname system;
+        inherit username self hostname system isWork;
         homedir = "/home/${username}";
         pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
       };
