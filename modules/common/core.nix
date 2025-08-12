@@ -16,6 +16,9 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  programs.zsh.enable = true;
+  system.stateVersion = "25.05";
+
   home-manager.users.${username} = {
     imports = [
       ./shell.nix
