@@ -14,6 +14,8 @@
   # Needed for home manager see https://github.com/nix-community/home-manager/issues/6036
   users.users.${username}.home = homedir;
 
+  nixpkgs.config.allowUnfree = true;
+
   home-manager.users.${username} = {
     imports = [
       ./shell.nix

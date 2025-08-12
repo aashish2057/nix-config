@@ -8,6 +8,7 @@
   imports = [
     ./hardware.nix
     ../../modules/common/core.nix
+    ../../modules/common/fonts.nix
     ../../modules/linux/hyprland.nix
     ../../modules/linux/nvidia.nix
   ];
@@ -15,7 +16,6 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  nixpkgs.config.allowUnfree = true;
 
   hardware.i2c.enable = true;
   boot.kernelModules = ["i2c-dev"];
@@ -57,18 +57,6 @@
     description = "Aashish Sharma";
     extraGroups = ["networkmanager" "wheel"];
     shell = pkgs.zsh;
-  };
-
-  fonts.packages = with pkgs; [
-    nerd-fonts.geist-mono
-  ];
-
-  fonts.fontconfig = {
-    enable = true;
-    hinting.enable = true;
-    defaultFonts = {
-      monospace = ["Geist Mono"];
-    };
   };
 
   system.stateVersion = "25.05";
