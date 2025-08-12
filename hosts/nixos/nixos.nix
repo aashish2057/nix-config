@@ -14,6 +14,7 @@
     ../../modules/linux/i18n.nix
     ../../modules/linux/xserver.nix
     ../../modules/linux/boot.nix
+    ../../modules/linux/pipewire.nix
   ];
 
   hardware.i2c.enable = true;
@@ -22,12 +23,6 @@
   networking.networkmanager.enable = true;
 
   security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
 
   users.users.${username} = {
     isNormalUser = true;
