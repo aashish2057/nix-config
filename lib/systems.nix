@@ -23,11 +23,6 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = {
-            inherit username;
-            homedir = "/home/${username}";
-            pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
-          };
         }
       ];
     };

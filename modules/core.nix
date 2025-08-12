@@ -15,13 +15,6 @@
   users.users.${username}.home = homedir;
 
   home-manager.users.${username} = {
-    pkgs,
-    pkgs-unstable,
-    config,
-    username,
-    homedir,
-    ...
-  }: {
     imports = [
       ./git.nix
       ./shell.nix
