@@ -13,12 +13,8 @@
     ../../modules/linux/nvidia.nix
     ../../modules/linux/i18n.nix
     ../../modules/linux/xserver.nix
+    ../../modules/linux/boot.nix
   ];
-
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelModules = ["i2c-dev"];
 
   hardware.i2c.enable = true;
 
