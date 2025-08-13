@@ -21,6 +21,8 @@
     ../../modules/linux/pipewire.nix
   ];
 
+  system.stateVersion = "25.05";
+
   hardware.i2c.enable = true;
 
   networking.hostName = hostname;
