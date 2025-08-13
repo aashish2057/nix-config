@@ -12,6 +12,7 @@
     ../../modules/common/shell.nix
     ../../modules/common/starship.nix
     ../../modules/common/neovim/neovim.nix
+    ../../modules/common/ghostty.nix
     ../../modules/darwin/darwin.nix
     ../../modules/darwin/homebrew.nix
   ];
