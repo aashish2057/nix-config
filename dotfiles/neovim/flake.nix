@@ -19,11 +19,14 @@
         # for an init.lua in there
         initLua = builtins.readFile ./init.lua;
 
+        extraBinPath = [
+          pkgs.lua-language-server
+          pkgs.stylua
+          pkgs.roslyn-ls
+        ];
+
         plugins = {
           start = [
-            pkgs.vimPlugins.lua-language-server
-            pkgs.vimPlugins.stylua
-            pkgs.vimPlugins.roslyn-ls
             pkgs.vimPlugins.material-nvim
             pkgs.vimPlugins.oil-nvim
             pkgs.vimPlugins.conform-nvim
