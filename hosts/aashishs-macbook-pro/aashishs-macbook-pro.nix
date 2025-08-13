@@ -11,6 +11,7 @@
     ../../modules/common/git.nix
     ../../modules/common/shell.nix
     ../../modules/common/starship.nix
+    ../../modules/common/neovim/neovim.nix
     ../../modules/darwin/darwin.nix
     ../../modules/darwin/homebrew.nix
   ];
