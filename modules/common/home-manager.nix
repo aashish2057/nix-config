@@ -21,6 +21,23 @@
           pkgs.yazi
           pkgs-unstable.nh
           pkgs.nodejs_22
+          (pkgs-unstable.opencode.overrideAttrs (oldAttrs: {
+            version = "0.4.41";
+            src = pkgs.fetchFromGitHub {
+              owner = "sst";
+              repo = "opencode";
+              rev = "93102dc84bc1ca944502d5a1476d8ee291b18f95";
+              sha256 = "0irirq8sq4ix50w6f6gx89qs3x7vhkykb67sgr05d7j5zyxwwcvl";
+            };
+
+            tui = oldAttrs.tui.overrideAttrs {
+              vendorHash = "sha256-/BI9vBMSJjt0SHczH8LkxxWC2hiPPKQwfRhmf2/8+TU=";
+            };
+
+            node_modules = oldAttrs.node_modules.overrideAttrs {
+              outputHash = "sha256-ql4qcMtuaRwSVVma3OeKkc9tXhe21PWMMko3W3JgpB0=";
+            };
+          }))
         ]
         ++ lib.optionals pkgs.stdenv.isLinux [
           pkgs.ghostty
@@ -31,24 +48,6 @@
           pkgs.wl-clipboard
           pkgs.hyprpaper
           pkgs-unstable.hyprsunset
-
-          (pkgs-unstable.opencode.overrideAttrs (oldAttrs: {
-            version = "0.4.12";
-            src = pkgs.fetchFromGitHub {
-              owner = "sst";
-              repo = "opencode";
-              rev = "4580c88c0b38519e8187d2df1035e9538b51ec2a";
-              sha256 = "19398lii5xsqhrs4jyk7v1djga3rd8wjzqxvqn66yj3g9qfip3yy";
-            };
-
-            tui = oldAttrs.tui.overrideAttrs {
-              vendorHash = "sha256-jINbGug/SPGBjsXNsC9X2r5TwvrOl5PJDL+lrOQP69Q=";
-            };
-
-            node_modules = oldAttrs.node_modules.overrideAttrs {
-              outputHash = "sha256-LmNn4DdnSLVmGS5yqLyk/0e5pCiKfBzKIGRvvwZ6jHY=";
-            };
-          }))
         ]
         ++ lib.optionals isWork [
           pkgs.docker
