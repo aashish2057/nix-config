@@ -13,6 +13,11 @@
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nvim = {
+      url = "path:./dotfiles/neovim";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
 
   outputs = inputs @ {
@@ -21,10 +26,11 @@
     home-manager,
     nix-darwin,
     self,
+    nvim,
     ...
   }: let
     systems = import ./lib/systems.nix {
-      inherit nixpkgs nixpkgs-unstable home-manager nix-darwin self;
+      inherit nixpkgs nixpkgs-unstable home-manager nix-darwin self nvim;
     };
   in {
     darwinConfigurations = {
