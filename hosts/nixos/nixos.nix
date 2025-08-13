@@ -12,6 +12,7 @@
     ../../modules/common/git.nix
     ../../modules/common/shell.nix
     ../../modules/common/starship.nix
+    ../../modules/common/neovim/neovim.nix
     ../../modules/linux/fonts.nix
     ../../modules/linux/hyprland.nix
     ../../modules/linux/nvidia.nix

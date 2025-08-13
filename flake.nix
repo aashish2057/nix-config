@@ -14,8 +14,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nvim = {
-      url = "path:./dotfiles/neovim";
+    mnw = {
+      url = "github:Gerg-L/mnw";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
   };
@@ -26,11 +26,11 @@
     home-manager,
     nix-darwin,
     self,
-    nvim,
+    mnw,
     ...
   }: let
     systems = import ./lib/systems.nix {
-      inherit nixpkgs nixpkgs-unstable home-manager nix-darwin self nvim;
+      inherit nixpkgs nixpkgs-unstable home-manager nix-darwin self mnw;
     };
   in {
     darwinConfigurations = {

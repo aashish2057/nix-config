@@ -4,7 +4,7 @@
   home-manager,
   nix-darwin,
   self,
-  nvim,
+  mnw,
   ...
 }: {
   mkDarwinSystem = {
@@ -15,7 +15,7 @@
   }:
     nix-darwin.lib.darwinSystem {
       specialArgs = {
-        inherit username self system isWork nvim;
+        inherit username self system isWork mnw;
         homedir = "/Users/${username}";
         pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
       };
@@ -37,7 +37,7 @@
   }:
     nixpkgs.lib.nixosSystem {
       specialArgs = {
-        inherit username hostname system isWork nvim;
+        inherit username hostname system isWork mnw;
         homedir = "/home/${username}";
         pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
       };
