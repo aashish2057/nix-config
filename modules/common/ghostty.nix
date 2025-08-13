@@ -1,11 +1,18 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   home-manager.sharedModules = [
     {
       programs.ghostty = {
         enable = true;
         enableZshIntegration = true;
-        package = mkif pkgs.stdenv.isDarwin null;
-        clearDefaultKebinds = true;
+        package =
+          if pkgs.stdenv.isDarwin
+          then null
+          else pkgs.ghostty;
+        clearDefaultKeybinds = true;
         settings =
           {
             theme = "MaterialOcean";
