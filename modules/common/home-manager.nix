@@ -11,6 +11,15 @@
   home-manager.users.${username} = {
     programs.home-manager.enable = true;
 
+    home.sessionVariables = {
+      EDITOR = "nvim";
+      VISUAL = "nvim";
+    };
+
+    programs.zsh.shellAliases = {
+      vim = "nvim";
+    };
+
     home = {
       stateVersion = "25.05";
       packages =
