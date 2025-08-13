@@ -33,6 +33,7 @@
               "ctrl+plus=increase_font_size:1"
               "ctrl+minus=decrease_font_size:1"
               "ctrl+shift+comma=reload_config"
+              "super+q=quit"
             ];
           }
           // lib.optionalAttrs pkgs.stdenv.isLinux {
