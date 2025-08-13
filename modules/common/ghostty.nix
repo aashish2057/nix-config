@@ -6,12 +6,12 @@
   home-manager.sharedModules = [
     {
       programs.ghostty = {
-        enable = true;
+        enable = !pkgs.stdenv.isDarwin;
         enableZshIntegration = true;
-        package =
-          if pkgs.stdenv.isDarwin
-          then null
-          else pkgs.ghostty;
+        # package =
+        #   if pkgs.stdenv.isDarwin
+        #   then null
+        #   else pkgs.ghostty;
         clearDefaultKeybinds = true;
         settings =
           {
