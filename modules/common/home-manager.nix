@@ -19,6 +19,9 @@
     };
 
     home = {
+      file = lib.optionalAttrs pkgs.stdenv.isDarwin {
+        ".hushlogin".text = "";
+      };
       stateVersion = "25.05";
       packages =
         [
