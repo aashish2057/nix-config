@@ -4,8 +4,6 @@
   lib,
   username,
   isWork,
-  nvim,
-  system,
   ...
 }: {
   home-manager.users.${username} = {
@@ -52,7 +50,6 @@
                 else "sha256-/s6eAI1VJ0kXrxP5yTi+jwNqHBCRcoltJC86AT7nVdI=";
             };
           }))
-          nvim.packages.${system}.default
         ]
         ++ lib.optionals pkgs.stdenv.isLinux [
           pkgs.ghostty

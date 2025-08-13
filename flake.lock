@@ -89,30 +89,13 @@
         "type": "github"
       }
     },
-    "nvim": {
-      "inputs": {
-        "mnw": "mnw",
-        "nixpkgs": [
-          "nixpkgs-unstable"
-        ]
-      },
-      "locked": {
-        "path": "./dotfiles/neovim",
-        "type": "path"
-      },
-      "original": {
-        "path": "./dotfiles/neovim",
-        "type": "path"
-      },
-      "parent": []
-    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "mnw": "mnw",
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs",
-        "nixpkgs-unstable": "nixpkgs-unstable",
-        "nvim": "nvim"
+        "nixpkgs-unstable": "nixpkgs-unstable"
       }
     }
   },
