@@ -2,6 +2,8 @@
   nixpkgs,
   nixpkgs-unstable,
   home-manager,
+  nix-darwin,
+  self,
   ...
 }: {
   mkDarwinSystem = {

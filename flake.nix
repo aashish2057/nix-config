@@ -19,10 +19,12 @@
     nixpkgs,
     nixpkgs-unstable,
     home-manager,
+    nix-darwin,
+    self,
     ...
   }: let
     systems = import ./lib/systems.nix {
-      inherit nixpkgs nixpkgs-unstable home-manager;
+      inherit nixpkgs nixpkgs-unstable home-manager nix-darwin self;
     };
   in {
     darwinConfigurations = {
