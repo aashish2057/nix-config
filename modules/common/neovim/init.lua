@@ -51,8 +51,7 @@ local uv = vim.loop or vim.uv
 vim.lsp.config("roslyn", {
 	filetypes = { "cs" },
 	cmd = {
-		"dotnet",
-		roslyn_ls_path,
+		"Microsoft.CodeAnalysis.LanguageServer",
 		"--logLevel",
 		"Information",
 		"--extensionLogDirectory",
