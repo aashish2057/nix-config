@@ -1,34 +1,30 @@
 {
   nixpkgs,
   nixpkgs-unstable,
-  nix-darwin,
   home-manager,
+  nix-darwin,
   self,
+  mnw,
+  ...
 }: {
   mkDarwinSystem = {
     hostname,
     username,
-  }: let
-    system = "aarch64-darwin";
-  in
+    system,
+    isWork ? false,
+  }:
     nix-darwin.lib.darwinSystem {
-      inherit system;
       specialArgs = {
-        inherit username self system;
+        inherit username self system isWork mnw;
         homedir = "/Users/${username}";
         pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
       };
       modules = [
-        ../hosts/${hostname}.nix
+        ../hosts/${hostname}/${hostname}.nix
         home-manager.darwinModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = {
-            inherit username;
-            homedir = "/Users/${username}";
-            pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
-          };
         }
       ];
     };
@@ -36,27 +32,21 @@
   mkNixosSystem = {
     hostname,
     username,
-  }: let
-    system = "x86_64-linux";
-  in
+    system,
+    isWork ? false,
+  }:
     nixpkgs.lib.nixosSystem {
-      inherit system;
       specialArgs = {
-        inherit username self hostname system;
+        inherit username hostname system isWork mnw;
         homedir = "/home/${username}";
         pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
       };
       modules = [
-        ../hosts/${hostname}.nix
+        ../hosts/${hostname}/${hostname}.nix
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = {
-            inherit username;
-            homedir = "/home/${username}";
-            pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
-          };
         }
       ];
     };
