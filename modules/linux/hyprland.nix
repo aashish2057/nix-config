@@ -1,38 +1,39 @@
-{...}: {
+{pkgs-unstable, ...}: {
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
   };
   home-manager.sharedModules = [
     {
-      services.hyprsunset = {
-        enable = true;
-        settings = {
-          profile = [
-            {
-              time = "5:30";
-              temperature = 3400;
-            }
-
-            {
-              time = "8:00";
-              temperature = 6500;
-            }
-
-            {
-              time = "17:00";
-              temperature = 2700;
-            }
-          ];
-        };
-      };
-      services.hyprpaper = {
-        enable = true;
-        settings = {
-          preload = ["Documents/wallpaper2.png"];
-          wallpaper = [",Documents/wallpaper2.png"];
-        };
-      };
+      # services.hyprsunset = {
+      #   enable = true;
+      #   package = pkgs-unstable.hyprsunset;
+      #   settings = {
+      #     profile = [
+      #       {
+      #         time = "5:30";
+      #         temperature = 3400;
+      #       }
+      #
+      #       {
+      #         time = "8:00";
+      #         temperature = 6500;
+      #       }
+      #
+      #       {
+      #         time = "17:00";
+      #         temperature = 2700;
+      #       }
+      #     ];
+      #   };
+      # };
+      # services.hyprpaper = {
+      #   enable = true;
+      #   settings = {
+      #     preload = ["Documents/wallpaper2.png"];
+      #     wallpaper = [",Documents/wallpaper2.png"];
+      #   };
+      # };
       wayland.windowManager.hyprland = {
         enable = true;
         package = null;
