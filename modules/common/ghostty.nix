@@ -12,7 +12,6 @@
           if pkgs.stdenv.isDarwin
           then null
           else pkgs.ghostty;
-        clearDefaultKeybinds = true;
         settings =
           {
             theme = "MaterialOcean";
