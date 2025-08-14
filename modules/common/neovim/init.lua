@@ -90,85 +90,116 @@ vim.lsp.config("roslyn", {
 
 vim.lsp.enable("roslyn")
 
-----------FORMATTERs----------
-require("conform").setup({
-	formatters_by_ft = {
-		lua = { "stylua" },
-		nix = { "alejandra" },
-	},
-
-	format_on_save = {
-		timeout_ms = 500,
-	},
-})
-
-----------PLUGINs----------
-
--- colorscheme
-require("material").setup({
-	plugins = {},
-})
+----------STARTUP PLUGINs----------
+require("material").setup()
 vim.g.material_style = "deep ocean"
 vim.cmd.colorscheme("material")
-
--- file explorer
-require("oil").setup({
-	view_options = {
-		show_hidden = true,
-	},
-})
-
-keymap.set("n", "<leader>n", "<cmd>Oil<cr>")
 
 require("nvim-treesitter.configs").setup({
 	highlight = { enable = true },
 })
 
-require("snacks").setup({
-	picker = {
-		matcher = {
-			frecency = true,
-		},
-		debug = {
-			scores = true,
-		},
-		sources = {
-			files = {
-				hidden = true,
-				no_ignore = false,
-			},
-		},
-	},
-})
-
-keymap.set("n", "<leader>ff", function() -- find files
-	require("snacks").picker.files()
-end)
-keymap.set("n", "<leader>fs", function() -- grep
-	require("snacks").picker.grep()
-end)
-keymap.set("n", "<leader>fb", function() -- buffers
-	require("snacks").picker.buffers()
-end)
-keymap.set("n", "<leader>gl", function() -- list all git logs
-	require("snacks").picker.git_log()
-end)
-keymap.set("n", "<leader>glf", function() -- list all git logs for current file
-	require("snacks").picker.git_log_file()
-end)
-
--- no neck pain
 require("no-neck-pain").setup({
 	width = 200,
-	autocmds = {
-		enableOnVimEnter = true,
-	},
 })
 
--- mini
-require("mini.diff").setup()
 require("mini.icons").setup()
 require("mini.statusline").setup()
+require("mini.diff").setup()
 
--- roslyn
-require("roslyn").setup()
+----------LAZY-LOADED PLUGINs----------
+require("lze").load({
+	{
+		"oil.nvim",
+		keys = {
+			{ "<leader>n", "<cmd>Oil<cr>", desc = "Open Oil file explorer" },
+		},
+		after = function()
+			require("oil").setup({
+				view_options = {
+					show_hidden = true,
+				},
+			})
+		end,
+	},
+	{
+		"conform.nvim",
+		event = { "BufWritePre" },
+		after = function()
+			require("conform").setup({
+				formatters_by_ft = {
+					lua = { "stylua" },
+					nix = { "alejandra" },
+				},
+				format_on_save = {
+					timeout_ms = 500,
+				},
+			})
+		end,
+	},
+	{
+		"snacks.nvim",
+		keys = {
+			{
+				"<leader>ff",
+				function()
+					require("snacks").picker.files()
+				end,
+				desc = "Find files",
+			},
+			{
+				"<leader>fs",
+				function()
+					require("snacks").picker.grep()
+				end,
+				desc = "Grep",
+			},
+			{
+				"<leader>fb",
+				function()
+					require("snacks").picker.buffers()
+				end,
+				desc = "Buffers",
+			},
+			{
+				"<leader>gl",
+				function()
+					require("snacks").picker.git_log()
+				end,
+				desc = "Git log",
+			},
+			{
+				"<leader>glf",
+				function()
+					require("snacks").picker.git_log_file()
+				end,
+				desc = "Git log file",
+			},
+		},
+		after = function()
+			require("snacks").setup({
+				picker = {
+					matcher = {
+						frecency = true,
+					},
+					debug = {
+						scores = true,
+					},
+					sources = {
+						files = {
+							hidden = true,
+							no_ignore = false,
+						},
+					},
+				},
+			})
+		end,
+	},
+	{
+		"roslyn.nvim",
+		ft = "cs",
+		after = function()
+			require("roslyn").setup()
+		end,
+	},
+})
