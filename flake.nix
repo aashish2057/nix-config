@@ -13,29 +13,37 @@
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    mnw = {
+      url = "github:Gerg-L/mnw";
+    };
   };
 
   outputs = inputs @ {
-    self,
-    nix-darwin,
     nixpkgs,
     nixpkgs-unstable,
     home-manager,
+    nix-darwin,
+    self,
+    mnw,
     ...
   }: let
     systems = import ./lib/systems.nix {
-      inherit nixpkgs nixpkgs-unstable nix-darwin home-manager self;
+      inherit nixpkgs nixpkgs-unstable home-manager nix-darwin self mnw;
     };
   in {
     darwinConfigurations = {
       Aashishs-MacBook-Pro = systems.mkDarwinSystem {
         hostname = "aashishs-macbook-pro";
         username = "aashishsharma";
+        system = "aarch64-darwin";
       };
 
       Aashishs-Work-MacBook-Pro = systems.mkDarwinSystem {
         hostname = "aashishs-work-macbook-pro";
         username = "aashishsharmawork";
+        system = "aarch64-darwin";
+        isWork = true;
       };
     };
 
@@ -43,10 +51,8 @@
       nixos = systems.mkNixosSystem {
         hostname = "nixos";
         username = "aashishsharma";
+        system = "x86_64-linux";
       };
     };
-
-    formatter.aarch64-darwin = nixpkgs.legacyPackages.aarch64-darwin.alejandra;
-    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
   };
 }
