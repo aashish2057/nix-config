@@ -3,10 +3,6 @@
     {
       programs.aerospace = {
         enable = true;
-        launchd = {
-          enable = true;
-          keepAlive = true;
-        };
 
         userSettings = {
           default-root-container-layout = "tiles";
