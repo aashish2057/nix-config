@@ -15,5 +15,6 @@
     ../../modules/common/ghostty.nix
     ../../modules/darwin/darwin.nix
     ../../modules/darwin/homebrew.nix
+    ../../modules/darwin/aerospace.nix
   ];
 }
