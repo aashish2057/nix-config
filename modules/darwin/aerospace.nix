@@ -6,7 +6,7 @@
 
         userSettings = {
           default-root-container-layout = "tiles";
-          on-focus-changed = "move-mouse window-force-center";
+          on-focus-changed = ["move-mouse window-force-center"];
 
           enable-normalization-flatten-containers = true;
           enable-normalization-opposite-orientation-for-nested-containers = true;
@@ -14,36 +14,6 @@
           accordion-padding = 30;
 
           default-root-container-orientation = "auto";
-
-          on-window-detected = [
-            {
-              "if".app-id = "company.thebrowser.Browser";
-              run = "move-node-to-workspace 1";
-            }
-            {
-              "if".app-id = "com.mitchellh.ghostty";
-              run = [
-                "layout floating"
-                "move-node-to-workspace 2"
-              ];
-            }
-            {
-              "if".app-id = "md.obsidian";
-              run = "move-node-to-workspace 3";
-            }
-            {
-              "if".app-id = "com.tinyspeck.slackmacgap";
-              run = "move-node-to-workspace 3";
-            }
-            {
-              "if".app-id = "com.jetbrains.datagrip";
-              run = "move-node-to-workspace 3";
-            }
-            {
-              "if".app-id = "us.zoom.xos";
-              run = "move-node-to-workspace 3";
-            }
-          ];
 
           gaps = {
             inner.horizontal = 5;
