@@ -3,6 +3,16 @@
     enable = true;
     xwayland.enable = true;
   };
+
+  xdg.portal = {
+    enable = true;
+    config.common.default = "*";
+
+    configPackages = [
+      pkgs-unstable.hyprland
+    ];
+  };
+
   home-manager.sharedModules = [
     {
       # services.hyprsunset = {
