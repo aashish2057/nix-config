@@ -15,6 +15,15 @@
 
           default-root-container-orientation = "auto";
 
+          on-window-detected = [
+            {
+              "if".app-id = "com.mitchellh.ghostty";
+              run = [
+                "layout floating"
+              ];
+            }
+          ];
+
           gaps = {
             inner.horizontal = 5;
             inner.vertical = 5;
