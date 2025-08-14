@@ -4,26 +4,3 @@ This repo wouldn't have been possible without the following folks making their c
 [@mitchellh](https://github.com/mitchellh) - [nixos-config](https://github.com/mitchellh/nixos-config)  
 [@NotAShelf](https://github.com/NotAShelf) - [nyx](https://github.com/NotAShelf/nyx)  
 [@ryan4yin](https://github.com/ryan4yin) - [nixos-and-flakes-book](https://github.com/ryan4yin/nixos-and-flakes-book)  
-
-## Overview
-```
-nix-config
-├─ lib
-│  └─ system.nix
-├─ modules
-│  ├─ common
-│  │  ├─ nvim
-│  │  ├─ shell.nix
-│  │  ├─ git.nix
-│  │  └─ starship.nix
-│  ├─ darwin
-│  │  ├─ aerospace
-│  │  ├─ macos.nix
-│  │  └─ homebrew.nix
-│  └─ linux
-├─ hosts
-│  ├─ aashishs-macbook-pro.nix
-│  ├─ aashishs-work-macbook-pro.nix
-│  └─ nixos-desktop.nix
-└─ flake.nix
-```
