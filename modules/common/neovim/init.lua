@@ -90,25 +90,59 @@ vim.lsp.config("roslyn", {
 
 vim.lsp.enable("roslyn")
 
-----------STARTUP PLUGINs----------
-require("material").setup()
-vim.g.material_style = "deep ocean"
-vim.cmd.colorscheme("material")
-
-require("nvim-treesitter.configs").setup({
-	highlight = { enable = true },
-})
-
-require("no-neck-pain").setup({
-	width = 200,
-})
-
-require("mini.icons").setup()
-require("mini.statusline").setup()
-require("mini.diff").setup()
-
-----------LAZY-LOADED PLUGINs----------
+----------PLUGINs----------
 require("lze").load({
+	{
+		"material.nvim",
+		priority = 1000,
+		after = function()
+			require("material").setup()
+			vim.g.material_style = "deep ocean"
+			vim.cmd.colorscheme("material")
+		end,
+	},
+	{
+		"nvim-treesitter",
+		event = { "BufReadPost", "BufNewFile" },
+		after = function()
+			require("nvim-treesitter.configs").setup({
+				highlight = { enable = true },
+			})
+		end,
+	},
+	{
+		"no-neck-pain.nvim",
+		cmd = { "NoNeckPain" },
+		keys = {
+			{ "<leader>nn", "<cmd>NoNeckPain<cr>", desc = "Toggle NoNeckPain" },
+		},
+		after = function()
+			require("no-neck-pain").setup({
+				width = 200,
+			})
+		end,
+	},
+	{
+		"mini.icons",
+		priority = 1000,
+		after = function()
+			require("mini.icons").setup()
+		end,
+	},
+	{
+		"mini.statusline",
+		priority = 1000,
+		after = function()
+			require("mini.statusline").setup()
+		end,
+	},
+	{
+		"mini.diff",
+		event = { "BufReadPost", "BufNewFile" },
+		after = function()
+			require("mini.diff").setup()
+		end,
+	},
 	{
 		"oil.nvim",
 		keys = {
