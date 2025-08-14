@@ -47,9 +47,18 @@ vim.lsp.config["luals"] = {
 }
 
 vim.lsp.enable("luals")
-
+local uv = vim.loop or vim.uv
 vim.lsp.config("roslyn", {
 	filetypes = { "cs" },
+	cmd = {
+		"dotnet",
+		roslyn_ls_path,
+		"--logLevel",
+		"Information",
+		"--extensionLogDirectory",
+		vim.fs.joinpath(uv.os_tmpdir(), "roslyn_ls/logs"),
+		"--stdio",
+	},
 	settings = {
 		["csharp|background_analysis"] = {
 			dotnet_compiler_diagnostics_scope = "fullSolution",

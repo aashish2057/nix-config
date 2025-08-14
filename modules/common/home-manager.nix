@@ -14,10 +14,6 @@
       VISUAL = "nvim";
     };
 
-    programs.zsh.shellAliases = {
-      vim = "nvim";
-    };
-
     home = {
       file = lib.optionalAttrs pkgs.stdenv.isDarwin {
         ".hushlogin".text = "";

@@ -16,7 +16,12 @@
 
         neovim = pkgs-unstable.neovim-unwrapped;
 
-        initLua = builtins.readFile ./init.lua;
+        initLua = ''
+          local roslyn_ls_path = "${pkgs-unstable.roslyn-ls}/lib/roslyn-ls/Microsoft.CodeAnalysis.LanguageServer.dll"
+          ${builtins.readFile ./init.lua}
+        '';
+
+        aliases = ["vim"];
 
         extraBinPath = [
           pkgs-unstable.lua-language-server
