@@ -172,3 +172,22 @@ require("mini.statusline").setup()
 
 -- roslyn
 require("roslyn").setup()
+
+-- blink-cmp
+require("blink.cmp").setup({
+	completion = {
+		trigger = {
+			show_on_blocked_trigger_characters = {},
+			show_on_accept_on_trigger_characters = {},
+			show_on_insert_on_trigger_characters = {},
+		},
+		accept = { auto_brackets = { enabled = false } },
+		menu = { auto_show = false },
+	},
+	keymap = {
+		["<C-n>"] = { "show", "select_next", "fallback" },
+		["<C-p>"] = { "show", "select_prev", "fallback" },
+		["<C-y>"] = { "accept", "fallback" },
+		["<C-e>"] = { "hide", "fallback" },
+	},
+})

@@ -51,7 +51,7 @@
           }))
         ]
         ++ lib.optionals pkgs.stdenv.isLinux [
-          pkgs.ungoogled-chromium
+          (pkgs.ungoogled-chromium.override {enableWideVine = true;})
           pkgs.git
           pkgs.ddcutil
           pkgs.btop
