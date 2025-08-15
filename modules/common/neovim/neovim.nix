@@ -34,10 +34,6 @@
             pkgs-unstable.vimPlugins.mini-icons
             pkgs-unstable.vimPlugins.mini-statusline
             pkgs-unstable.vimPlugins.mini-diff
-            pkgs-unstable.vimPlugins.lze
-          ];
-
-          opt = [
             pkgs-unstable.vimPlugins.oil-nvim
             pkgs-unstable.vimPlugins.conform-nvim
             pkgs-unstable.vimPlugins.snacks-nvim
