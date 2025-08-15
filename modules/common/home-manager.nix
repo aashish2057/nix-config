@@ -29,7 +29,7 @@
           pkgs.yazi
           pkgs-unstable.nh
           pkgs.nodejs_22
-          (pkgs-unstable.opencode.overrideAttrs (finalAttrs: previousAttrs: {
+          (pkgs-unstable.opencode.overrideAttrs (oldAttrs: {
             version = "0.4.41";
             src = pkgs.fetchFromGitHub {
               owner = "sst";
@@ -38,43 +38,16 @@
               sha256 = "0irirq8sq4ix50w6f6gx89qs3x7vhkykb67sgr05d7j5zyxwwcvl";
             };
 
-            node_modules = previousAttrs.node_modules.overrideAttrs (nmPrev: {
+            tui = oldAttrs.tui.overrideAttrs {
+              vendorHash = "sha256-/BI9vBMSJjt0SHczH8LkxxWC2hiPPKQwfRhmf2/8+TU=";
+            };
+
+            node_modules = oldAttrs.node_modules.overrideAttrs {
               outputHash =
                 if pkgs.stdenv.isLinux
                 then "sha256-ql4qcMtuaRwSVVma3OeKkc9tXhe21PWMMko3W3JgpB0="
                 else "sha256-/s6eAI1VJ0kXrxP5yTi+jwNqHBCRcoltJC86AT7nVdI=";
-            });
-
-            nativeBuildInputs =
-              previousAttrs.nativeBuildInputs
-              ++ [
-                pkgs.makeBinaryWrapper
-              ];
-
-            tui = previousAttrs.tui.overrideAttrs (tuiPrev: {
-              modRoot = "packages/tui";
-              vendorHash = "sha256-/BI9vBMSJjt0SHczH8LkxxWC2hiPPKQwfRhmf2/8+TU=";
-            });
-
-            buildPhase = ''
-              runHook preBuild
-
-              bun build \
-                --define OPENCODE_TUI_PATH="'${finalAttrs.tui}/bin/tui'" \
-                --define OPENCODE_VERSION="'${finalAttrs.version}'" \
-                --compile \
-                --target=bun-linux-x64 \
-                --outfile=opencode \
-                ./packages/opencode/src/index.ts \
-
-              runHook postBuild
-            '';
-
-            # Fix for dynamic linking issue on Linux
-            postFixup = lib.optionalString pkgs.stdenv.isLinux ''
-              wrapProgram $out/bin/opencode \
-                --set LD_LIBRARY_PATH "${lib.makeLibraryPath [pkgs.stdenv.cc.cc.lib]}"
-            '';
+            };
           }))
         ]
         ++ lib.optionals pkgs.stdenv.isLinux [
