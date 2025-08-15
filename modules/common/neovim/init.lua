@@ -90,6 +90,13 @@ vim.lsp.config("roslyn", {
 
 vim.lsp.enable("roslyn")
 
+vim.lsp.config["clangd"] = {
+	cmd = { "clangd" },
+	filetypes = { "c", "cpp" },
+}
+
+vim.lsp.enable("clangd")
+
 ----------FORMATTERs----------
 require("conform").setup({
 	formatters_by_ft = {

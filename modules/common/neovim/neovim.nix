@@ -24,6 +24,7 @@
           pkgs-unstable.lua-language-server
           pkgs-unstable.stylua
           pkgs-unstable.roslyn-ls
+          pkgs-unstable.clang-tools
         ];
 
         plugins = {
