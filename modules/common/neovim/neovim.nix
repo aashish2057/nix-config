@@ -40,6 +40,7 @@
             pkgs-unstable.vimPlugins.vim-fugitive
             pkgs-unstable.vimPlugins.vim-rhubarb
             pkgs-unstable.vimPlugins.roslyn-nvim
+            pkgs-unstable.vimPlugins.blink-cmp
           ];
         };
       };
