@@ -4,15 +4,6 @@
     xwayland.enable = true;
   };
 
-  xdg.portal = {
-    enable = true;
-    config.common.default = "*";
-
-    configPackages = [
-      pkgs-unstable.hyprland
-    ];
-  };
-
   home-manager.sharedModules = [
     {
       # services.hyprsunset = {
@@ -44,6 +35,7 @@
       #     wallpaper = [",Documents/wallpaper2.png"];
       #   };
       # };
+      xdg.portal.config.common.default = "*";
       wayland.windowManager.hyprland = {
         enable = true;
         package = null;
