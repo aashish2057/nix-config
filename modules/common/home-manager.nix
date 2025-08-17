@@ -58,6 +58,7 @@
           pkgs.wl-clipboard
           pkgs.hyprpaper
           pkgs-unstable.hyprsunset
+          pkgs.prismlauncher
         ]
         ++ lib.optionals isWork [
           pkgs.docker
