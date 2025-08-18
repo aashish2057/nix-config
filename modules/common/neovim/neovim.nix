@@ -25,6 +25,7 @@
           pkgs-unstable.stylua
           pkgs-unstable.roslyn-ls
           pkgs-unstable.clang-tools
+          pkgs-unstable.typescript-language-server
         ];
 
         plugins = {
