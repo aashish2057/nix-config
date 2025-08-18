@@ -120,6 +120,7 @@ require("conform").setup({
 	formatters_by_ft = {
 		lua = { "stylua" },
 		nix = { "alejandra" },
+		cs = { "csharpier" },
 	},
 
 	format_on_save = {
