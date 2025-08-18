@@ -97,6 +97,20 @@ vim.lsp.config["clangd"] = {
 
 vim.lsp.enable("clangd")
 
+vim.lsp.config["ts_ls"] = {
+	cmd = { "typescript-language-server", "--stdio" },
+	filetypes = {
+		"javascript",
+		"javascriptreact",
+		"javascript.jsx",
+		"typescript",
+		"typescriptreact",
+		"typescript.tsx",
+	},
+}
+
+vim.lsp.enable("ts_ls")
+
 ----------FORMATTERs----------
 require("conform").setup({
 	formatters_by_ft = {
