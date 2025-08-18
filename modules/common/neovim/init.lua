@@ -30,6 +30,10 @@ opt.smartcase = true
 -- clipboard
 opt.clipboard:append("unnamedplus")
 
+----------KEYMAPs----------
+-- show error
+keymap.set("n", "<leader>se", "<cmd>lua vim.diagnostic.open_float()<CR>")
+
 ----------LSPs----------
 vim.lsp.config["luals"] = {
 	cmd = { "lua-language-server" },
