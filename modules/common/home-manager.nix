@@ -30,7 +30,7 @@
           pkgs-unstable.nh
           pkgs.nodejs_22
           (pkgs-unstable.opencode.overrideAttrs (oldAttrs: {
-            version = "0.5.58";
+            version = "0.5.8";
             src = pkgs.fetchFromGitHub {
               owner = "sst";
               repo = "opencode";
