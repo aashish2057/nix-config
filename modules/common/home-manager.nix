@@ -30,23 +30,20 @@
           pkgs-unstable.nh
           pkgs.nodejs_22
           (pkgs-unstable.opencode.overrideAttrs (oldAttrs: {
-            version = "0.4.41";
+            version = "0.5.8";
             src = pkgs.fetchFromGitHub {
               owner = "sst";
               repo = "opencode";
-              rev = "93102dc84bc1ca944502d5a1476d8ee291b18f95";
-              sha256 = "0irirq8sq4ix50w6f6gx89qs3x7vhkykb67sgr05d7j5zyxwwcvl";
+              rev = "c3c440948a3361a537f0855fe95f11bfab3590d4";
+              sha256 = "0pycsmkgrd59d9c0q4cz5b45bv4j9kz06xrwv5n7bbmf5wzzj328";
             };
 
             tui = oldAttrs.tui.overrideAttrs {
-              vendorHash = "sha256-/BI9vBMSJjt0SHczH8LkxxWC2hiPPKQwfRhmf2/8+TU=";
+              vendorHash = "sha256-acDXCL7ZQYW5LnEqbMgDwpTbSgtf4wXnMMVtQI1Dv9s=";
             };
 
             node_modules = oldAttrs.node_modules.overrideAttrs {
-              outputHash =
-                if pkgs.stdenv.isLinux
-                then "sha256-ql4qcMtuaRwSVVma3OeKkc9tXhe21PWMMko3W3JgpB0="
-                else "sha256-/s6eAI1VJ0kXrxP5yTi+jwNqHBCRcoltJC86AT7nVdI=";
+              outputHash = "sha256-hznCg/7c9uNV7NXTkb6wtn3EhJDkGI7yZmSIA2SqX7g=";
             };
           }))
         ]
