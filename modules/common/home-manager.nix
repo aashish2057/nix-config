@@ -29,7 +29,26 @@
           pkgs.yazi
           pkgs-unstable.nh
           pkgs.nodejs_22
-          pkgs-unstable.opencode
+          (pkgs-unstable.opencode.overrideAttrs (oldAttrs: {
+            version = "0.5.58";
+            src = pkgs.fetchFromGitHub {
+              owner = "sst";
+              repo = "opencode";
+              rev = "c3c440948a3361a537f0855fe95f11bfab3590d4";
+              sha256 = "0pycsmkgrd59d9c0q4cz5b45bv4j9kz06xrwv5n7bbmf5wzzj328";
+            };
+
+            tui = oldAttrs.tui.overrideAttrs {
+              vendorHash = "sha256-acDXCL7ZQYW5LnEqbMgDwpTbSgtf4wXnMMVtQI1Dv9s=";
+            };
+
+            node_modules = oldAttrs.node_modules.overrideAttrs {
+              outputHash =
+                if pkgs.stdenv.isLinux
+                then "sha256-hznCg/7c9uNV7NXTkb6wtn3EhJDkGI7yZmSIA2SqX7g="
+                else "sha256-/s6eAI1VJ0kXrxP5yTi+jwNqHBCRcoltJC86AT7nVdI=";
+            };
+          }))
         ]
         ++ lib.optionals pkgs.stdenv.isLinux [
           pkgs.ungoogled-chromium
