@@ -43,10 +43,7 @@
             };
 
             node_modules = oldAttrs.node_modules.overrideAttrs {
-              outputHash =
-                if pkgs.stdenv.isLinux
-                then "sha256-hznCg/7c9uNV7NXTkb6wtn3EhJDkGI7yZmSIA2SqX7g="
-                else "sha256-hznCg/7c9uNV7NXTkb6wtn3EhJDkGI7yZmSIA2SqX7g=";
+              outputHash = "sha256-hznCg/7c9uNV7NXTkb6wtn3EhJDkGI7yZmSIA2SqX7g=";
             };
           }))
         ]
