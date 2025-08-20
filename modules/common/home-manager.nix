@@ -46,7 +46,7 @@
               outputHash =
                 if pkgs.stdenv.isLinux
                 then "sha256-hznCg/7c9uNV7NXTkb6wtn3EhJDkGI7yZmSIA2SqX7g="
-                else "sha256-/s6eAI1VJ0kXrxP5yTi+jwNqHBCRcoltJC86AT7nVdI=";
+                else "sha256-hznCg/7c9uNV7NXTkb6wtn3EhJDkGI7yZmSIA2SqX7g=";
             };
           }))
         ]
