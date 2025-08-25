@@ -197,7 +197,10 @@ require("mini.icons").setup()
 require("mini.statusline").setup()
 
 -- roslyn
-require("roslyn").setup()
+local roslyn_setup, roslyn = pcall(require, "roslyn")
+if roslyn_setup then
+	roslyn.setup()
+end
 
 -- blink-cmp
 require("blink.cmp").setup({
