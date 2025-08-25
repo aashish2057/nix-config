@@ -126,6 +126,7 @@
             "$mainMod, O, exit,"
             "$mainMod, space, togglesplit,"
             "$mainMod, M, exec, prismlauncher"
+            "$mainMod, N, exec, obsidian -enable-features=UseOzonePlatform -ozone-platform=wayland"
 
             "$mainMod, h, movefocus, l"
             "$mainMod, l, movefocus, r"

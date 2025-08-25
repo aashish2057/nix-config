@@ -56,6 +56,7 @@
           pkgs.hyprpaper
           pkgs-unstable.hyprsunset
           pkgs.prismlauncher
+          pkgs.obsidian
         ]
         ++ lib.optionals isWork [
           pkgs.docker
