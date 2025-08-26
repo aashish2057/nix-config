@@ -57,6 +57,8 @@
           pkgs-unstable.hyprsunset
           pkgs.prismlauncher
           pkgs.obsidian
+          pkgs.gcc
+          pkgs.gnumake
         ]
         ++ lib.optionals isWork [
           pkgs.docker
