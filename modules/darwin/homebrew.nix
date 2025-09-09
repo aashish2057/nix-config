@@ -35,6 +35,7 @@
         "mullvad-vpn"
         "tailscale-app"
         "cold-turkey-blocker"
+        "microsoft-excel"
       ];
 
     taps = [
