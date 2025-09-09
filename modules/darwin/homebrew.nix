@@ -34,6 +34,7 @@
         "anki"
         "mullvad-vpn"
         "tailscale-app"
+        "cold-turkey-blocker"
       ];
 
     taps = [
