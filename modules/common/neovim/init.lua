@@ -209,11 +209,6 @@ require("blink.cmp").setup({
 			auto_show = true,
 			auto_show_delay_ms = 50,
 		},
-		trigger = {
-			show_on_blocked_trigger_characters = {},
-			show_on_accept_on_trigger_characters = {},
-			show_on_insert_on_trigger_characters = {},
-		},
 		accept = { auto_brackets = { enabled = false } },
 		menu = { auto_show = false },
 	},
