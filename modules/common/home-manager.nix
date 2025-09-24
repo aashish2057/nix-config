@@ -62,6 +62,7 @@
           pkgs.kubelogin
           pkgs.k9s
           pkgs.terraform
+          pkgs-unstable.mprocs
         ];
     };
   };
