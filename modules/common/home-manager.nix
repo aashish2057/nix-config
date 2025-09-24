@@ -61,6 +61,7 @@
           pkgs.kubectl
           pkgs.kubelogin
           pkgs.k9s
+          pkgs.terraform
         ];
     };
   };
