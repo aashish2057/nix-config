@@ -14,7 +14,7 @@
           else pkgs.ghostty;
         settings =
           {
-            theme = "MaterialOcean";
+            theme = "Material Ocean";
             font-family = "GeistMono NFM";
             shell-integration-features = "no-cursor";
             cursor-style = "bar";
