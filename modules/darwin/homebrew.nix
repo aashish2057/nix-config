@@ -23,17 +23,12 @@
         "tunnelblick"
         "datagrip"
         "rider"
-        "google-chrome"
         "microsoft-azure-storage-explorer"
         "modern-csv"
         "visual-studio-code"
       ]
       ++ lib.optionals (!isWork) [
         "legcord"
-        "utm"
-        "anki"
-        "mullvad-vpn"
-        "tailscale-app"
       ];
 
     taps = [
