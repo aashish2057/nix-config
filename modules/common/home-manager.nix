@@ -30,12 +30,12 @@
           pkgs-unstable.nh
           pkgs.nodejs_22
           (pkgs-unstable.opencode.overrideAttrs (oldAttrs: {
-            version = "0.12.1";
+            version = "0.13.5";
             src = pkgs.fetchFromGitHub {
               owner = "sst";
               repo = "opencode";
-              rev = "c450549d0fb6c317816c8cc5cead121838122ce3";
-              sha256 = "sha256-ZpxHLZIc9bBzPJyvDHMjuaTEzZsHwafoBihKxe8Pr3U=";
+              rev = "5345c828cac894a15f6347da681462bddfa8acf6";
+              sha256 = "sha256-GiByJg4NpllA4N4QGSyWsBNqKqKIdxicIjQpc7mHgEs=";
             };
 
             tui = oldAttrs.tui.overrideAttrs {
