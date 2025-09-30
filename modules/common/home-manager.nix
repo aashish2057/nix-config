@@ -46,6 +46,7 @@
               outputHash = "sha256-RHg55NvI52EGTWUCCJVrilXqr3qc+vqQoT/uIUjDVvg=";
             };
           }))
+          pkgs-unstable.cargo
         ]
         ++ lib.optionals pkgs.stdenv.isLinux [
           pkgs.ungoogled-chromium
