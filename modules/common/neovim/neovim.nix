@@ -30,6 +30,7 @@
           ]
           ++ lib.optionals isWork [
             pkgs-unstable.roslyn-ls
+            pkgs-unstable.terraform-ls
           ];
 
         plugins = {

@@ -115,12 +115,19 @@ vim.lsp.config["ts_ls"] = {
 
 vim.lsp.enable("ts_ls")
 
+vim.lsp.config["terraformls"] = {
+	cmd = { "terraform-ls", "serve" },
+	filetypes = { "terraform", "tf" },
+}
+
+vim.lsp.enable("terraformls")
 ----------FORMATTERs----------
 require("conform").setup({
 	formatters_by_ft = {
 		lua = { "stylua" },
 		nix = { "alejandra" },
 		cs = { "csharpier" },
+		tf = { "terraform_fmt" },
 	},
 
 	format_on_save = {
