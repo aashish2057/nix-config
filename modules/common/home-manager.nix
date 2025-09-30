@@ -47,6 +47,7 @@
             };
           }))
           pkgs-unstable.cargo
+          pkgs-unstable.clippy
         ]
         ++ lib.optionals pkgs.stdenv.isLinux [
           pkgs.ungoogled-chromium
