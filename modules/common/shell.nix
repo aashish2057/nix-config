@@ -23,6 +23,7 @@
           source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
 
           export PATH=~/.npm-global/bin:$PATH
+          export PATH="$HOME/.cargo/bin:$PATH"
         '';
       };
     }
