@@ -189,6 +189,9 @@ end)
 keymap.set("n", "<leader>glf", function() -- list all git logs for current file
 	require("snacks").picker.git_log_file()
 end)
+keymap.set("n", "<leader>lr", function() -- list all lsp references
+	require("snacks").picker.lsp_references()
+end)
 
 -- no neck pain
 require("no-neck-pain").setup({
