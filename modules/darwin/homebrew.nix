@@ -29,6 +29,8 @@
       ]
       ++ lib.optionals (!isWork) [
         "legcord"
+        "mullvad-vpn"
+        "mochi"
       ];
 
     taps = [
