@@ -118,6 +118,9 @@ vim.lsp.enable("ts_ls")
 vim.lsp.config["terraformls"] = {
 	cmd = { "terraform-ls", "serve" },
 	filetypes = { "terraform", "tf" },
+	init_options = {
+		ignoreSingleFileWarning = true,
+	},
 }
 
 vim.lsp.enable("terraformls")
