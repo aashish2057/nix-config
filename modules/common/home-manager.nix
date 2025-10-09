@@ -81,6 +81,7 @@
           pkgs.k9s
           pkgs.terraform
           pkgs-unstable.mprocs
+          pkgs.kubernetes-helm
         ];
     };
   };
