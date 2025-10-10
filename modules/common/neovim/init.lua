@@ -131,6 +131,7 @@ require("conform").setup({
 		nix = { "alejandra" },
 		cs = { "csharpier" },
 		tf = { "terraform_fmt" },
+		terraform = { "terraform_fmt" },
 	},
 
 	format_on_save = {
