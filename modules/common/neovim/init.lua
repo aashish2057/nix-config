@@ -1,11 +1,9 @@
 ----------OPTIONs----------
-
 -- leader key
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
 local opt = vim.opt
-local keymap = vim.keymap
 
 -- line numbers
 opt.number = true
@@ -31,8 +29,42 @@ opt.smartcase = true
 opt.clipboard:append("unnamedplus")
 
 ----------KEYMAPs----------
+local keymap = vim.keymap
 -- show error
 keymap.set("n", "<leader>se", "<cmd>lua vim.diagnostic.open_float()<CR>")
+
+-- open file explorer
+keymap.set("n", "<leader>n", "<cmd>Oil<cr>")
+
+-- find files
+keymap.set("n", "<leader>ff", function()
+	require("snacks").picker.files()
+end)
+
+-- grep
+keymap.set("n", "<leader>fs", function()
+	require("snacks").picker.grep()
+end)
+
+-- buffers
+keymap.set("n", "<leader>fb", function()
+	require("snacks").picker.buffers()
+end)
+
+-- list all git logs
+keymap.set("n", "<leader>gl", function()
+	require("snacks").picker.git_log()
+end)
+
+-- list all git logs for current file
+keymap.set("n", "<leader>glf", function()
+	require("snacks").picker.git_log_file()
+end)
+
+-- list all lsp references
+keymap.set("n", "<leader>lr", function()
+	require("snacks").picker.lsp_references()
+end)
 
 ----------LSPs----------
 vim.lsp.config["luals"] = {
@@ -155,8 +187,6 @@ require("oil").setup({
 	},
 })
 
-keymap.set("n", "<leader>n", "<cmd>Oil<cr>")
-
 require("nvim-treesitter.configs").setup({
 	highlight = { enable = true },
 })
@@ -177,25 +207,6 @@ require("snacks").setup({
 		},
 	},
 })
-
-keymap.set("n", "<leader>ff", function() -- find files
-	require("snacks").picker.files()
-end)
-keymap.set("n", "<leader>fs", function() -- grep
-	require("snacks").picker.grep()
-end)
-keymap.set("n", "<leader>fb", function() -- buffers
-	require("snacks").picker.buffers()
-end)
-keymap.set("n", "<leader>gl", function() -- list all git logs
-	require("snacks").picker.git_log()
-end)
-keymap.set("n", "<leader>glf", function() -- list all git logs for current file
-	require("snacks").picker.git_log_file()
-end)
-keymap.set("n", "<leader>lr", function() -- list all lsp references
-	require("snacks").picker.lsp_references()
-end)
 
 -- no neck pain
 require("no-neck-pain").setup({
