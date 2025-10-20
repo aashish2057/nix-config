@@ -17,8 +17,10 @@
 
         neovim = pkgs-unstable.neovim-unwrapped;
 
-        initLua = builtins.readFile ./init.lua;
-
+        # initLua = builtins.readFile ./init.lua;
+        initLua = ''
+          require("config")
+        '';
         aliases = ["vim"];
 
         extraBinPath =
@@ -34,6 +36,10 @@
           ];
 
         plugins = {
+          dev.config = {
+            pure = ./nvim;
+          };
+
           start =
             [
               pkgs-unstable.vimPlugins.material-nvim
