@@ -26,7 +26,6 @@
           pkgs.zsh-fzf-tab
           pkgs.ripgrep
           pkgs.alejandra
-          pkgs.yazi
           pkgs-unstable.nh
           pkgs.nodejs_22
           pkgs-unstable.cargo
