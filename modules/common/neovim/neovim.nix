@@ -17,7 +17,6 @@
 
         neovim = pkgs-unstable.neovim-unwrapped;
 
-        # initLua = builtins.readFile ./init.lua;
         initLua = ''
           require("config")
         '';
@@ -38,6 +37,7 @@
         plugins = {
           dev.config = {
             pure = ./nvim;
+            impure = "/Users/aashishsharma/Dev/nix-config/modules/common/neovim";
           };
 
           start =
