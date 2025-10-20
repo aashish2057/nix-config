@@ -37,7 +37,6 @@
         plugins = {
           dev.config = {
             pure = ./nvim;
-            impure = "/Users/aashishsharma/Dev/nix-config/modules/common/neovim";
           };
 
           start =
