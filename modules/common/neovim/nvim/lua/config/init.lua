@@ -7,6 +7,9 @@ require("config.plugins.blink")
 require("config.plugins.formatter")
 require("config.plugins.mini")
 require("config.plugins.oil")
-require("config.plugins.roslyn")
 require("config.plugins.snacks")
 require("config.plugins.treesitter")
+
+if vim.g.IS_WORK then
+	require("config.plugins.roslyn")
+end

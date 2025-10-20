@@ -18,6 +18,11 @@
         neovim = pkgs-unstable.neovim-unwrapped;
 
         initLua = ''
+          vim.g.IS_WORK = ${
+            if isWork
+            then "true"
+            else "false"
+          }
           require("config")
         '';
         aliases = ["vim"];
