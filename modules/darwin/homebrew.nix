@@ -7,10 +7,20 @@
     enable = true;
 
     # Manual installation required with HOMEBREW_ACCEPT_EULA=Y brew install msodbcsql18 mssql-tools18
-    brews = [
-      "msodbcsql18"
-      "mssql-tools18"
-    ];
+    brews =
+      if isWork
+      then [
+        "msodbcsql18"
+        "mssql-tools18"
+        "faktory"
+        "ca-certificates"
+        "m4"
+        "libtool"
+        "openssl@3"
+        "redis"
+        "unixodbc"
+      ]
+      else [];
 
     casks =
       [
@@ -45,6 +55,7 @@
       ]
       ++ lib.optionals isWork [
         "microsoft/mssql-release"
+        "contribsys/faktory"
       ];
 
     onActivation.cleanup = "zap";
