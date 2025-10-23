@@ -6,6 +6,12 @@
   homebrew = {
     enable = true;
 
+    # Manual installation required with HOMEBREW_ACCEPT_EULA=Y brew install msodbcsql18 mssql-tools18
+    brews = [
+      "msodbcsql18"
+      "mssql-tools18"
+    ];
+
     casks =
       [
         "raycast"
@@ -33,9 +39,13 @@
         "mochi"
       ];
 
-    taps = [
-      "nikitabobko/tap"
-    ];
+    taps =
+      [
+        "nikitabobko/tap"
+      ]
+      ++ lib.optionals isWork [
+        "microsoft/mssql-release"
+      ];
 
     onActivation.cleanup = "zap";
     onActivation.autoUpdate = true;
