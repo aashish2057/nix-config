@@ -68,7 +68,6 @@
           pkgs-unstable.opencode
           pkgs-unstable.uv
           pkgs-unstable.direnv
-          pkgs-unstable.postgresql
         ];
     };
   };

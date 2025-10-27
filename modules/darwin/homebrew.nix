@@ -19,6 +19,7 @@
         "openssl@3"
         "redis"
         "unixodbc"
+        "postgresql"
       ]
       else [];
 
