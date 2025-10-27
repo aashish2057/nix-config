@@ -36,6 +36,13 @@ vim.lsp.config["ts_ls"] = {
 
 vim.lsp.enable("ts_ls")
 
+vim.lsp.config["ty"] = {
+	cmd = { "ty", "server" },
+	filetypes = { "python" },
+}
+
+vim.lsp.enable("ty")
+
 if vim.g.IS_WORK then
 	local uv = vim.loop or vim.uv
 	vim.lsp.config("roslyn", {

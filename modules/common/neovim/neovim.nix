@@ -33,6 +33,7 @@
             pkgs-unstable.stylua
             pkgs-unstable.clang-tools
             pkgs-unstable.typescript-language-server
+            pkgs-unstable.ty
           ]
           ++ lib.optionals isWork [
             pkgs-unstable.roslyn-ls
