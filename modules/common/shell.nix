@@ -24,6 +24,8 @@
 
           export PATH=~/.npm-global/bin:$PATH
           export PATH="$HOME/.cargo/bin:$PATH"
+
+          eval "$(direnv hook zsh)"
         '';
       };
     }

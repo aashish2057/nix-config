@@ -31,6 +31,7 @@
           pkgs-unstable.cargo
           pkgs-unstable.clippy
           pkgs-unstable.bun
+          pkgs.direnv
         ]
         ++ lib.optionals pkgs.stdenv.isLinux [
           pkgs.ungoogled-chromium
@@ -67,7 +68,6 @@
           pkgs.kubernetes-helm
           pkgs-unstable.opencode
           pkgs-unstable.uv
-          pkgs-unstable.direnv
         ];
     };
   };
