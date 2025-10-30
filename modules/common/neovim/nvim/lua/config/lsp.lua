@@ -15,13 +15,6 @@ vim.lsp.config["luals"] = {
 
 vim.lsp.enable("luals")
 
-vim.lsp.config["clangd"] = {
-	cmd = { "clangd" },
-	filetypes = { "c", "cpp" },
-}
-
-vim.lsp.enable("clangd")
-
 vim.lsp.config["ts_ls"] = {
 	cmd = { "typescript-language-server", "--stdio" },
 	filetypes = {

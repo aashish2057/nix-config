@@ -31,7 +31,6 @@
           [
             pkgs-unstable.lua-language-server
             pkgs-unstable.stylua
-            pkgs-unstable.clang-tools
             pkgs-unstable.typescript-language-server
             pkgs-unstable.ty
           ]
