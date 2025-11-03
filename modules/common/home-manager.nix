@@ -66,7 +66,6 @@
           pkgs.terraform
           pkgs-unstable.mprocs
           pkgs.kubernetes-helm
-          pkgs-unstable.opencode
           pkgs-unstable.uv
         ];
     };

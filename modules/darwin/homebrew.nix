@@ -8,8 +8,10 @@
 
     # Manual installation required with HOMEBREW_ACCEPT_EULA=Y brew install msodbcsql18 mssql-tools18
     brews =
-      if isWork
-      then [
+      [
+        "opencode"
+      ]
+      ++ lib.optionals isWork [
         "msodbcsql18"
         "mssql-tools18"
         "faktory"
@@ -20,8 +22,7 @@
         "redis"
         "unixodbc"
         "postgresql"
-      ]
-      else [];
+      ];
 
     casks =
       [
