@@ -4,6 +4,7 @@
   lib,
   username,
   isWork,
+  nix-ai-tools,
   ...
 }: {
   home-manager.users.${username} = {
@@ -32,6 +33,7 @@
           pkgs-unstable.clippy
           pkgs-unstable.bun
           pkgs.direnv
+          nix-ai-tools.packages.${pkgs.system}.opencode
         ]
         ++ lib.optionals pkgs.stdenv.isLinux [
           pkgs.ungoogled-chromium

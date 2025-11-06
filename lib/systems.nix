@@ -5,6 +5,7 @@
   nix-darwin,
   self,
   mnw,
+  nix-ai-tools,
   ...
 }: {
   mkDarwinSystem = {
@@ -15,7 +16,7 @@
   }:
     nix-darwin.lib.darwinSystem {
       specialArgs = {
-        inherit username self system isWork mnw;
+        inherit username self system isWork mnw nix-ai-tools;
         homedir = "/Users/${username}";
         pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
       };
@@ -37,7 +38,7 @@
   }:
     nixpkgs.lib.nixosSystem {
       specialArgs = {
-        inherit username hostname system isWork mnw;
+        inherit username hostname system isWork mnw nix-ai-tools;
         homedir = "/home/${username}";
         pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
       };

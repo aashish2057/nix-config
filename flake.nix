@@ -17,6 +17,10 @@
     mnw = {
       url = "github:Gerg-L/mnw";
     };
+
+    nix-ai-tools = {
+      url = "github:numtide/nix-ai-tools";
+    };
   };
 
   outputs = inputs @ {
@@ -26,10 +30,11 @@
     nix-darwin,
     self,
     mnw,
+    nix-ai-tools,
     ...
   }: let
     systems = import ./lib/systems.nix {
-      inherit nixpkgs nixpkgs-unstable home-manager nix-darwin self mnw;
+      inherit nixpkgs nixpkgs-unstable home-manager nix-darwin self mnw nix-ai-tools;
     };
   in {
     darwinConfigurations = {
