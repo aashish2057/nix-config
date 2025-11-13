@@ -69,6 +69,7 @@
           pkgs-unstable.mprocs
           pkgs.kubernetes-helm
           pkgs-unstable.uv
+          pkgs.ngrok
         ];
     };
   };
