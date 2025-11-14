@@ -32,7 +32,7 @@
           pkgs.clippy
           pkgs.bun
           pkgs.direnv
-          nix-ai-tools.packages.${pkgs.system}.opencode
+          nix-ai-tools.packages.${pkgs.stdenv.hostPlatform.system}.opencode
         ]
         ++ lib.optionals pkgs.stdenv.isLinux [
           pkgs.ungoogled-chromium
