@@ -1,6 +1,5 @@
 {
   pkgs,
-  pkgs-unstable,
   lib,
   username,
   mnw,
@@ -15,7 +14,7 @@
       programs.mnw = {
         enable = true;
 
-        neovim = pkgs-unstable.neovim-unwrapped;
+        neovim = pkgs.neovim-unwrapped;
 
         initLua = ''
           vim.g.IS_WORK = ${
@@ -29,14 +28,14 @@
 
         extraBinPath =
           [
-            pkgs-unstable.lua-language-server
-            pkgs-unstable.stylua
-            pkgs-unstable.typescript-language-server
-            pkgs-unstable.ty
+            pkgs.lua-language-server
+            pkgs.stylua
+            pkgs.typescript-language-server
+            pkgs.ty
           ]
           ++ lib.optionals isWork [
-            pkgs-unstable.roslyn-ls
-            pkgs-unstable.terraform-ls
+            pkgs.roslyn-ls
+            pkgs.terraform-ls
           ];
 
         plugins = {
@@ -46,21 +45,21 @@
 
           start =
             [
-              pkgs-unstable.vimPlugins.material-nvim
-              pkgs-unstable.vimPlugins.no-neck-pain-nvim
-              pkgs-unstable.vimPlugins.nvim-treesitter.withAllGrammars
-              pkgs-unstable.vimPlugins.mini-icons
-              pkgs-unstable.vimPlugins.mini-statusline
-              pkgs-unstable.vimPlugins.mini-diff
-              pkgs-unstable.vimPlugins.oil-nvim
-              pkgs-unstable.vimPlugins.conform-nvim
-              pkgs-unstable.vimPlugins.snacks-nvim
-              pkgs-unstable.vimPlugins.vim-fugitive
-              pkgs-unstable.vimPlugins.vim-rhubarb
-              pkgs-unstable.vimPlugins.blink-cmp
+              pkgs.vimPlugins.material-nvim
+              pkgs.vimPlugins.no-neck-pain-nvim
+              pkgs.vimPlugins.nvim-treesitter.withAllGrammars
+              pkgs.vimPlugins.mini-icons
+              pkgs.vimPlugins.mini-statusline
+              pkgs.vimPlugins.mini-diff
+              pkgs.vimPlugins.oil-nvim
+              pkgs.vimPlugins.conform-nvim
+              pkgs.vimPlugins.snacks-nvim
+              pkgs.vimPlugins.vim-fugitive
+              pkgs.vimPlugins.vim-rhubarb
+              pkgs.vimPlugins.blink-cmp
             ]
             ++ lib.optionals isWork [
-              pkgs-unstable.vimPlugins.roslyn-nvim
+              pkgs.vimPlugins.roslyn-nvim
             ];
         };
       };

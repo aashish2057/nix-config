@@ -1,6 +1,5 @@
 {
   pkgs,
-  pkgs-unstable,
   lib,
   username,
   isWork,
@@ -27,13 +26,13 @@
           pkgs.zsh-fzf-tab
           pkgs.ripgrep
           pkgs.alejandra
-          pkgs-unstable.nh
+          pkgs.nh
           pkgs.nodejs_22
-          pkgs-unstable.cargo
-          pkgs-unstable.clippy
-          pkgs-unstable.bun
+          pkgs.cargo
+          pkgs.clippy
+          pkgs.bun
           pkgs.direnv
-          nix-ai-tools.packages.${pkgs.system}.opencode
+          nix-ai-tools.packages.${pkgs.stdenv.hostPlatform.system}.opencode
         ]
         ++ lib.optionals pkgs.stdenv.isLinux [
           pkgs.ungoogled-chromium
@@ -42,7 +41,7 @@
           pkgs.btop
           pkgs.wl-clipboard
           pkgs.hyprpaper
-          pkgs-unstable.hyprsunset
+          pkgs.hyprsunset
           pkgs.prismlauncher
           pkgs.obsidian
           pkgs.gcc
@@ -63,12 +62,12 @@
           pkgs.azure-cli
           pkgs.pnpm
           pkgs.kubectl
-          pkgs.kubelogin
+          # pkgs.kubelogin
           pkgs.k9s
           pkgs.terraform
-          pkgs-unstable.mprocs
+          pkgs.mprocs
           pkgs.kubernetes-helm
-          pkgs-unstable.uv
+          pkgs.uv
           pkgs.ngrok
         ];
     };

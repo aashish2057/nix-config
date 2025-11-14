@@ -1,6 +1,5 @@
 {
   nixpkgs,
-  nixpkgs-unstable,
   home-manager,
   nix-darwin,
   self,
@@ -18,7 +17,6 @@
       specialArgs = {
         inherit username self system isWork mnw nix-ai-tools;
         homedir = "/Users/${username}";
-        pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
       };
       modules = [
         ../hosts/${hostname}/${hostname}.nix
@@ -40,7 +38,6 @@
       specialArgs = {
         inherit username hostname system isWork mnw nix-ai-tools;
         homedir = "/home/${username}";
-        pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
       };
       modules = [
         ../hosts/${hostname}/${hostname}.nix
