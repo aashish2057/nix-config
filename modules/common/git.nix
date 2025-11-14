@@ -21,6 +21,7 @@
           tag.gpgSign = true;
           gpg.format = "ssh";
           user.signingKey = "~/.ssh/id_ed25519.pub";
+          core.pager = "less --mouse";
         };
       };
       programs.difftastic = {
