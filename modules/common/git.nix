@@ -23,6 +23,11 @@
           user.signingKey = "~/.ssh/id_ed25519.pub";
         };
       };
+      programs.difftastic = {
+        enable = true;
+        git.enable = true;
+        git.diffToolMode = true;
+      };
     }
   ];
 }
