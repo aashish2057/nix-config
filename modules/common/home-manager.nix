@@ -62,7 +62,7 @@
           pkgs.azure-cli
           pkgs.pnpm
           pkgs.kubectl
-          pkgs.kubelogin
+          # pkgs.kubelogin
           pkgs.k9s
           pkgs.terraform
           pkgs.mprocs
