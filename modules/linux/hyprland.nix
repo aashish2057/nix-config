@@ -1,4 +1,4 @@
-{pkgs-unstable, ...}: {
+{pkgs, ...}: {
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
@@ -8,7 +8,7 @@
     {
       # services.hyprsunset = {
       #   enable = true;
-      #   package = pkgs-unstable.hyprsunset;
+      #   package = pkgs.hyprsunset;
       #   settings = {
       #     profile = [
       #       {
