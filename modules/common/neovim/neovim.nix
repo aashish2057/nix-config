@@ -51,11 +51,10 @@
               pkgs.vimPlugins.mini-icons
               pkgs.vimPlugins.mini-statusline
               pkgs.vimPlugins.mini-diff
+              pkgs.vimPlugins.mini-git
               pkgs.vimPlugins.oil-nvim
               pkgs.vimPlugins.conform-nvim
               pkgs.vimPlugins.snacks-nvim
-              pkgs.vimPlugins.vim-fugitive
-              pkgs.vimPlugins.vim-rhubarb
               pkgs.vimPlugins.blink-cmp
             ]
             ++ lib.optionals isWork [
