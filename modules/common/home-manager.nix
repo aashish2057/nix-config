@@ -32,7 +32,6 @@
           pkgs.clippy
           pkgs.bun
           pkgs.direnv
-          nix-ai-tools.packages.${pkgs.stdenv.hostPlatform.system}.opencode
         ]
         ++ lib.optionals pkgs.stdenv.isLinux [
           pkgs.ungoogled-chromium
@@ -69,6 +68,7 @@
           pkgs.kubernetes-helm
           pkgs.uv
           pkgs.ngrok
+          nix-ai-tools.packages.${pkgs.stdenv.hostPlatform.system}.opencode
         ];
     };
   };
