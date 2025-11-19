@@ -3,7 +3,7 @@
   lib,
   username,
   isWork,
-  nix-ai-tools,
+  opencode,
   ...
 }: {
   home-manager.users.${username} = {
@@ -32,6 +32,7 @@
           pkgs.clippy
           pkgs.bun
           pkgs.direnv
+          opencode.packages.${pkgs.stdenv.hostPlatform.system}.default
         ]
         ++ lib.optionals pkgs.stdenv.isLinux [
           pkgs.ungoogled-chromium
@@ -68,7 +69,6 @@
           pkgs.kubernetes-helm
           pkgs.uv
           pkgs.ngrok
-          nix-ai-tools.packages.${pkgs.stdenv.hostPlatform.system}.opencode
         ];
     };
   };

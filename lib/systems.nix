@@ -4,7 +4,7 @@
   nix-darwin,
   self,
   mnw,
-  nix-ai-tools,
+  opencode,
   ...
 }: {
   mkDarwinSystem = {
@@ -15,7 +15,7 @@
   }:
     nix-darwin.lib.darwinSystem {
       specialArgs = {
-        inherit username self system isWork mnw nix-ai-tools;
+        inherit username self system isWork mnw opencode;
         homedir = "/Users/${username}";
       };
       modules = [
@@ -36,7 +36,7 @@
   }:
     nixpkgs.lib.nixosSystem {
       specialArgs = {
-        inherit username hostname system isWork mnw nix-ai-tools;
+        inherit username hostname system isWork mnw opencode;
         homedir = "/home/${username}";
       };
       modules = [

@@ -17,8 +17,8 @@
       url = "github:Gerg-L/mnw";
     };
 
-    nix-ai-tools = {
-      url = "github:numtide/nix-ai-tools";
+    opencode = {
+      url = "github:sst/opencode";
     };
   };
 
@@ -28,11 +28,11 @@
     nix-darwin,
     self,
     mnw,
-    nix-ai-tools,
+    opencode,
     ...
   }: let
     systems = import ./lib/systems.nix {
-      inherit nixpkgs home-manager nix-darwin self mnw nix-ai-tools;
+      inherit nixpkgs home-manager nix-darwin self mnw opencode;
     };
   in {
     darwinConfigurations = {
