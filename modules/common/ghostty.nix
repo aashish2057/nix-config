@@ -15,7 +15,7 @@
         settings =
           {
             theme = "Material Ocean";
-            font-family = "GeistMono NFM";
+            font-family = "Berkley Mono";
             shell-integration-features = "no-cursor";
             cursor-style = "bar";
             cursor-style-blink = false;
