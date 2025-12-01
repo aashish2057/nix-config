@@ -43,6 +43,13 @@ vim.lsp.config["clangd"] = {
 
 vim.lsp.enable("clangd")
 
+vim.lsp.config["rust_analyzer"] = {
+	cmd = { "rust-analyzer" },
+	filetypes = { "rust" },
+}
+
+vim.lsp.enable("rust_analyzer")
+
 if vim.g.IS_WORK then
 	local uv = vim.loop or vim.uv
 	vim.lsp.config("roslyn", {
