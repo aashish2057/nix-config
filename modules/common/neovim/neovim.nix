@@ -32,6 +32,7 @@
             pkgs.stylua
             pkgs.typescript-language-server
             pkgs.ty
+            pkgs.clang-tools
           ]
           ++ lib.optionals isWork [
             pkgs.roslyn-ls

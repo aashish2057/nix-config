@@ -36,6 +36,13 @@ vim.lsp.config["ty"] = {
 
 vim.lsp.enable("ty")
 
+vim.lsp.config["clangd"] = {
+	cmd = { "clangd" },
+	filetypes = { "c", "cpp" },
+}
+
+vim.lsp.enable("clangd")
+
 if vim.g.IS_WORK then
 	local uv = vim.loop or vim.uv
 	vim.lsp.config("roslyn", {
