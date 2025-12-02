@@ -4,7 +4,7 @@
       programs.aerospace = {
         enable = true;
 
-        userSettings = {
+        settings = {
           default-root-container-layout = "tiles";
           on-focus-changed = ["move-mouse window-force-center"];
 
