@@ -28,10 +28,6 @@
           pkgs.alejandra
           pkgs.nh
           pkgs.nodejs_22
-          pkgs.cargo
-          pkgs.clippy
-          pkgs.bun
-          pkgs.direnv
         ]
         ++ lib.optionals pkgs.stdenv.isLinux [
           pkgs.ungoogled-chromium
