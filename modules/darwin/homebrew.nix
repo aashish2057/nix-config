@@ -28,7 +28,6 @@
         "ghostty"
         "obsidian"
         "font-geist-mono-nerd-font"
-        # "aerospace"
         "flux-app"
         "jordanbaird-ice"
         "appcleaner"
