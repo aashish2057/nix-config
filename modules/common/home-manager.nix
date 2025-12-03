@@ -27,7 +27,7 @@
           pkgs.ripgrep
           pkgs.alejandra
           pkgs.nh
-          pkgs.nodejs_22
+          opencode.packages.${pkgs.stdenv.hostPlatform.system}.default
         ]
         ++ lib.optionals pkgs.stdenv.isLinux [
           pkgs.ungoogled-chromium
@@ -57,14 +57,13 @@
           pkgs.azure-cli
           pkgs.pnpm
           pkgs.kubectl
-          # pkgs.kubelogin
+          pkgs.kubelogin
           pkgs.k9s
           pkgs.terraform
           pkgs.mprocs
           pkgs.kubernetes-helm
           pkgs.uv
           pkgs.ngrok
-          opencode.packages.${pkgs.stdenv.hostPlatform.system}.default
         ];
     };
   };
