@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  username,
   ...
 }: {
   home-manager.sharedModules = [
@@ -20,6 +21,7 @@
             cursor-style = "bar";
             cursor-style-blink = false;
             window-theme = "ghostty";
+            working-directory = "/Users/${username}/Dev";
           }
           // lib.optionalAttrs pkgs.stdenv.isLinux {
             gtk-tabs-location = "bottom";
