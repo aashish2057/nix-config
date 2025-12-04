@@ -3,6 +3,7 @@
   pkgs,
   username,
   hostname,
+  opencode,
   ...
 }: {
   imports = [
@@ -13,6 +14,7 @@
     ../../modules/common/starship.nix
     ../../modules/common/neovim/neovim.nix
     ../../modules/common/ghostty.nix
+    ../../modules/common/opencode.nix
     ../../modules/darwin/darwin.nix
     ../../modules/darwin/homebrew.nix
     ../../modules/darwin/aerospace.nix

@@ -3,7 +3,6 @@
   lib,
   username,
   isWork,
-  opencode,
   ...
 }: {
   home-manager.users.${username} = {
@@ -27,7 +26,6 @@
           pkgs.ripgrep
           pkgs.alejandra
           pkgs.nh
-          opencode.packages.${pkgs.stdenv.hostPlatform.system}.default
         ]
         ++ lib.optionals pkgs.stdenv.isLinux [
           pkgs.ungoogled-chromium
