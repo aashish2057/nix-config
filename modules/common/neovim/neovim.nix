@@ -58,6 +58,7 @@
               pkgs.vimPlugins.vim-fugitive
               pkgs.vimPlugins.vim-rhubarb
               pkgs.vimPlugins.blink-cmp
+              pkgs.vimPlugins.blink-pairs
             ]
             ++ lib.optionals isWork [
               pkgs.vimPlugins.roslyn-nvim

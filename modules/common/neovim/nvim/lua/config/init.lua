@@ -8,6 +8,7 @@ require("config.plugins.formatter")
 require("config.plugins.mini")
 require("config.plugins.neck")
 require("config.plugins.oil")
+require("config.plugins.pairs")
 require("config.plugins.snacks")
 require("config.plugins.treesitter")
 
