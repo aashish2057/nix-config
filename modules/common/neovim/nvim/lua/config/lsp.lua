@@ -93,14 +93,4 @@ if vim.g.IS_WORK then
 	})
 
 	vim.lsp.enable("roslyn")
-
-	vim.lsp.config["terraformls"] = {
-		cmd = { "terraform-ls", "serve" },
-		filetypes = { "terraform", "tf" },
-		init_options = {
-			ignoreSingleFileWarning = true,
-		},
-	}
-
-	vim.lsp.enable("terraformls")
 end

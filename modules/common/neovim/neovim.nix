@@ -36,7 +36,6 @@
           ]
           ++ lib.optionals isWork [
             pkgs.roslyn-ls
-            pkgs.terraform-ls
           ];
 
         plugins = {
