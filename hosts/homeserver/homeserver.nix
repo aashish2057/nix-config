@@ -40,9 +40,20 @@
     shell = pkgs.zsh;
   };
 
+  services.tailscale.enable = true;
+
   services.xserver.xkb = {
     layout = "us";
     variant = "";
+  };
+
+  services.openssh = {
+    enable = true;
+    settings = {
+      PermitRootLogin = "no";
+      PasswordAuthentication = true;
+      PubkeyAuthentication = false;
+    };
   };
 
   boot.loader.systemd-boot.enable = true;
