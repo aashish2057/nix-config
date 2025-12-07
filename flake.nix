@@ -57,7 +57,7 @@
         system = "x86_64-linux";
       };
 
-      homelab = systems.mkNixosSystem {
+      homeserver = systems.mkNixosSystem {
         hostname = "nixos";
         username = "homelab";
         system = "x86_64-linux";
