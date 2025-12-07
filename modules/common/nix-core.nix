@@ -6,7 +6,7 @@
 }: {
   nix.settings = {
     experimental-features = "nix-command flakes";
-    trusted-users = ["root" "aashishsharma"];
+    trusted-users = ["root" username];
     substituters = [
       "https://cache.nixos.org"
       "https://nix-community.cachix.org"
