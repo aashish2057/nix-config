@@ -46,6 +46,7 @@
         "legcord"
         "mullvad-vpn"
         "mochi"
+        "tailscale"
       ];
 
     taps =

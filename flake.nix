@@ -56,6 +56,12 @@
         username = "aashishsharma";
         system = "x86_64-linux";
       };
+
+      homeserver = systems.mkNixosSystem {
+        hostname = "homeserver";
+        username = "homelab";
+        system = "x86_64-linux";
+      };
     };
   };
 }
