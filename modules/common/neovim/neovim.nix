@@ -36,6 +36,7 @@
           ]
           ++ lib.optionals isWork [
             pkgs.roslyn-ls
+            pkgs.dotnetCorePackages.sdk_9_0
           ];
 
         plugins = {
