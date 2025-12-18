@@ -5,7 +5,7 @@
         enable = true;
         baseIndex = 1;
         prefix = "C-Space";
-        shell = "/bin/zsh";
+        shell = "${pkgs.zsh}/bin/zsh";
         extraConfig = ''
           set-option -sa terminal-overrides ",xterm*:Tc"
           set-option -g default-command "/bin/zsh -l"
