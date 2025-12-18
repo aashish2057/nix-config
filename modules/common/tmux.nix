@@ -8,7 +8,7 @@
         shell = "${pkgs.zsh}/bin/zsh";
         extraConfig = ''
           set-option -sa terminal-overrides ",xterm*:Tc"
-          set-option -g default-command "/bin/zsh -l"
+          set-option -g default-command "${pkgs.zsh}/bin/zsh -l"
 
           bind -n S-Left  previous-window
           bind -n S-Right next-window
