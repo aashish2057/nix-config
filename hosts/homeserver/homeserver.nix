@@ -48,6 +48,7 @@
 
   services.jellyfin = {
     enable = true;
+    user = username;
   };
 
   services.openssh = {
