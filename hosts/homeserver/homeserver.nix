@@ -22,6 +22,14 @@
   networking.hostName = hostname;
   networking.networkmanager.enable = true;
 
+  networking.firewall = {
+    allowedTCPPorts = [8096]; # Jellyfin HTTP
+    allowedUDPPorts = [1900 7359]; # Service discovery
+    # Or if you want to restrict to Tailscale only:
+    # interfaces.tailscale0.allowedTCPPorts = [ 8096 ];
+    # interfaces.tailscale0.allowedUDPPorts = [ 1900 7359 ];
+  };
+
   security.rtkit.enable = true;
 
   users.users.${username} = {
