@@ -51,6 +51,12 @@
           pkgs.kubernetes-helm
           pkgs.uv
           pkgs.ngrok
+        ]
+        ++ lib.optionals (username
+          == "homelab") [
+          pkgs.jellyfin
+          pkgs.jellyfin-web
+          pkgs.jellyfin-ffmpeg
         ];
     };
   };
