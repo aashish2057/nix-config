@@ -45,6 +45,12 @@
     user = username;
   };
 
+  services.adguardhome = {
+    enable = true;
+    openFirewall = true;
+    mutableSettings = true;
+  };
+
   services.openssh = {
     enable = true;
     settings = {
