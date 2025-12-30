@@ -5,6 +5,13 @@
         enable = true;
         enableZshIntegration = true;
         settings = {
+          custom.jj = {
+            command = "jj-starship";
+            detect_folders = [".jj" ".git"];
+            shell = ["sh"];
+            format = "$output ";
+          };
+
           format = builtins.concatStringsSep "" [
             " $username"
             "$hostname"
@@ -15,11 +22,6 @@
             "$directory"
             "$vcsh"
             "$fossil_branch"
-            "$git_branch"
-            "$git_commit"
-            "$git_state"
-            "$git_metrics"
-            "$git_status"
             "$hg_branch"
             "$pijul_channel"
             "$docker_context"
