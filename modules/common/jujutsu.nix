@@ -25,6 +25,9 @@
             backend = "ssh";
             key = "~/.ssh/id_ed25519.pub";
           };
+          templates = {
+            git_push_bookmark = ''"aashish2057/" ++ change_id.short()'';
+          };
           ui = {
             diff-formatter = ["difft" "--color=always" "$left" "$right"];
             bookmark-list-sort-keys = ["committer-date-"];
