@@ -31,6 +31,7 @@
           ui = {
             diff-formatter = ["difft" "--color=always" "$left" "$right"];
             bookmark-list-sort-keys = ["committer-date-"];
+            pager = "less -FRX --mouse";
           };
           aliases = {
             ll = ["log" "-r" "all()" "--limit" "20"];
