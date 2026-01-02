@@ -32,6 +32,11 @@
             diff-formatter = ["difft" "--color=always" "$left" "$right"];
             bookmark-list-sort-keys = ["committer-date-"];
           };
+          aliases = {
+            ll = ["log" "-r" "all()" "--limit" "20"];
+            lll = ["log" "-r" "all()"];
+            tug = ["bookmark" "move" "--from" "heads(::@- & bookmarks())" "--to" "@-"];
+          };
         };
       };
     }
