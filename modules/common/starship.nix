@@ -7,7 +7,7 @@
         settings = {
           custom.jj = {
             command = "jj-starship";
-            detect_folders = [".jj" ".git"];
+            when = "jj-starship detect";
             shell = ["sh"];
             format = "$output ";
           };

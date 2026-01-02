@@ -44,11 +44,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1767029861,
-        "narHash": "sha256-bpT5JunD/W3has9LXN9Ep1Mf6VThprLztJIxyn/qnNI=",
+        "lastModified": 1767219307,
+        "narHash": "sha256-Jy8gTe+ybPGJI9KCmxAX4ngNo2hXRu/0hpPoaaidZvM=",
         "owner": "dmmulroy",
         "repo": "jj-starship",
-        "rev": "708b8ebffd53cbb5ece153973eb9c3572f0bc0ed",
+        "rev": "69cca91e15a8d3554700daa09dad6a6fbd9392f6",
         "type": "github"
       },
       "original": {
