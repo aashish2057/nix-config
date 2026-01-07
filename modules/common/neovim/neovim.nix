@@ -33,6 +33,7 @@
             pkgs.typescript-language-server
             pkgs.ty
             pkgs.clang-tools
+            pkgs.tailwindcss-language-server
           ]
           ++ lib.optionals isWork [
             pkgs.roslyn-ls
@@ -59,6 +60,7 @@
               pkgs.vimPlugins.vim-rhubarb
               pkgs.vimPlugins.blink-cmp
               pkgs.vimPlugins.blink-pairs
+              pkgs.vimPlugins.nvim-lspconfig
             ]
             ++ lib.optionals isWork [
               pkgs.vimPlugins.roslyn-nvim
