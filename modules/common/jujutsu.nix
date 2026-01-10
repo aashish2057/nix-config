@@ -29,7 +29,7 @@
             git_push_bookmark = ''"aashish2057/" ++ change_id.short()'';
           };
           ui = {
-            diff-formatter = ["difft" "--color=always" "$left" "$right"];
+            diff-formatter = ["difft" "--display=side-by-side-show-both" "--color=always" "$left" "$right"];
             bookmark-list-sort-keys = ["committer-date-"];
             pager = "less -FRX --mouse";
           };
