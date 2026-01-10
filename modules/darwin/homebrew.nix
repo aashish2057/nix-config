@@ -8,7 +8,9 @@
 
     # Manual installation required with HOMEBREW_ACCEPT_EULA=Y brew install msodbcsql18 mssql-tools18
     brews =
-      []
+      [
+        "lumen"
+      ]
       ++ lib.optionals isWork [
         "msodbcsql18"
         "mssql-tools18"
@@ -52,6 +54,7 @@
     taps =
       [
         "nikitabobko/tap"
+        "jnsahaj/lumen"
       ]
       ++ lib.optionals isWork [
         "microsoft/mssql-release"
