@@ -4,7 +4,6 @@
   nix-darwin,
   self,
   mnw,
-  opencode,
   jj-starship,
   ...
 }: {
@@ -16,7 +15,7 @@
   }:
     nix-darwin.lib.darwinSystem {
       specialArgs = {
-        inherit username self system isWork mnw opencode jj-starship;
+        inherit username self system isWork mnw jj-starship;
         homedir = "/Users/${username}";
       };
       modules = [
@@ -37,7 +36,7 @@
   }:
     nixpkgs.lib.nixosSystem {
       specialArgs = {
-        inherit username hostname system isWork mnw opencode jj-starship;
+        inherit username hostname system isWork mnw jj-starship;
         homedir = "/home/${username}";
       };
       modules = [

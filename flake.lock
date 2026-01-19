@@ -124,48 +124,13 @@
         "type": "github"
       }
     },
-    "nixpkgs_3": {
-      "locked": {
-        "lastModified": 1767966113,
-        "narHash": "sha256-mSTsvXa4WveSRJexsmCbm9dY17B1fKp7NLpJxllpQw4=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "5f02c91314c8ba4afe83b256b023756412218535",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixpkgs-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "opencode": {
-      "inputs": {
-        "nixpkgs": "nixpkgs_3"
-      },
-      "locked": {
-        "lastModified": 1768228231,
-        "narHash": "sha256-jXk291e6UR8iUBZs1TlbpnHsMrwmrPN1x2IpdvJZEPM=",
-        "owner": "sst",
-        "repo": "opencode",
-        "rev": "e6bc3b253b837387363b8900ec82a317c130b53c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "sst",
-        "repo": "opencode",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
         "jj-starship": "jj-starship",
         "mnw": "mnw",
         "nix-darwin": "nix-darwin",
-        "nixpkgs": "nixpkgs_2",
-        "opencode": "opencode"
+        "nixpkgs": "nixpkgs_2"
       }
     },
     "systems": {
