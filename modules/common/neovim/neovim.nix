@@ -34,6 +34,7 @@
             pkgs.ty
             pkgs.clang-tools
             pkgs.tailwindcss-language-server
+            pkgs.tree-sitter
           ]
           ++ lib.optionals isWork [
             pkgs.roslyn-ls
