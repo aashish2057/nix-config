@@ -31,6 +31,8 @@ vim.lsp.enable("ts_ls")
 
 vim.lsp.enable("tailwindcss")
 
+vim.lsp.enable("astro")
+
 vim.lsp.config["ty"] = {
 	cmd = { "ty", "server" },
 	filetypes = { "python" },

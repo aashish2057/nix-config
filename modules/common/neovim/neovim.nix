@@ -36,6 +36,7 @@
             pkgs.tailwindcss-language-server
             pkgs.tree-sitter
             pkgs.fd
+            pkgs.astro-language-server
           ]
           ++ lib.optionals isWork [
             pkgs.roslyn-ls
