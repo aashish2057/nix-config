@@ -3,6 +3,7 @@
   pkgs,
   username,
   hostname,
+  opencode,
   jj-starship,
   ...
 }: {

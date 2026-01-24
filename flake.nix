@@ -17,6 +17,10 @@
       url = "github:Gerg-L/mnw";
     };
 
+    opencode = {
+      url = "github:sst/opencode";
+    };
+
     jj-starship = {
       url = "github:dmmulroy/jj-starship";
     };
@@ -28,11 +32,12 @@
     nix-darwin,
     self,
     mnw,
+    opencode,
     jj-starship,
     ...
   }: let
     systems = import ./lib/systems.nix {
-      inherit nixpkgs home-manager nix-darwin self mnw jj-starship;
+      inherit nixpkgs home-manager nix-darwin self mnw opencode jj-starship;
     };
   in {
     darwinConfigurations = {

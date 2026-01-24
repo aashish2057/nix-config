@@ -26,7 +26,6 @@
           pkgs.ripgrep
           pkgs.alejandra
           pkgs.nh
-          pkgs.opencode
         ]
         ++ lib.optionals pkgs.stdenv.isLinux [
           pkgs.ungoogled-chromium
