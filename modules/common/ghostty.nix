@@ -49,6 +49,7 @@
             cursor-style-blink = false;
             window-theme = "ghostty";
             working-directory = "/Users/${username}/Dev";
+            macos-titlebar-style = "hidden";
           }
           // lib.optionalAttrs pkgs.stdenv.isLinux {
             gtk-tabs-location = "bottom";
