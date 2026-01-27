@@ -47,6 +47,12 @@
           bind -n S-Right next-window
           bind x kill-pane
 
+          unbind %
+          unbind '"'
+          bind \\ split-window -h -c "#{pane_current_path}"  # Backslash for horizontal split
+          bind Enter split-window -v -c "#{pane_current_path}"        # Enter for vertical split
+          bind c new-window -c "#{pane_current_path}"                 # New window in current path
+
           # Status bar positioning
           set-option -g status-position top
 
