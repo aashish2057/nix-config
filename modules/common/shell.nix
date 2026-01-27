@@ -4,6 +4,7 @@
       programs.zsh = {
         enable = true;
         syntaxHighlighting.enable = true;
+        autocd = true;
         autosuggestion.enable = true;
 
         history = {
