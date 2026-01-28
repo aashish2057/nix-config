@@ -47,7 +47,7 @@
       ++ lib.optionals (!isWork) [
         "legcord"
         "mullvad-vpn"
-        "mochi"
+        # "mochi"
         "tailscale-app"
       ];
 
