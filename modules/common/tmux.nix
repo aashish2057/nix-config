@@ -58,13 +58,14 @@
 
           set -g status-right "#(date '+%H:%M') | #(date '+%Y-%m-%d')"
           set -g status-left-length 100
-          set -g status-style "bg=#090E13,fg=#c5c9c7"
 
-          set -g window-status-style "bg=#090E13,fg=#5C6066"
-          set -g window-status-current-style "bg=#090E13,fg=#c5c9c7"
+          set -g status-style "bg=#0F111A,fg=#A6ACCD"
 
-          set -g status-left-style "bg=#090E13,fg=#7fb4ca"
-          set -g status-right-style "bg=#090E13,fg=#7fb4ca"
+          set -g status-left-style "bg=#0F111A,fg=#84FFFF"
+          set -g status-right-style "bg=#0F111A,fg=#717CB4"
+
+          set -g window-status-style "bg=#0F111A,fg=#464B5D"
+          set -g window-status-current-style "bg=#0F111A,fg=#EEFFFF"
         '';
       };
     }

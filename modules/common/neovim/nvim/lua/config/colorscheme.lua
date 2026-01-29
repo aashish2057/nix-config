@@ -1,7 +1,5 @@
-require("kanso").setup({
-	background = {
-		dark = "zen",
-	},
-	foreground = "saturated",
+require("material").setup({
+	plugins = {},
 })
-vim.cmd.colorscheme("kanso")
+vim.g.material_style = "deep ocean"
+vim.cmd.colorscheme("material")

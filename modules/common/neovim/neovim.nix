@@ -50,7 +50,7 @@
 
           start =
             [
-              pkgs.vimPlugins.kanso-nvim
+              pkgs.vimPlugins.material-nvim
               pkgs.vimPlugins.no-neck-pain-nvim
               pkgs.vimPlugins.nvim-treesitter.withAllGrammars
               pkgs.vimPlugins.mini-icons
