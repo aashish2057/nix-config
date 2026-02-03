@@ -22,6 +22,7 @@
         orientation = "left";
         show-recents = false;
         tilesize = 31;
+        wvous-br-corner = 1;
         persistent-apps =
           [
             "/Applications/Helium.app"
