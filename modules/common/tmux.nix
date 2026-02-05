@@ -4,7 +4,7 @@
       programs.tmux = {
         enable = true;
         baseIndex = 1;
-        prefix = "C-Space";
+        prefix = "C-a";
         shell = "${pkgs.zsh}/bin/zsh";
         extraConfig = ''
           # Address vim mode switching delay (http://superuser.com/a/252717/65504)
