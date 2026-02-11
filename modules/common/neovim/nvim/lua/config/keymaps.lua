@@ -8,7 +8,7 @@ keymap.set("n", "<leader>n", "<cmd>Oil<cr>")
 
 -- find files
 keymap.set("n", "<leader>ff", function()
-	require("snacks").picker.files()
+	require("fff").find_files()
 end)
 
 -- grep

@@ -64,6 +64,7 @@
               pkgs.vimPlugins.blink-cmp
               pkgs.vimPlugins.blink-pairs
               pkgs.vimPlugins.nvim-lspconfig
+              pkgs.vimPlugins.fff-nvim
             ]
             ++ lib.optionals isWork [
               pkgs.vimPlugins.roslyn-nvim

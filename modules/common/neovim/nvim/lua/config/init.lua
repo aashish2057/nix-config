@@ -5,6 +5,7 @@ require("config.colorscheme")
 
 require("config.plugins.blink")
 require("config.plugins.formatter")
+require("config.plugins.fff")
 require("config.plugins.mini")
 require("config.plugins.neck")
 require("config.plugins.oil")
