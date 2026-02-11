@@ -15,7 +15,10 @@
           {}
           // lib.optionalAttrs isWork {
             lsp.pyright.disabled = true;
-
+            formatter = {
+              ruff.disable = true;
+              uv.disabled = true;
+            };
             mcp.atlassian = {
               type = "remote";
               url = "https://mcp.atlassian.com/v1/mcp";
