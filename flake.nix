@@ -19,10 +19,12 @@
 
     opencode = {
       url = "github:sst/opencode";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     jj-starship = {
       url = "github:dmmulroy/jj-starship";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
