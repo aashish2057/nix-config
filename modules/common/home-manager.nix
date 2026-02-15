@@ -28,6 +28,9 @@
           pkgs.nh
           pkgs.gh
         ]
+        ++ lib.optionals pkgs.stdenv.isDarwin [
+          pkgs.m1ddc
+        ]
         ++ lib.optionals pkgs.stdenv.isLinux [
           pkgs.ungoogled-chromium
           pkgs.git
