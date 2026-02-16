@@ -47,6 +47,7 @@
         "mullvad-vpn"
         "mochi"
         "tailscale-app"
+        "anki"
       ];
 
     taps =
