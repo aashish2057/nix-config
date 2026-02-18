@@ -26,6 +26,11 @@
       url = "github:dmmulroy/jj-starship";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    fff-nvim = {
+      url = "github:dmtrKovalenko/fff.nvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs @ {
@@ -36,10 +41,11 @@
     mnw,
     opencode,
     jj-starship,
+    fff-nvim,
     ...
   }: let
     systems = import ./lib/systems.nix {
-      inherit nixpkgs home-manager nix-darwin self mnw opencode jj-starship;
+      inherit nixpkgs home-manager nix-darwin self mnw opencode jj-starship fff-nvim;
     };
   in {
     darwinConfigurations = {

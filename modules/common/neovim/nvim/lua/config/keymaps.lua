@@ -13,7 +13,11 @@ end)
 
 -- grep
 keymap.set("n", "<leader>fs", function()
-	require("snacks").picker.grep()
+	require("fff").live_grep({
+		grep = {
+			modes = { "fuzzy", "plain", "regex" },
+		},
+	})
 end)
 
 -- buffers

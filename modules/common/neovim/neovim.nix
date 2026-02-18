@@ -4,6 +4,8 @@
   username,
   mnw,
   isWork,
+  system,
+  fff-nvim,
   ...
 }: {
   home-manager.sharedModules = [
@@ -64,7 +66,7 @@
               pkgs.vimPlugins.blink-cmp
               pkgs.vimPlugins.blink-pairs
               pkgs.vimPlugins.nvim-lspconfig
-              pkgs.vimPlugins.fff-nvim
+              fff-nvim.packages.${system}."fff-nvim"
             ]
             ++ lib.optionals isWork [
               pkgs.vimPlugins.roslyn-nvim
