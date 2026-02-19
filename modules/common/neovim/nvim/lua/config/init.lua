@@ -12,7 +12,3 @@ require("config.plugins.oil")
 require("config.plugins.pairs")
 require("config.plugins.snacks")
 require("config.plugins.treesitter")
-
-if vim.g.IS_WORK then
-	require("config.plugins.roslyn")
-end

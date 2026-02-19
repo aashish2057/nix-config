@@ -26,3 +26,6 @@ opt.smartcase = true
 
 -- clipboard
 opt.clipboard:append("unnamedplus")
+
+-- to run .nvim.lua project specific files
+opt.exrc = true
