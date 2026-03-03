@@ -3,6 +3,8 @@ local keymap = vim.keymap
 -- show error
 keymap.set("n", "<leader>se", "<cmd>lua vim.diagnostic.open_float()<CR>")
 
+keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
+
 -- open file explorer
 keymap.set("n", "<leader>n", "<cmd>Oil<cr>")
 
