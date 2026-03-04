@@ -10,6 +10,6 @@ require("fff").setup({
 	debug = {
 		enabled = true,
 		show_scores = true,
-		show_file_info = true,
+		-- show_file_info = true,
 	},
 })
