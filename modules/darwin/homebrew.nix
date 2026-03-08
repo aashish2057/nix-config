@@ -31,6 +31,7 @@
         "flux-app"
         "jordanbaird-ice"
         "appcleaner"
+        "opencode-desktop"
       ]
       ++ lib.optionals isWork [
         "slack"
