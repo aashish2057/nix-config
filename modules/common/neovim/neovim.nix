@@ -63,9 +63,7 @@
               pkgs.vimPlugins.nvim-lspconfig
               fff-nvim.packages.${system}."fff-nvim"
             ]
-            ++ lib.optionals isWork [
-              pkgs.vimPlugins.roslyn-nvim
-            ];
+            ++ lib.optionals isWork [];
         };
       };
     }
