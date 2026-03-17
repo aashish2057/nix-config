@@ -21,11 +21,6 @@
       url = "github:sst/opencode";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    jj-starship = {
-      url = "github:dmmulroy/jj-starship";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = inputs @ {
@@ -35,11 +30,10 @@
     self,
     mnw,
     opencode,
-    jj-starship,
     ...
   }: let
     systems = import ./lib/systems.nix {
-      inherit nixpkgs home-manager nix-darwin self mnw opencode jj-starship;
+      inherit nixpkgs home-manager nix-darwin self mnw opencode;
     };
   in {
     darwinConfigurations = {

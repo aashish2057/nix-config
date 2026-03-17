@@ -1,15 +1,10 @@
 {
   isWork,
   system,
-  jj-starship,
   ...
 }: {
   home-manager.sharedModules = [
     {
-      home.packages = [
-        jj-starship.packages.${system}.default
-      ];
-
       programs.jujutsu = {
         enable = true;
         settings = {

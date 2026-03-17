@@ -4,7 +4,6 @@
   username,
   hostname,
   opencode,
-  jj-starship,
   ...
 }: {
   imports = [
