@@ -8,8 +8,9 @@
 }: {
   home-manager.sharedModules = [
     {
-      xdg.configFile."opencode/prompts/jj.md".text = ''
-        ### jj (Jujutsu)
+      xdg.configFile."opencode/AGENTS.md".text = ''
+        # Jujutsu Workflow
+
         - NEVER use git unless jj has no way to do the thing. Always use jj. jj status, jj diff, jj diff -r @-, jj log, etc. to view a file at a revision, use `jj file show <path> -r <rev>` (not `jj cat`). to exclude paths from a jj command, use fileset syntax: `jj diff '~dir1 & ~dir2'` or `jj restore '~package-lock.json'`
         - prefer squash workflow in jj over editing, where if you're trying to update rev A, work in a rev on top of A and periodically squash what you've done into A
         - for parallel approaches, use `jj new <base>` to create siblings from a common base, implement each approach, then compare. bookmarks are unnecessary for this workflow
@@ -22,10 +23,8 @@
         enable = true;
         package = opencode.packages.${pkgs.stdenv.hostPlatform.system}.default;
         settings =
-          {
-            instructions = ["./prompts/jj.md"];
-          }
-          // lib.optionalAttrs isWork {
+          lib.recursiveUpdate {}
+          (lib.optionalAttrs isWork {
             permission = {
               bash = {
                 "terraform *" = "deny";
@@ -51,7 +50,7 @@
               enabled = true;
               oauth = {};
             };
-          };
+          });
       };
     }
   ];
