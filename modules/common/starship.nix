@@ -136,6 +136,10 @@
             symbol = " ";
           };
 
+          gcloud = {
+            detect_env_vars = ["STARSHIP_SHOW_GCLOUD"];
+          };
+
           golang = {
             symbol = " ";
           };
