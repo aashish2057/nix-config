@@ -22,6 +22,7 @@
                 "terraform fmt*" = "allow";
                 "terraform init" = "allow";
                 "terraform plan -lock=false" = "allow";
+                "terraform import*" = "ask";
               };
             };
             lsp.pyright.disabled = true;
