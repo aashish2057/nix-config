@@ -29,17 +29,25 @@
               ruff.disable = true;
               uv.disabled = true;
             };
-            mcp.atlassian = {
-              type = "remote";
-              url = "https://mcp.atlassian.com/v1/mcp";
-              enabled = true;
-              oauth = {};
-            };
-            mcp.datadog = {
-              type = "remote";
-              url = "https://mcp.us3.datadoghq.com/api/unstable/mcp-server/mcp";
-              enabled = true;
-              oauth = {};
+            mcp = {
+              atlassian = {
+                type = "remote";
+                url = "https://mcp.atlassian.com/v1/mcp";
+                enabled = true;
+                oauth = {};
+              };
+              datadog = {
+                type = "remote";
+                url = "https://mcp.us3.datadoghq.com/api/unstable/mcp-server/mcp";
+                enabled = true;
+                oauth = {};
+              };
+              notion = {
+                type = "remote";
+                url = "https://mcp.notion.com/mcp";
+                enabled = true;
+                oauth = {};
+              };
             };
           });
       };
