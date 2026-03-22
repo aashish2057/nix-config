@@ -115,6 +115,15 @@ Use best judgement when processing input.
 
 - If you need more context to be sure, use the tools below to get it
 
+- Whenever possible, prove the issue instead of only asserting it.
+
+- Prefer one of these forms of proof:
+  - a failing or targeted test that demonstrates the bug
+  - a minimal reproduction with exact setup, inputs, and expected vs actual behavior
+  - a step-by-step reasoning walkthrough tied to specific code paths when a test is not practical
+
+- Do not report a bug as a definite finding unless you can either prove it or clearly explain why proof is impractical and still show the concrete execution path that fails.
+
 **Don't be a zealot about style.** When checking code against conventions:
 
 - Verify the code is *actually* in violation. Don't complain about else statements if early returns are already being used correctly.
@@ -143,7 +152,7 @@ If you're uncertain about something and can't verify it with these tools, say "I
 
 ## Output
 
-1. If there is a bug, be direct and clear about why it is a bug.
+1. If there is a bug, be direct and clear about why it is a bug, and include proof via a failing test, concrete reproduction steps, or a code-path walkthrough.
 
 2. Clearly communicate severity of issues. Do not overstate severity.
 
@@ -154,3 +163,14 @@ If you're uncertain about something and can't verify it with these tools, say "I
 5. Write so the reader can quickly understand the issue without reading too closely.
 
 6. AVOID flattery, do not give any comments that are not helpful to the reader. Avoid phrasing like "Great job ...", "Thanks for ...".
+
+7. Every finding must include evidence.
+
+8. For each bug, include one of:
+   - a test you wrote or the exact test that should be added
+   - exact reproduction steps
+   - a precise code-path walkthrough showing how the failure occurs
+
+9. Prefer tests over prose when the bug is testable in this repository.
+
+10. If you cannot prove a suspected issue, label it as uncertainty rather than a confirmed bug.
