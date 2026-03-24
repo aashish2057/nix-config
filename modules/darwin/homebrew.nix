@@ -27,11 +27,9 @@
         "raycast"
         "ghostty"
         "obsidian"
-        "font-geist-mono-nerd-font"
         "flux-app"
         "jordanbaird-ice"
         "appcleaner"
-        "opencode-desktop"
       ]
       ++ lib.optionals isWork [
         "slack"
@@ -39,14 +37,12 @@
         "tunnelblick"
         "datagrip"
         "rider"
-        "microsoft-azure-storage-explorer"
         "modern-csv"
         "visual-studio-code"
       ]
       ++ lib.optionals (!isWork) [
         "legcord"
         "mullvad-vpn"
-        "mochi"
         "tailscale-app"
         "anki"
       ];
