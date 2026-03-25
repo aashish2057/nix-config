@@ -7,6 +7,9 @@ require("blink.cmp").setup({
 		accept = { auto_brackets = { enabled = false } },
 		menu = { auto_show = false },
 	},
+	cmdline = {
+		enabled = false,
+	},
 	keymap = {
 		["<C-n>"] = { "show", "select_next", "fallback" },
 		["<C-p>"] = { "show", "select_prev", "fallback" },
