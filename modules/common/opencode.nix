@@ -21,6 +21,7 @@
                 "terraform *" = "deny";
                 "terraform fmt*" = "allow";
                 "terraform init" = "allow";
+                "terraform validate" = "allow";
                 "terraform plan -lock=false" = "allow";
                 "terraform import*" = "ask";
               };
