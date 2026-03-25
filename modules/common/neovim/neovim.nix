@@ -5,6 +5,7 @@
   mnw,
   isWork,
   system,
+  nvim-nightly,
   ...
 }: {
   home-manager.sharedModules = [
@@ -15,7 +16,7 @@
       programs.mnw = {
         enable = true;
 
-        neovim = pkgs.neovim-unwrapped;
+        neovim = nvim-nightly.packages.${system}.default;
 
         initLua = ''
           vim.g.IS_WORK = ${

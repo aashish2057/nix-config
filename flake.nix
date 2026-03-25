@@ -21,6 +21,11 @@
       url = "github:sst/opencode";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nvim-nightly = {
+      url = "github:nix-community/neovim-nightly-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs @ {
@@ -30,10 +35,11 @@
     self,
     mnw,
     opencode,
+    nvim-nightly,
     ...
   }: let
     systems = import ./lib/systems.nix {
-      inherit nixpkgs home-manager nix-darwin self mnw opencode;
+      inherit nixpkgs home-manager nix-darwin self mnw opencode nvim-nightly;
     };
   in {
     darwinConfigurations = {
