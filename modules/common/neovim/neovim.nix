@@ -63,6 +63,7 @@
               pkgs.vimPlugins.nvim-lspconfig
               pkgs.vimPlugins.fff-nvim
               pkgs.vimPlugins.noice-nvim
+              pkgs.vimPlugins.hunk-nvim
             ]
             ++ lib.optionals isWork [
               pkgs.vimPlugins.roslyn-nvim

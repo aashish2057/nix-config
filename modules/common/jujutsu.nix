@@ -27,6 +27,7 @@
             diff-formatter = ["difft" "--color=always" "$left" "$right"];
             bookmark-list-sort-keys = ["committer-date-"];
             pager = "less -FRX --mouse";
+            diff-editor = ["nvim" "-c" "DiffEditor $left $right $output"];
           };
           aliases = {
             ll = ["log" "-r" "all()" "--limit" "20"];
