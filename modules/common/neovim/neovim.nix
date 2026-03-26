@@ -31,13 +31,8 @@
         extraBinPath = [
           pkgs.lua-language-server
           pkgs.stylua
-          pkgs.typescript-language-server
-          pkgs.ty
-          pkgs.clang-tools
-          pkgs.tailwindcss-language-server
           pkgs.tree-sitter
           pkgs.fd
-          pkgs.astro-language-server
         ];
 
         plugins = {
