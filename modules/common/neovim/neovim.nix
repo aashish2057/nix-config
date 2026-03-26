@@ -47,7 +47,6 @@
               pkgs.vimPlugins.nvim-treesitter.withAllGrammars
               pkgs.vimPlugins.mini-icons
               pkgs.vimPlugins.mini-statusline
-              pkgs.vimPlugins.mini-diff
               pkgs.vimPlugins.oil-nvim
               pkgs.vimPlugins.conform-nvim
               pkgs.vimPlugins.snacks-nvim
