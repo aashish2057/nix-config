@@ -30,6 +30,7 @@
         "flux-app"
         "jordanbaird-ice"
         "appcleaner"
+        "finetune"
       ]
       ++ lib.optionals isWork [
         "slack"
