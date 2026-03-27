@@ -3,6 +3,11 @@ require("no-neck-pain").setup({
 	autocmds = {
 		disableOnLastBuffer = true,
 	},
+	buffers = {
+		wo = {
+			winbar = " ",
+		},
+	},
 })
 
 vim.api.nvim_create_autocmd("BufEnter", {

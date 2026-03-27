@@ -59,6 +59,7 @@
               pkgs.vimPlugins.noice-nvim
               pkgs.vimPlugins.hunk-nvim
               pkgs.vimPlugins.gitsigns-nvim
+              pkgs.vimPlugins.dropbar-nvim
             ]
             ++ lib.optionals isWork [
               pkgs.vimPlugins.roslyn-nvim

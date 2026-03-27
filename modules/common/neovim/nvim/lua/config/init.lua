@@ -4,6 +4,7 @@ require("config.lsp")
 require("config.colorscheme")
 
 require("config.plugins.blink")
+require("config.plugins.dropbar")
 require("config.plugins.formatter")
 require("config.plugins.fff")
 require("config.plugins.hunk")
