@@ -3,7 +3,6 @@
   pkgs,
   username,
   hostname,
-  opencode,
   nvim-nightly,
   ...
 }: {
