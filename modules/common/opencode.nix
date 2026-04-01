@@ -29,7 +29,13 @@
                 "terraform import*" = "ask";
               };
             };
-            lsp.pyright.disabled = true;
+            lsp = {
+              pyright.disabled = true;
+              csharp.command = [
+                "Microsoft.CodeAnalysis.LanguageServer"
+                "--stdio"
+              ];
+            };
             formatter = {
               ruff.disable = true;
               uv.disabled = true;
