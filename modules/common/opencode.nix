@@ -13,7 +13,11 @@
         rules = ./opencode/AGENTS.md;
         commands.review = ./opencode/review.md;
         settings =
-          lib.recursiveUpdate {}
+          lib.recursiveUpdate {
+            permission.external_directory = {
+              "$HOME/Dev/**" = "allow";
+            };
+          }
           (lib.optionalAttrs isWork {
             permission = {
               bash = {
