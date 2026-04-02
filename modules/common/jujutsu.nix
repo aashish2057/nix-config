@@ -24,10 +24,11 @@
             git_push_bookmark = ''"aashish2057/" ++ change_id.short()'';
           };
           ui = {
-            diff-formatter = ["difft" "--color=always" "$left" "$right"];
+            diff-formatter = ":git";
             bookmark-list-sort-keys = ["committer-date-"];
-            pager = "less -FRX --mouse";
+            pager = "delta";
             diff-editor = ["nvim" "-c" "DiffEditor $left $right $output"];
+            format = "git";
           };
           aliases = {
             ll = ["log" "-r" "all()" "--limit" "20"];
