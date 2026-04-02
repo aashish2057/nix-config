@@ -24,10 +24,9 @@
           core.pager = "less --mouse";
         };
       };
-      programs.difftastic = {
+      programs.delta = {
         enable = true;
-        git.enable = true;
-        git.diffToolMode = true;
+        options.features = "side-by-side";
       };
     }
   ];
