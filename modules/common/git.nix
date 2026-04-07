@@ -26,7 +26,10 @@
       };
       programs.delta = {
         enable = true;
-        options.features = "side-by-side";
+        options = {
+          pager = "less --mouse -R";
+          features = "side-by-side";
+        };
       };
     }
   ];
