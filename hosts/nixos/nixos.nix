@@ -16,6 +16,7 @@
     ../../modules/common/neovim/neovim.nix
     ../../modules/common/ghostty.nix
     ../../modules/common/tmux.nix
+    ../../modules/common/opencode.nix
     ../../modules/linux/fonts.nix
     ../../modules/linux/hyprland.nix
     ../../modules/linux/nvidia.nix
