@@ -117,7 +117,7 @@
             natural_scroll = false;
           };
 
-          "$mainMod" = "SUPER";
+          "$mainMod" = "ALT";
 
           bind = [
             "$mainMod, Return, exec, $terminal"
