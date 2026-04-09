@@ -17,7 +17,7 @@ end)
 keymap.set("n", "<leader>fs", function()
 	require("fff").live_grep({
 		grep = {
-			modes = { "fuzzy", "plain", "regex" },
+			modes = { "plain", "fuzzy", "regex" },
 		},
 	})
 end)
