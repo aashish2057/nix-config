@@ -17,6 +17,7 @@
             permission.external_directory = {
               "$HOME/Dev/**" = "allow";
             };
+            autoupdate = false;
           }
           (lib.optionalAttrs isWork {
             permission = {
