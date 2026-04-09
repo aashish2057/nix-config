@@ -18,6 +18,7 @@
               "$HOME/Dev/**" = "allow";
             };
             autoupdate = false;
+            theme = "ayu";
           }
           (lib.optionalAttrs isWork {
             permission = {
