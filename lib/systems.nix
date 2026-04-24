@@ -2,6 +2,7 @@
   nixpkgs,
   home-manager,
   nix-darwin,
+  nur,
   self,
   mnw,
   nvim-nightly,
@@ -36,7 +37,7 @@
   }:
     nixpkgs.lib.nixosSystem {
       specialArgs = {
-        inherit username hostname system isWork mnw nvim-nightly;
+        inherit username hostname system isWork mnw nvim-nightly nur;
         homedir = "/home/${username}";
       };
       modules = [
