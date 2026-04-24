@@ -41,4 +41,6 @@
     extraGroups = ["networkmanager" "wheel"];
     shell = pkgs.zsh;
   };
+
+  services.tailscale.enable = true;
 }
