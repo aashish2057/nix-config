@@ -35,7 +35,6 @@
           pkgs.m1ddc
         ]
         ++ lib.optionals pkgs.stdenv.isLinux [
-          pkgs.ungoogled-chromium
           pkgs.git
           pkgs.ddcutil
           pkgs.btop

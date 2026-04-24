@@ -121,7 +121,7 @@
 
           bind = [
             "$mainMod, Return, exec, $terminal"
-            "$mainMod, B, exec, chromium --ozone-platform=wayland"
+            "$mainMod, B, exec, helium"
             "$mainMod, W, killactive,"
             "$mainMod, O, exit,"
             "$mainMod, space, togglesplit,"
