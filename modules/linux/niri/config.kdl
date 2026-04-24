@@ -1,0 +1,137 @@
+input {
+    keyboard {
+        xkb {
+            layout "us"
+            variant ""
+            model ""
+            options ""
+            rules ""
+        }
+
+        repeat-delay 300
+        repeat-rate 50
+    }
+
+    mouse {
+        accel-speed -0.75
+    }
+
+    mod-key "Alt"
+    mod-key-nested "Alt"
+	warp-mouse-to-focus
+}
+
+output "DP-2" {
+    mode "3840x2160"
+    scale 1.5
+    position x=0 y=0
+    focus-at-startup
+}
+
+layout {
+    gaps 6
+
+	struts {
+		left -6
+		right -6
+		top -6
+		bottom -6
+	}
+
+    focus-ring {
+        off
+    }
+
+    border {
+        off
+    }
+
+    shadow {
+        on
+        softness 30
+        spread 5
+        offset x=0 y=5
+        color "#1a1a1aee"
+    }
+
+    default-column-width { proportion 0.5; }
+}
+
+prefer-no-csd
+
+environment {
+    ELECTRON_OZONE_PLATFORM_HINT "wayland"
+    NIXOS_OZONE_WL "1"
+}
+
+cursor {
+    xcursor-size 24
+}
+
+xwayland-satellite {
+    path "xwayland-satellite"
+}
+
+animations {
+    off
+}
+
+window-rule {
+    geometry-corner-radius 10
+    clip-to-geometry true
+}
+
+binds {
+    Alt+Shift+Slash repeat=false { show-hotkey-overlay; }
+    Alt+WheelScrollLeft cooldown-ms=100 { focus-column-left; }
+    Alt+WheelScrollRight cooldown-ms=100 { focus-column-right; }
+    Alt+WheelScrollUp cooldown-ms=100 { focus-workspace-up; }
+    Alt+WheelScrollDown cooldown-ms=100 { focus-workspace-down; }
+
+    Alt+Return repeat=false { spawn "ghostty"; }
+    Alt+B repeat=false { spawn "helium" "--enable-features=UseOzonePlatform" "--ozone-platform=wayland"; }
+    Alt+W repeat=false { close-window; }
+    Alt+Q repeat=false { quit; }
+    Alt+space repeat=false { toggle-column-tabbed-display; }
+    Alt+M repeat=false { spawn "prismlauncher"; }
+    Alt+O repeat=false { spawn "obsidian" "-enable-features=UseOzonePlatform" "-ozone-platform=wayland"; }
+    Alt+F repeat=false { maximize-column; }
+    Alt+Shift+F repeat=false { fullscreen-window; }
+
+    Alt+H { focus-column-left; }
+    Alt+L { focus-column-right; }
+    Alt+J { focus-window-down; }
+    Alt+K { focus-window-up; }
+
+    Alt+Shift+H { move-column-left; }
+    Alt+Shift+L { move-column-right; }
+    Alt+Shift+J { move-window-down; }
+    Alt+Shift+K { move-window-up; }
+
+    Alt+Shift+Left { set-column-width "-5%"; }
+    Alt+Shift+Right { set-column-width "+5%"; }
+    Alt+Shift+Up { set-window-height "-10%"; }
+    Alt+Shift+Down { set-window-height "+10%"; }
+
+    Alt+1 { focus-workspace 1; }
+    Alt+2 { focus-workspace 2; }
+    Alt+3 { focus-workspace 3; }
+    Alt+4 { focus-workspace 4; }
+    Alt+5 { focus-workspace 5; }
+    Alt+6 { focus-workspace 6; }
+    Alt+7 { focus-workspace 7; }
+    Alt+8 { focus-workspace 8; }
+    Alt+9 { focus-workspace 9; }
+    Alt+0 { focus-workspace 10; }
+
+    Alt+Shift+1 { move-column-to-workspace 1; }
+    Alt+Shift+2 { move-column-to-workspace 2; }
+    Alt+Shift+3 { move-column-to-workspace 3; }
+    Alt+Shift+4 { move-column-to-workspace 4; }
+    Alt+Shift+5 { move-column-to-workspace 5; }
+    Alt+Shift+6 { move-column-to-workspace 6; }
+    Alt+Shift+7 { move-column-to-workspace 7; }
+    Alt+Shift+8 { move-column-to-workspace 8; }
+    Alt+Shift+9 { move-column-to-workspace 9; }
+    Alt+Shift+0 { move-column-to-workspace 10; }
+}

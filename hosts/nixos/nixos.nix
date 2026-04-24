@@ -18,13 +18,12 @@
     ../../modules/common/tmux.nix
     ../../modules/common/opencode.nix
     ../../modules/linux/fonts.nix
-    ../../modules/linux/hyprland.nix
+    ../../modules/linux/niri.nix
     ../../modules/linux/nvidia.nix
     ../../modules/linux/i18n.nix
     ../../modules/linux/xserver.nix
     ../../modules/linux/boot.nix
     ../../modules/linux/pipewire.nix
-    ../../modules/linux/hyprland.nix
   ];
 
   system.stateVersion = "25.05";
