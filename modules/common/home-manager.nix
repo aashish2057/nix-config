@@ -40,8 +40,6 @@
           pkgs.btop
           nur.legacyPackages.${pkgs.stdenv.hostPlatform.system}.repos.Ev357.helium
           pkgs.wl-clipboard
-          pkgs.hyprpaper
-          pkgs.hyprsunset
           pkgs.prismlauncher
           pkgs.obsidian
           pkgs.gcc
