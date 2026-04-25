@@ -10,15 +10,15 @@
       programs.opencode = {
         enable = true;
         package = pkgs.opencode;
-        rules = ./opencode/AGENTS.md;
+        context = ./opencode/AGENTS.md;
         commands.review = ./opencode/review.md;
+        tui.theme = "ayu";
         settings =
           lib.recursiveUpdate {
             permission.external_directory = {
               "$HOME/Dev/**" = "allow";
             };
             autoupdate = false;
-            theme = "ayu";
           }
           (lib.optionalAttrs isWork {
             permission = {
