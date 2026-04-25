@@ -1,3 +1,5 @@
+spawn-at-startup "sunsetr"
+
 input {
     keyboard {
         xkb {
@@ -21,11 +23,9 @@ input {
 	warp-mouse-to-focus
 }
 
-output "DP-2" {
+output "DP-1" {
     mode "3840x2160"
     scale 1.5
-    position x=0 y=0
-    focus-at-startup
 }
 
 layout {
@@ -53,8 +53,6 @@ layout {
         offset x=0 y=5
         color "#1a1a1aee"
     }
-
-    default-column-width { proportion 0.5; }
 }
 
 prefer-no-csd
@@ -76,13 +74,6 @@ animations {
     off
 }
 
-window-rule {
-    geometry-corner-radius 10
-    clip-to-geometry true
-}
-
-spawn-at-startup "sunsetr"
-
 binds {
     Alt+Shift+Slash repeat=false { show-hotkey-overlay; }
     Alt+WheelScrollLeft cooldown-ms=100 { focus-column-left; }
@@ -91,7 +82,7 @@ binds {
     Alt+WheelScrollDown cooldown-ms=100 { focus-workspace-down; }
 
     Alt+Return repeat=false { spawn "ghostty"; }
-    Alt+B repeat=false { spawn "helium" "--enable-features=UseOzonePlatform" "--ozone-platform=wayland"; }
+    Alt+B repeat=false { spawn "helium"; }
     Alt+W repeat=false { close-window; }
     Alt+Q repeat=false { quit; }
     Alt+space repeat=false { toggle-column-tabbed-display; }
