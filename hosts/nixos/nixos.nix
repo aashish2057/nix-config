@@ -25,6 +25,7 @@
     ../../modules/linux/boot.nix
     ../../modules/linux/pipewire.nix
     ../../modules/linux/awww.nix
+    ../../modules/linux/quickshell.nix
   ];
 
   system.stateVersion = "25.05";
