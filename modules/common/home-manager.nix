@@ -44,6 +44,7 @@
           pkgs.obsidian
           pkgs.gcc
           pkgs.gnumake
+          pkgs.sunsetr
         ]
         ++ lib.optionals isWork [
           pkgs.lazydocker

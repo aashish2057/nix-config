@@ -1,0 +1,16 @@
+#[Smoothing]
+smoothing = true          # Enable smooth transitions during startup and exit
+startup_duration = 0.5    # Duration of smooth startup in seconds (0.1-60 | 0 = instant)
+shutdown_duration = 0.5   # Duration of smooth shutdown in seconds (0.1-60 | 0 = instant)
+adaptive_interval = 1     # Adaptive interval base for smooth transitions (1-1000)ms
+
+#[Time-based config]
+night_temp = 2700         # Color temperature during night (1000-20000) Kelvin
+day_temp = 6500           # Color temperature during day (1000-20000) Kelvin
+update_interval = 60      # Update frequency in seconds
+
+#[Manual transitions]
+sunset = "18:00:00"       # Time for manual sunset calculations (HH:MM:SS)
+sunrise = "08:00:00"      # Time for manual sunrise calculations (HH:MM:SS)
+transition_duration = 5 # Transition duration in minutes (5-120)
+transition_mode = "center"
