@@ -24,6 +24,7 @@
     ../../modules/linux/xserver.nix
     ../../modules/linux/boot.nix
     ../../modules/linux/pipewire.nix
+    ../../modules/linux/awww.nix
   ];
 
   system.stateVersion = "25.05";
