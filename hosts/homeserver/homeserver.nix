@@ -10,6 +10,8 @@
     ../../modules/common/nix-core.nix
     ../../modules/common/home-manager.nix
     ../../modules/common/shell.nix
+    ../../modules/common/git.nix
+    ../../modules/common/jujutsu.nix
     ../../modules/common/starship.nix
     ../../modules/common/neovim/neovim.nix
     ../../modules/common/ghostty.nix
