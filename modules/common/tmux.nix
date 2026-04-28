@@ -5,7 +5,7 @@
         enable = true;
         baseIndex = 1;
         prefix = "C-a";
-        shell = "${pkgs.zsh}/bin/zsh";
+        shell = "${pkgs.fish}/bin/fish";
         extraConfig = ''
           # Address vim mode switching delay (http://superuser.com/a/252717/65504)
           set -s escape-time 0
@@ -41,7 +41,7 @@
           set -g mouse on
 
           set-option -sa terminal-overrides ",xterm*:Tc"
-          set-option -g default-command "${pkgs.zsh}/bin/zsh -l"
+          set-option -g default-command "${pkgs.fish}/bin/fish"
 
           bind -n S-Left  previous-window
           bind -n S-Right next-window

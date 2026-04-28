@@ -21,7 +21,6 @@
       stateVersion = "25.05";
       packages =
         [
-          pkgs.fzf
           pkgs.zsh-fzf-history-search
           pkgs.zsh-fzf-tab
           pkgs.ripgrep

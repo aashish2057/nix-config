@@ -8,6 +8,7 @@
     {
       programs.ghostty = {
         enable = true;
+        enableFishIntegration = true;
         enableZshIntegration = true;
         package =
           if pkgs.stdenv.isDarwin
@@ -17,6 +18,7 @@
           {
             theme = "Material Ocean";
             font-family = "Berkley Mono";
+            command = "${pkgs.fish}/bin/fish";
             shell-integration-features = "no-cursor";
             cursor-style = "block";
             cursor-style-blink = false;
