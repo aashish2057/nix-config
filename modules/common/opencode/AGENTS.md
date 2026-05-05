@@ -1,3 +1,8 @@
+# Answering questions
+
+- When you answer a question from a user ALWAYS cite your sources. This should be from a credible source for the question.
+
+
 # Jujutsu Workflow
 
 - NEVER use git unless jj has no way to do the thing. Always use jj. jj status, jj diff, jj diff -r @-, jj log, etc. to view a file at a revision, use `jj file show <path> -r <rev>` (not `jj cat`). to exclude paths from a jj command, use fileset syntax: `jj diff '~dir1 & ~dir2'` or `jj restore '~package-lock.json'`
