@@ -30,14 +30,11 @@
         "ghostty"
         "obsidian"
         "flux-app"
-        "jordanbaird-ice"
         "appcleaner"
-        "finetune"
       ]
       ++ lib.optionals isWork [
         "slack"
         "zoom"
-        "tunnelblick"
         "datagrip"
         "rider"
         "modern-csv"
