@@ -53,6 +53,7 @@
               pkgs.vimPlugins.no-neck-pain-nvim
               pkgs.vimPlugins.nvim-treesitter.withAllGrammars
               pkgs.vimPlugins.mini-icons
+              pkgs.vimPlugins.mini-diff
               pkgs.vimPlugins.mini-statusline
               pkgs.vimPlugins.oil-nvim
               pkgs.vimPlugins.conform-nvim
@@ -64,7 +65,6 @@
               pkgs.vimPlugins.nvim-lspconfig
               pkgs.vimPlugins.fff-nvim
               pkgs.vimPlugins.noice-nvim
-              pkgs.vimPlugins.gitsigns-nvim
             ]
             ++ lib.optionals isWork [
               pkgs.vimPlugins.roslyn-nvim
