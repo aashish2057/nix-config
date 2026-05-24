@@ -69,6 +69,12 @@
         username = "homelab";
         system = "x86_64-linux";
       };
+
+      box = systems.mkNixosSystem {
+        hostname = "box";
+        username = "box";
+        system = "x86_64-linux";
+      };
     };
   };
 }
