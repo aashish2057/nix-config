@@ -17,6 +17,9 @@
         "terraform validate" = "allow";
         "terraform plan -lock=false" = "allow";
         "terraform import*" = "ask";
+        "az *" = "deny";
+        "az resource list*" = "allow";
+        "az resource show*" = "allow";
       };
     };
     autoupdate = false;
