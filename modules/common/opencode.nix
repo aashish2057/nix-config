@@ -21,6 +21,7 @@
         "az resource list*" = "allow";
         "az resource show*" = "allow";
       };
+      websearch = "allow";
     };
     autoupdate = false;
   };
