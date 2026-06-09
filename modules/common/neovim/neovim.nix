@@ -28,19 +28,12 @@
         '';
         aliases = ["vim"];
 
-        extraBinPath =
-          [
-            pkgs.lua-language-server
-            pkgs.stylua
-            pkgs.tree-sitter
-            pkgs.fd
-          ]
-          ++ lib.optionals isWork [
-            pkgs.dotnet-sdk_10
-            pkgs.roslyn-ls
-            pkgs.csharpier
-            pkgs.typescript-go
-          ];
+        extraBinPath = [
+          pkgs.lua-language-server
+          pkgs.stylua
+          pkgs.tree-sitter
+          pkgs.fd
+        ];
 
         plugins = {
           dev.config = {
