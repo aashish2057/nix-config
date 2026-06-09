@@ -46,9 +46,7 @@
       ];
 
     taps =
-      [
-        "nikitabobko/tap"
-      ]
+      []
       ++ lib.optionals isWork [
         "microsoft/mssql-release"
         "contribsys/faktory"
