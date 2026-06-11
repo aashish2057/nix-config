@@ -29,6 +29,7 @@
         "obsidian"
         "flux-app"
         "appcleaner"
+        "kitlangton-hex"
       ]
       ++ lib.optionals isWork [
         "slack"
