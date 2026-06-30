@@ -56,6 +56,7 @@
           pkgs.kubernetes-helm
           pkgs.uv
           pkgs.ngrok
+          pkgs.cursor-cli
         ]
         ++ lib.optionals (username
           == "homelab") [
