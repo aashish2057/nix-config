@@ -49,8 +49,14 @@
     taps =
       []
       ++ lib.optionals isWork [
-        "microsoft/mssql-release"
-        "contribsys/faktory"
+        {
+          name = "microsoft/mssql-release";
+          trusted = true;
+        }
+        {
+          name = "contribsys/faktory";
+          trusted = true;
+        }
       ];
     onActivation = {
       cleanup = "zap";
