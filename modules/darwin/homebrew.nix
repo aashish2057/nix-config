@@ -38,6 +38,7 @@
         "rider"
         "modern-csv"
         "visual-studio-code"
+        "cursor"
       ]
       ++ lib.optionals (!isWork) [
         "legcord"
