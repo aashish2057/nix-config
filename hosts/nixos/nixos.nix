@@ -27,7 +27,6 @@
     ../../modules/linux/boot.nix
     ../../modules/linux/pipewire.nix
     ../../modules/linux/awww.nix
-    ../../modules/linux/quickshell.nix
     ../../modules/linux/sunsetr.nix
   ];
 
