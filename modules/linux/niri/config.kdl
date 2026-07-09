@@ -74,6 +74,13 @@ animations {
     off
 }
 
+window-rule {
+	match app-id="com.mitchellh.ghostty"
+	match app-id="helium"
+
+	open-maximized true
+}
+
 binds {
     Alt+Shift+Slash repeat=false { show-hotkey-overlay; }
     Alt+WheelScrollLeft cooldown-ms=100 { focus-column-left; }
