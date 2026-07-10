@@ -11,6 +11,6 @@ update_interval = 60      # Update frequency in seconds
 
 #[Manual transitions]
 sunset = "18:00:00"       # Time for manual sunset calculations (HH:MM:SS)
-sunrise = "08:00:00"      # Time for manual sunrise calculations (HH:MM:SS)
+sunrise = "07:00:00"      # Time for manual sunrise calculations (HH:MM:SS)
 transition_duration = 5 # Transition duration in minutes (5-120)
 transition_mode = "center"
