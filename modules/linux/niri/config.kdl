@@ -31,13 +31,6 @@ output "DP-1" {
 layout {
     gaps 6
 
-	struts {
-		left -6
-		right -6
-		top -6
-		bottom -6
-	}
-
     focus-ring {
         off
     }
@@ -72,6 +65,11 @@ xwayland-satellite {
 
 animations {
     off
+}
+
+window-rule {
+	geometry-corner-radius 10
+	clip-to-geometry true
 }
 
 window-rule {
