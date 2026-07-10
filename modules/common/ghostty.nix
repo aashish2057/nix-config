@@ -17,7 +17,7 @@
         settings =
           {
             theme = "Material Ocean";
-            font-family = "Berkley Mono";
+            font-family = "Berkeley Mono";
             command = "${pkgs.fish}/bin/fish";
             shell-integration-features = "no-cursor";
             cursor-style = "block";
