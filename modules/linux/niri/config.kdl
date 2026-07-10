@@ -89,7 +89,9 @@ binds {
     Alt+WheelScrollDown cooldown-ms=100 { focus-workspace-down; }
 
     Alt+Return repeat=false { spawn "ghostty"; }
-    Alt+B repeat=false { spawn "helium"; }
+    // https://github.com/niri-wm/niri/issues/3408
+    // https://github.com/niri-wm/niri/issues/2463
+    Alt+B repeat=false { spawn-sh "helium; true"; }
     Alt+W repeat=false { close-window; }
     Alt+Q repeat=false { quit; }
     Alt+space repeat=false { toggle-column-tabbed-display; }
