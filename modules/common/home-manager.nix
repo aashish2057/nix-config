@@ -18,6 +18,12 @@
       file = lib.optionalAttrs pkgs.stdenv.isDarwin {
         ".hushlogin".text = "";
       };
+      pointerCursor = lib.mkIf pkgs.stdenv.isLinux {
+        enable = true;
+        package = pkgs.adwaita-icon-theme;
+        name = "Adwaita";
+        size = 24;
+      };
       stateVersion = "25.05";
       packages =
         [
