@@ -11,6 +11,7 @@ PanelWindow {
 	property color bg: "#0F111A"
 	property color fg: "#A6ACCD"
 	property var workspaces: []
+	property int activeWorkspaceId: 1
 
 
 	anchors {
@@ -34,24 +35,29 @@ PanelWindow {
 		}
 	}
 
-	Process {
-		id: niri
-		running: true
-		command: [ "niri", "msg", "--json", "workspaces" ]
-		stdout: StdioCollector {
-			onStreamFinished: {
-				workspaces = JSON.parse(this.text).sort((a, b) => a.idx - b.idx)
+	Socket {
+		path: Quickshell.env("NIRI_SOCKET")
+		connected: true
+		onConnectedChanged: {
+			write("\"EventStream\"\n")
+			flush()
+		}
+		parser: SplitParser {
+			onRead: message =>
+			{
+				var parsedMessage = JSON.parse(message)
+
+				if (parsedMessage.WorkspacesChanged) {
+					workspaces = parsedMessage.WorkspacesChanged.workspaces.sort((a, b) => a.idx - b.idx)
+				}
+
+				if (parsedMessage.WorkspaceActivated) {
+					menuBar.activeWorkspaceId = parsedMessage.WorkspaceActivated.id
+				}
 			}
 		}
+		onError: error => console.log("socket error:", error)
 	}
-
-    Timer {
-      interval: 10
-      running: true
-      repeat: true
-
-      onTriggered: niri.running = true
-    }
 
 	Row {
 		anchors {
@@ -64,7 +70,7 @@ PanelWindow {
 			model: menuBar.workspaces
 			Text {
 				text: modelData.idx
-				color: modelData.is_active ? "#FFFFFF" : menuBar.fg
+				color: modelData.id === menuBar.activeWorkspaceId ? "#FFFFFF" : menuBar.fg
 				font.pixelSize: menuBar.fontSize
 				font.family: menuBar.fontFamily
 			}
