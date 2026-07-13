@@ -50,6 +50,8 @@
           pkgs.gcc
           pkgs.gnumake
           pkgs.sunsetr
+          pkgs.wayshot
+          pkgs.satty
         ]
         ++ lib.optionals isWork [
           pkgs.lazydocker
