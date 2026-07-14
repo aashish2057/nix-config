@@ -28,6 +28,7 @@
     ../../modules/linux/pipewire.nix
     ../../modules/linux/awww.nix
     ../../modules/linux/sunsetr.nix
+    ../../modules/linux/quickshell.nix
   ];
 
   system.stateVersion = "25.05";
