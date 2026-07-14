@@ -1,4 +1,5 @@
 spawn-at-startup "sunsetr"
+spawn-at-startup "awww" "img" "/home/aashishsharma/Documents/wallpaper3.png"
 
 input {
     keyboard {
