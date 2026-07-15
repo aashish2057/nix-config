@@ -23,7 +23,7 @@
             cursor-style = "block";
             cursor-style-blink = false;
             window-theme = "ghostty";
-            working-directory = "/Users/${username}/Dev";
+            working-directory = "~/Dev";
             macos-titlebar-style = "hidden";
           }
           // lib.optionalAttrs pkgs.stdenv.isLinux {
