@@ -28,7 +28,9 @@ input {
 }
 
 output "DP-1" {
-    mode "3840x2160"
+    // Lowered refresh rate
+    // https://github.com/niri-wm/niri/issues/2597
+    mode "3840x2160@144"
     scale 1.5
 }
 
