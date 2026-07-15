@@ -1,5 +1,8 @@
 spawn-at-startup "sunsetr"
 spawn-at-startup "awww" "img" "/home/aashishsharma/Documents/wallpaper3.png"
+spawn-at-startup "sh" "-c" "helium &"
+spawn-at-startup "ghostty"
+spawn-at-startup "obsidian"
 
 input {
     keyboard {
@@ -74,11 +77,26 @@ window-rule {
 	clip-to-geometry true
 }
 
+workspace "browser"
+workspace "terminal"
+workspace "obsidian"
+
+window-rule {
+	match app-id="helium"
+	open-maximized true
+	open-on-workspace "browser"
+}
+
 window-rule {
 	match app-id="com.mitchellh.ghostty"
-	match app-id="helium"
-
 	open-maximized true
+	open-on-workspace "terminal"
+}
+
+window-rule {
+	match app-id="obsidian"
+	open-maximized true
+	open-on-workspace "obsidian"
 }
 
 binds {
@@ -99,7 +117,7 @@ binds {
     Alt+Q repeat=false { quit; }
     Alt+space repeat=false { toggle-column-tabbed-display; }
     Alt+M repeat=false { spawn "prismlauncher"; }
-    Alt+O repeat=false { spawn "obsidian" "-enable-features=UseOzonePlatform" "-ozone-platform=wayland"; }
+    Alt+O repeat=false { spawn "obsidian"; }
     Alt+F repeat=false { maximize-column; }
     Alt+Shift+F repeat=false { fullscreen-window; }
 
