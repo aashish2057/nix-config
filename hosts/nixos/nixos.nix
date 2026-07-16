@@ -26,6 +26,7 @@
     ../../modules/linux/xserver.nix
     ../../modules/linux/boot.nix
     ../../modules/linux/pipewire.nix
+    ../../modules/linux/mullvad.nix
     ../../modules/linux/awww.nix
     ../../modules/linux/sunsetr.nix
     ../../modules/linux/quickshell.nix
