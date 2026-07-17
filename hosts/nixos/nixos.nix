@@ -30,6 +30,7 @@
     ../../modules/linux/awww.nix
     ../../modules/linux/sunsetr.nix
     ../../modules/linux/quickshell.nix
+    ../../modules/linux/steam.nix
   ];
 
   system.stateVersion = "25.05";
