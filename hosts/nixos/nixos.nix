@@ -31,6 +31,7 @@
     ../../modules/linux/sunsetr.nix
     ../../modules/linux/quickshell.nix
     ../../modules/linux/steam.nix
+    ../../modules/linux/vicinae.nix
   ];
 
   system.stateVersion = "25.05";

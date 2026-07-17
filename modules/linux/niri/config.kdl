@@ -117,7 +117,7 @@ binds {
     }
     Alt+W repeat=false { close-window; }
     Alt+Q repeat=false { quit; }
-    Alt+space repeat=false { toggle-column-tabbed-display; }
+    Alt+space repeat=false { spawn "vicinae" "toggle"; }
     Alt+M repeat=false { spawn "prismlauncher"; }
     Alt+O repeat=false { spawn "obsidian"; }
     Alt+F repeat=false { maximize-column; }
