@@ -52,6 +52,7 @@
           pkgs.sunsetr
           pkgs.wayshot
           pkgs.satty
+          pkgs.anki
         ]
         ++ lib.optionals isWork [
           pkgs.lazydocker
