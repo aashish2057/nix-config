@@ -13,11 +13,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nur = {
-      url = "github:nix-community/NUR";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     mnw = {
       url = "github:Gerg-L/mnw";
     };
@@ -32,14 +27,13 @@
     nixpkgs,
     home-manager,
     nix-darwin,
-    nur,
     self,
     mnw,
     nvim-nightly,
     ...
   }: let
     systems = import ./lib/systems.nix {
-      inherit nixpkgs home-manager nix-darwin nur self mnw nvim-nightly;
+      inherit nixpkgs home-manager nix-darwin self mnw nvim-nightly;
     };
   in {
     darwinConfigurations = {

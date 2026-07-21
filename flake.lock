@@ -3,27 +3,6 @@
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": [
-          "nur",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1733312601,
-        "narHash": "sha256-4pDvzqnegAfRkPwO3wmwBhVi/Sye1mzps0zHWYnP88c=",
-        "owner": "hercules-ci",
-        "repo": "flake-parts",
-        "rev": "205b12d8b7cd4802fbcb8e8ef6a0f1408781a4f9",
-        "type": "github"
-      },
-      "original": {
-        "owner": "hercules-ci",
-        "repo": "flake-parts",
-        "type": "github"
-      }
-    },
-    "flake-parts_2": {
-      "inputs": {
-        "nixpkgs-lib": [
           "nvim-nightly",
           "nixpkgs"
         ]
@@ -129,30 +108,9 @@
         "type": "github"
       }
     },
-    "nur": {
-      "inputs": {
-        "flake-parts": "flake-parts",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1783544046,
-        "narHash": "sha256-1t4p/DQhbLGGkqtlXxNX4FmpfBl+TMudTpPc8BOfW1g=",
-        "owner": "nix-community",
-        "repo": "NUR",
-        "rev": "7215e234aa1e82dcc422add3b2e5dec52f6900f1",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "NUR",
-        "type": "github"
-      }
-    },
     "nvim-nightly": {
       "inputs": {
-        "flake-parts": "flake-parts_2",
+        "flake-parts": "flake-parts",
         "neovim-src": "neovim-src",
         "nixpkgs": [
           "nixpkgs"
@@ -178,7 +136,6 @@
         "mnw": "mnw",
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs",
-        "nur": "nur",
         "nvim-nightly": "nvim-nightly"
       }
     }

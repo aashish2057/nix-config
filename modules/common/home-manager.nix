@@ -1,7 +1,6 @@
 {
   pkgs,
   lib,
-  nur,
   username,
   isWork,
   ...
@@ -43,7 +42,7 @@
           pkgs.git
           pkgs.ddcutil
           pkgs.btop
-          nur.legacyPackages.${pkgs.stdenv.hostPlatform.system}.repos.Ev357.helium
+          (pkgs.callPackage ../../pkgs/helium {})
           pkgs.wl-clipboard
           pkgs.prismlauncher
           pkgs.obsidian
