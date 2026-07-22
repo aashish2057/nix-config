@@ -34,6 +34,7 @@
           pkgs.gh
           pkgs.jj-starship
           pkgs.btop
+          pkgs.nushell
         ]
         ++ lib.optionals pkgs.stdenv.isDarwin [
           pkgs.m1ddc
