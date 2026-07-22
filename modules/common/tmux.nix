@@ -56,7 +56,7 @@
           # Status bar positioning
           set-option -g status-position top
 
-          set -g status-right "#(date '+%H:%M') | #(date '+%Y-%m-%d')"
+          set -g status-right ""
           set -g status-left-length 100
 
           set -g status-style "bg=#0F111A,fg=#A6ACCD"
