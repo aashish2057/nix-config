@@ -75,11 +75,28 @@ Variants {
 				spacing: 10
 				Repeater {
 					model: menuBar.workspaces
-					Text {
-						text: modelData.idx
-						color: modelData.id === menuBar.activeWorkspaceId ? "#FFFFFF" : menuBar.fg
-						font.pixelSize: menuBar.fontSize
-						font.family: menuBar.fontFamily
+					Item {
+						implicitWidth: childrenRect.width
+						implicitHeight: childrenRect.height
+
+						Text {
+							text: modelData.idx
+							color: modelData.id === menuBar.activeWorkspaceId ? "#FFFFFF" : menuBar.fg
+							font.pixelSize: menuBar.fontSize
+							font.family: menuBar.fontFamily
+						}
+
+						MouseArea {
+							anchors.fill: parent
+							cursorShape: Qt.PointingHandCursor
+							onClicked: Quickshell.execDetached([
+								"niri",
+								"msg",
+								"action",
+								"focus-workspace",
+								String(modelData.idx)
+							])
+						}
 					}
 				}
 			}
@@ -99,4 +116,3 @@ Variants {
 		}
 	}
 }
-
