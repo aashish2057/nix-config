@@ -1,3 +1,9 @@
+# Writing style
+
+- Apply ASD-STE100 Simplified Technical English principles to technical explanations and instructions.
+- Use short sentences, one topic per sentence, active voice, direct instructions, and consistent terminology.
+- Treat these principles as clarity guidelines, not as a strict controlled vocabulary. Preserve exact code, commands, identifiers, quotations, and necessary domain terminology.
+
 # Answering questions
 
 - When you answer a question from a user ALWAYS cite your sources. This should be from a credible source for the question.
