@@ -69,7 +69,7 @@
 in {
   home-manager.sharedModules = [
     {
-      home.sessionVariables = lib.optionalAttrs pkgs.stdenv.isLinux {
+      home.sessionVariables = lib.optionalAttrs pkgs.stdenv.hostPlatform.isLinux {
         AGENT_BROWSER_EXECUTABLE_PATH = lib.getExe helium;
       };
 

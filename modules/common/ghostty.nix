@@ -11,7 +11,7 @@
         enableFishIntegration = true;
         enableZshIntegration = true;
         package =
-          if pkgs.stdenv.isDarwin
+          if pkgs.stdenv.hostPlatform.isDarwin
           then null
           else pkgs.ghostty;
         settings =
@@ -26,7 +26,7 @@
             working-directory = "~/Dev";
             macos-titlebar-style = "hidden";
           }
-          // lib.optionalAttrs pkgs.stdenv.isLinux {
+          // lib.optionalAttrs pkgs.stdenv.hostPlatform.isLinux {
             gtk-tabs-location = "bottom";
             gtk-titlebar = false;
             window-decoration = "none";

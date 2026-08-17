@@ -14,10 +14,10 @@
     };
 
     home = {
-      file = lib.optionalAttrs pkgs.stdenv.isDarwin {
+      file = lib.optionalAttrs pkgs.stdenv.hostPlatform.isDarwin {
         ".hushlogin".text = "";
       };
-      pointerCursor = lib.mkIf pkgs.stdenv.isLinux {
+      pointerCursor = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
         enable = true;
         package = pkgs.adwaita-icon-theme;
         name = "Adwaita";
@@ -36,10 +36,10 @@
           pkgs.btop
           pkgs.nushell
         ]
-        ++ lib.optionals pkgs.stdenv.isDarwin [
+        ++ lib.optionals pkgs.stdenv.hostPlatform.isDarwin [
           pkgs.m1ddc
         ]
-        ++ lib.optionals pkgs.stdenv.isLinux [
+        ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
           pkgs.git
           pkgs.ddcutil
           pkgs.btop
