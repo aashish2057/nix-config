@@ -43,7 +43,9 @@
           pkgs.git
           pkgs.ddcutil
           pkgs.btop
-          (pkgs.callPackage ../../pkgs/helium {})
+          (pkgs.callPackage ../../pkgs/helium {
+            enableWideVine = true;
+          })
           pkgs.wl-clipboard
           pkgs.prismlauncher
           pkgs.obsidian
