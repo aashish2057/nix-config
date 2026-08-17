@@ -5,9 +5,6 @@
   isWork,
   ...
 }: let
-  agentBrowser = pkgs.callPackage ../../pkgs/agent-browser {};
-  helium = pkgs.callPackage ../../pkgs/helium {};
-
   baseSettings = {
     permission = {
       external_directory = {
@@ -69,15 +66,9 @@
 in {
   home-manager.sharedModules = [
     {
-      home.sessionVariables = lib.optionalAttrs pkgs.stdenv.hostPlatform.isLinux {
-        AGENT_BROWSER_EXECUTABLE_PATH = lib.getExe helium;
-      };
-
       programs.opencode = {
         enable = true;
         package = pkgs.opencode;
-        extraPackages = [agentBrowser];
-        skills.agent-browser = "${agentBrowser}/skills/agent-browser";
         context = ./opencode/AGENTS.md;
         commands.review = ./opencode/review.md;
         tui.theme = "ayu";
