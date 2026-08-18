@@ -57,6 +57,7 @@
           pkgs.anki
         ]
         ++ lib.optionals isWork [
+          pkgs.direnv
           pkgs.lazydocker
           pkgs.azure-cli
           pkgs.kubectl

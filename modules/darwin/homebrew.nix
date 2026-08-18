@@ -19,7 +19,7 @@
         "openssl@3"
         "redis"
         "unixodbc"
-        "postgresql"
+        "postgresql@14"
       ];
 
     casks =
