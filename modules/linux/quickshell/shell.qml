@@ -3,7 +3,7 @@ import Quickshell.Io
 import QtQuick
 
 PanelWindow {
-	property bool menuOpen: false
+	property bool menuOpen: true
 
 	id: menuBar
 	screen: Quickshell.screens[0]
@@ -23,6 +23,20 @@ PanelWindow {
 		radius: 10
 		color: "#0F111A"
 		clip: true
+
+		Text {
+			anchors.centerIn: parent
+			text: Qt.formatDateTime(clock.date, "hh:mm AP")
+			color: "#A6ACCD"
+			font.pixelSize: 14
+			font.family: "Berkeley Mono"
+			font.weight: Font.Bold
+		}
+	}
+
+	SystemClock {
+		id: clock
+		precision: SystemClock.Minutes
 	}
 
 	implicitHeight: 30
