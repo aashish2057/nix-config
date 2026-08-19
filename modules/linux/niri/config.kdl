@@ -115,6 +115,7 @@ binds {
     Alt+Shift+S repeat=false {
         spawn-sh "wayshot - -g | satty --filename - --fullscreen=current-screen --copy-command wl-copy";
     }
+    Backslash repeat=false { spawn "voxtype" "record" "toggle"; }
     Alt+P repeat=false { spawn-sh "qs ipc call menuBar toggle"; }
     Alt+W repeat=false { close-window; }
     Alt+Q repeat=false { quit; }
