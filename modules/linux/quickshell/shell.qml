@@ -1,12 +1,13 @@
 import Quickshell
 import Quickshell.Io
+import QtQuick
 
 PanelWindow {
 	property bool menuOpen: false
 
 	id: menuBar
 	screen: Quickshell.screens[0]
-	color: "#0F111A"
+	color: "transparent"
 	visible: menuOpen
 
 	anchors {
@@ -15,6 +16,13 @@ PanelWindow {
 
 	margins {
 		right: 6
+	}
+
+	Rectangle {
+		anchors.fill: parent
+		radius: 10
+		color: "#0F111A"
+		clip: true
 	}
 
 	implicitHeight: screen.height * 0.75
