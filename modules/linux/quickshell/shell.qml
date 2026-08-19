@@ -106,15 +106,11 @@ ShellRoot {
 							verticalCenter: parent.verticalCenter
 						}
 
-						implicitWidth: childrenRect.width
-						implicitHeight: childrenRect.height
+						implicitWidth: workspaceRow.implicitWidth
+						implicitHeight: workspaceRow.implicitHeight
 
 						Row {
-							anchors {
-								left: nixIcon.right
-								leftMargin: 10
-								verticalCenter: parent.verticalCenter
-							}
+							id: workspaceRow
 							spacing: 10
 							Repeater {
 								model: root.workspaces
