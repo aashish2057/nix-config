@@ -1,117 +1,155 @@
 import Quickshell
+import Quickshell.Io
 import QtQuick
 import Quickshell.Widgets
-import Quickshell.Io
 
-Variants {
-	model: Quickshell.screens
+ShellRoot {
+	id: root
 
-	delegate: Component {
-		PanelWindow {
-			id: menuBar
-			property string fontFamily: "Berkeley Mono"
-			property int fontSize: 14
-			property int iconSize: 16
-			property color bg: "#0F111A"
-			property color fg: "#A6ACCD"
-			property var workspaces: []
-			property int activeWorkspaceId: 1
+	property bool menuOpen: true
+	property var workspaces: []
+	property int activeWorkspaceId: 1
+	property var now: clock.date
 
-			required property var modelData
-            screen: modelData
+	property string fontFamily: "Berkeley Mono"
+	property int fontSize: 14
+	property int iconSize: 16
+	property color bg: "#0F111A"
+	property color fg: "#A6ACCD"
 
+	SystemClock {
+		id: clock
+		precision: SystemClock.Minutes
+	}
 
-			anchors {
-				top: true
-				left: true
-				right: true
+	IpcHandler {
+		target: "menuBar"
+
+		function toggle(): void {
+			root.menuOpen = !root.menuOpen
+		}
+	}
+
+	Socket {
+		path: Quickshell.env("NIRI_SOCKET")
+		connected: true
+		onConnectedChanged: {
+			write("\"EventStream\"\n")
+			flush()
+		}
+		parser: SplitParser {
+			onRead: message => {
+				var parsedMessage = JSON.parse(message)
+
+				if (parsedMessage.WorkspacesChanged) {
+					root.workspaces = parsedMessage.WorkspacesChanged.workspaces.sort((a, b) => a.idx - b.idx)
+				}
+
+				if (parsedMessage.WorkspaceActivated) {
+					root.activeWorkspaceId = parsedMessage.WorkspaceActivated.id
+				}
 			}
+		}
+		onError: error => console.log("socket error:", error)
+	}
 
-			implicitHeight: 30
-			color: menuBar.bg
+	Variants {
+		model: Quickshell.screens
 
-			IconImage {
-				id: nixIcon
-				source: Qt.resolvedUrl("./icons/nix.svg")
-				implicitSize: menuBar.iconSize
+		delegate: Component {
+			PanelWindow {
+				id: menuBar
+
+				required property var modelData
+
+				screen: modelData
+				color: "transparent"
+				visible: root.menuOpen
 
 				anchors {
-					left: parent.left
-					leftMargin: 10
-					verticalCenter: parent.verticalCenter
+					top: true
 				}
-			}
 
-			Socket {
-				path: Quickshell.env("NIRI_SOCKET")
-				connected: true
-				onConnectedChanged: {
-					write("\"EventStream\"\n")
-					flush()
+				margins {
+					top: 6
 				}
-				parser: SplitParser {
-					onRead: message =>
-					{
-						var parsedMessage = JSON.parse(message)
 
-						if (parsedMessage.WorkspacesChanged) {
-							workspaces = parsedMessage.WorkspacesChanged.workspaces.sort((a, b) => a.idx - b.idx)
-						}
+				implicitHeight: 30
+				implicitWidth: screen.width * 0.75
 
-						if (parsedMessage.WorkspaceActivated) {
-							menuBar.activeWorkspaceId = parsedMessage.WorkspaceActivated.id
-						}
-					}
-				}
-				onError: error => console.log("socket error:", error)
-			}
+				Rectangle {
+					anchors.fill: parent
+					radius: 10
+					color: root.bg
+					clip: true
 
-			Row {
-				anchors {
-					left: nixIcon.right
-					leftMargin: 10
-					verticalCenter: parent.verticalCenter
-				}
-				spacing: 10
-				Repeater {
-					model: menuBar.workspaces
-					Item {
-						implicitWidth: childrenRect.width
-						implicitHeight: childrenRect.height
+					IconImage {
+						id: nixIcon
+						source: Qt.resolvedUrl("./icons/nix.svg")
+						implicitSize: root.iconSize
 
-						Text {
-							text: modelData.idx
-							color: modelData.id === menuBar.activeWorkspaceId ? "#FFFFFF" : menuBar.fg
-							font.pixelSize: menuBar.fontSize
-							font.family: menuBar.fontFamily
-						}
-
-						MouseArea {
-							anchors.fill: parent
-							cursorShape: Qt.PointingHandCursor
-							onClicked: Quickshell.execDetached([
-								"niri",
-								"msg",
-								"action",
-								"focus-workspace",
-								String(modelData.idx)
-							])
+						anchors {
+							left: parent.left
+							leftMargin: 10
+							verticalCenter: parent.verticalCenter
 						}
 					}
+
+					Rectangle {
+						radius: 10
+						color: root.bg
+						clip: true
+
+						anchors {
+							left: nixIcon.right
+							leftMargin: 10
+							verticalCenter: parent.verticalCenter
+						}
+
+						implicitWidth: workspaceRow.implicitWidth
+						implicitHeight: workspaceRow.implicitHeight
+
+						Row {
+							id: workspaceRow
+							spacing: 10
+							Repeater {
+								model: root.workspaces
+								Item {
+									implicitWidth: childrenRect.width
+									implicitHeight: childrenRect.height
+
+									Text {
+										text: modelData.idx
+										color: modelData.id === root.activeWorkspaceId ? "#FFFFFF" : root.fg
+										font.pixelSize: root.fontSize
+										font.family: root.fontFamily
+									}
+
+									MouseArea {
+										anchors.fill: parent
+										cursorShape: Qt.PointingHandCursor
+										onClicked: Quickshell.execDetached([
+											"niri",
+											"msg",
+											"action",
+											"focus-workspace",
+											String(modelData.idx)
+										])
+									}
+								}
+							}
+						}
+					}
+
+					Text {
+						anchors.centerIn: parent
+						text: Qt.formatDateTime(root.now, "hh:mm AP")
+						color: root.fg
+						font.pixelSize: root.fontSize
+						font.family: root.fontFamily
+						font.weight: Font.Bold
+					}
 				}
-			}
-
-			SystemClock {
-				id: clock
-				precision: SystemClock.Minutes
-			}
-
-			Text {
-				anchors.centerIn: parent
-				text: Qt.formatDateTime(clock.date, "ddd, MMM dd, hh:mm AP")
-				color: menuBar.fg
-				font.pixelSize: menuBar.fontSize
-				font.family: menuBar.fontFamily
 			}
 		}
 	}
