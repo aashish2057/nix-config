@@ -1,6 +1,7 @@
 import Quickshell
 import Quickshell.Io
 import QtQuick
+import Quickshell.Widgets
 
 PanelWindow {
 	property bool menuOpen: true
@@ -23,6 +24,18 @@ PanelWindow {
 		radius: 10
 		color: "#0F111A"
 		clip: true
+
+		IconImage {
+			id: nixIcon
+			source: Qt.resolvedUrl("./icons/nix.svg")
+			implicitSize: 16
+
+			anchors {
+				left: parent.left
+				leftMargin: 10
+				verticalCenter: parent.verticalCenter
+			}
+		}
 
 		Text {
 			anchors.centerIn: parent
