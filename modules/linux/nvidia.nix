@@ -7,7 +7,6 @@
 
   boot.kernelParams = ["nvidia.NVreg_TemporaryFilePath=/var/tmp"];
 
-  nixpkgs.config.cudaSupport = true;
   hardware.nvidia = {
     modesetting.enable = true;
     powerManagement.enable = true;

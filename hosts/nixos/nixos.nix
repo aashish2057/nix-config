@@ -32,6 +32,7 @@
     ../../modules/linux/quickshell.nix
     ../../modules/linux/steam.nix
     ../../modules/linux/vicinae.nix
+    ../../modules/linux/voxtype.nix
   ];
 
   system.stateVersion = "25.05";
