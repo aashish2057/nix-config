@@ -11,11 +11,11 @@ PanelWindow {
 	visible: menuOpen
 
 	anchors {
-		right: true
+		top: true
 	}
 
 	margins {
-		right: 6
+		top: 6
 	}
 
 	Rectangle {
@@ -25,8 +25,8 @@ PanelWindow {
 		clip: true
 	}
 
-	implicitHeight: screen.height * 0.75
-	implicitWidth: 30
+	implicitHeight: 30
+	implicitWidth: screen.width * 0.75
 
 	IpcHandler {
 		target: "menuBar"
