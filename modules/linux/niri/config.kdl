@@ -27,7 +27,7 @@ input {
 	warp-mouse-to-focus
 }
 
-output "DP-1" {
+output "DP-2" {
     // Lowered refresh rate
     // https://github.com/niri-wm/niri/issues/2597
     mode "3840x2160@144"
