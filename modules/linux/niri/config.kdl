@@ -96,7 +96,7 @@ window-rule {
 }
 
 window-rule {
-	match app-id="obsidian"
+	match app-id="md.Obsidian"
 	open-maximized true
 	open-on-workspace "obsidian"
 }
