@@ -143,7 +143,7 @@ ShellRoot {
 
 					Text {
 						anchors.centerIn: parent
-						text: Qt.formatDateTime(root.now, "hh:mm AP")
+						text: Qt.formatDateTime(root.now, "ddd, MMM dd, hh:mm AP")
 						color: root.fg
 						font.pixelSize: root.fontSize
 						font.family: root.fontFamily
