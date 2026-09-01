@@ -19,6 +19,7 @@
     ../../modules/common/ghostty.nix
     ../../modules/common/tmux.nix
     ../../modules/common/opencode.nix
+    ../../modules/common/ssh.nix
     ../../modules/linux/fonts.nix
     ../../modules/linux/niri.nix
     ../../modules/linux/nvidia.nix
