@@ -23,15 +23,15 @@ in {
           osd.enabled = false;
 
           output = {
-            mode = "paste";
-            paste_keys = "ctrl+shift+v";
-            restore_clipboard = true;
-            restore_clipboard_delay_ms = 500;
+            mode = "type";
           };
 
           parakeet = {
-            model = "parakeet-tdt-0.6b-v3-int8";
-            model_type = "tdt";
+            model = "parakeet-unified-en-0.6b";
+            streaming = true;
+            streaming_chunk_secs = 0.32;
+            streaming_left_context_secs = 5.6;
+            streaming_right_context_secs = 0.32;
           };
         };
       };
