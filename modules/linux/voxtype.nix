@@ -12,7 +12,6 @@ in {
           engine = "parakeet";
           state_file = "auto";
 
-          audio.feedback.enabled = true;
           audio.max_duration_secs = 600;
 
           hotkey = {
