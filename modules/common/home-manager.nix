@@ -55,6 +55,7 @@
           pkgs.wayshot
           pkgs.satty
           pkgs.anki
+          pkgs.legcord
         ]
         ++ lib.optionals isWork [
           pkgs.direnv
