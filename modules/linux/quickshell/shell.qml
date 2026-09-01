@@ -16,6 +16,7 @@ ShellRoot {
 	property int iconSize: 16
 	property color bg: "#0F111A"
 	property color fg: "#A6ACCD"
+	property string voxtypeState: "idle"
 
 	SystemClock {
 		id: clock
@@ -51,6 +52,18 @@ ShellRoot {
 			}
 		}
 		onError: error => console.log("socket error:", error)
+	}
+
+	Process {
+		running: true
+		command: ["voxtype", "status", "--follow", "--format", "json"]
+
+		stdout: SplitParser {
+			onRead: line => {
+				const status = JSON.parse(line)
+				root.voxtypeState = status.alt
+			}
+		}
 	}
 
 	Variants {
@@ -148,6 +161,44 @@ ShellRoot {
 						font.pixelSize: root.fontSize
 						font.family: root.fontFamily
 						font.weight: Font.Bold
+					}
+
+					Text {
+						anchors {
+							right: parent.right
+							rightMargin: 10
+							verticalCenter: parent.verticalCenter
+						}
+
+						text: {
+							switch (root.voxtypeState) {
+							case "recording":
+								return "●"
+							case "streaming":
+								return "●"
+							case "transcribing":
+								return "◐"
+							case "stopped":
+								return "○"
+							default:
+								return "󰍬"
+							}
+						}
+
+						color: {
+							switch (root.voxtypeState) {
+							case "recording":
+							case "streaming":
+								return "#FF5370"
+							case "transcribing":
+								return "#FFCB6B"
+							default:
+								return root.fg
+							}
+						}
+
+						font.pixelSize: root.iconSize
+						font.family: root.fontFamily
 					}
 				}
 			}
