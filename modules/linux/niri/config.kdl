@@ -77,6 +77,7 @@ animations {
 window-rule {
 	geometry-corner-radius 10
 	clip-to-geometry true
+	open-maximized true
 }
 
 workspace "browser"
@@ -85,19 +86,16 @@ workspace "obsidian"
 
 window-rule {
 	match app-id="helium"
-	open-maximized true
 	open-on-workspace "browser"
 }
 
 window-rule {
 	match app-id="com.mitchellh.ghostty"
-	open-maximized true
 	open-on-workspace "terminal"
 }
 
 window-rule {
 	match app-id="md.Obsidian"
-	open-maximized true
 	open-on-workspace "obsidian"
 }
 
