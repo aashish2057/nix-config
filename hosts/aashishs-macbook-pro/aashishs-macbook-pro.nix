@@ -19,6 +19,7 @@
     ../../modules/common/ghostty.nix
     ../../modules/common/tmux.nix
     ../../modules/common/opencode.nix
+    ../../modules/common/t3code.nix
     ../../modules/darwin/darwin.nix
     ../../modules/darwin/homebrew.nix
     ../../modules/darwin/aerospace.nix
