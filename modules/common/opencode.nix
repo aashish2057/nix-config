@@ -1,8 +1,9 @@
 {
-  pkgs,
   lib,
   username,
   isWork,
+  llm-agents,
+  system,
   ...
 }: let
   baseSettings = {
@@ -68,7 +69,7 @@ in {
     {
       programs.opencode = {
         enable = true;
-        package = pkgs.opencode;
+        package = llm-agents.packages.${system}.opencode;
         context = ./opencode/AGENTS.md;
         commands.review = ./opencode/review.md;
         tui.theme = "ayu";
