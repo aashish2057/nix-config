@@ -3,8 +3,9 @@
     {
       programs.ssh = {
         enable = true;
+        enableDefaultConfig = false;
 
-        matchBlocks = {
+        settings = {
           pve01 = {
             hostname = "pve01";
             user = "root";
