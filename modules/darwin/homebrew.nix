@@ -39,6 +39,7 @@
         "modern-csv"
         "visual-studio-code"
         "cursor"
+        "cursor-cli"
       ]
       ++ lib.optionals (!isWork) [
         "legcord"

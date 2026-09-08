@@ -69,6 +69,8 @@
           pkgs.kubernetes-helm
           pkgs.uv
           pkgs.ngrok
+          pkgs.docker
+          pkgs.google-cloud-sdk
         ]
         ++ lib.optionals (username
           == "homelab") [
