@@ -7,6 +7,9 @@
   username,
   ...
 }: {
+  environment.variables = {
+    LANG = "en_US.UTF-8";
+  };
   system = {
     primaryUser = username;
     configurationRevision = self.rev or self.dirtyRev or null;
