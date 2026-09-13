@@ -74,6 +74,10 @@ animations {
     off
 }
 
+hotkey-overlay {
+    skip-at-startup
+}
+
 window-rule {
 	geometry-corner-radius 10
 	clip-to-geometry true
@@ -100,63 +104,63 @@ window-rule {
 }
 
 binds {
-    Alt+Shift+Slash repeat=false { show-hotkey-overlay; }
-    Alt+WheelScrollLeft cooldown-ms=100 { focus-column-left; }
-    Alt+WheelScrollRight cooldown-ms=100 { focus-column-right; }
-    Alt+WheelScrollUp cooldown-ms=100 { focus-workspace-up; }
-    Alt+WheelScrollDown cooldown-ms=100 { focus-workspace-down; }
+    Mod+Shift+Slash repeat=false allow-inhibiting=false { show-hotkey-overlay; }
+    Mod+WheelScrollLeft cooldown-ms=100 { focus-column-left; }
+    Mod+WheelScrollRight cooldown-ms=100 { focus-column-right; }
+    Mod+WheelScrollUp cooldown-ms=100 { focus-workspace-up; }
+    Mod+WheelScrollDown cooldown-ms=100 { focus-workspace-down; }
 
-    Alt+Return repeat=false { spawn "ghostty"; }
+    Mod+Return repeat=false { spawn "ghostty"; }
     // https://github.com/niri-wm/niri/issues/3408
     // https://github.com/niri-wm/niri/issues/2463
-    Alt+B repeat=false { spawn-sh "helium; true"; }
-    Alt+Shift+S repeat=false {
+    Mod+B repeat=false { spawn-sh "helium; true"; }
+    Mod+Shift+S repeat=false {
         spawn-sh "wayshot - -g | satty --filename - --fullscreen=current-screen --copy-command wl-copy";
     }
-    Alt+Backslash repeat=false { spawn "voxtype" "record" "toggle"; }
-    Alt+P repeat=false { spawn-sh "qs ipc call menuBar toggle"; }
-    Alt+W repeat=false { close-window; }
-    Alt+Q repeat=false { quit; }
-    Alt+space repeat=false { spawn "vicinae" "toggle"; }
-    Alt+M repeat=false { spawn "prismlauncher"; }
-    Alt+O repeat=false { spawn "obsidian"; }
-    Alt+F repeat=false { maximize-column; }
-    Alt+Shift+F repeat=false { fullscreen-window; }
+    Mod+Backslash repeat=false { spawn "voxtype" "record" "toggle"; }
+    Mod+P repeat=false { spawn-sh "qs ipc call menuBar toggle"; }
+    Mod+W repeat=false { close-window; }
+    Mod+Q repeat=false { quit; }
+    Mod+space repeat=false { spawn "vicinae" "toggle"; }
+    Mod+M repeat=false { spawn "prismlauncher"; }
+    Mod+O repeat=false { spawn "obsidian"; }
+    Mod+F repeat=false { maximize-column; }
+    Mod+Shift+F repeat=false { fullscreen-window; }
 
-    Alt+H { focus-column-left; }
-    Alt+L { focus-column-right; }
-    Alt+J { focus-window-down; }
-    Alt+K { focus-window-up; }
+    Mod+H { focus-column-left; }
+    Mod+L { focus-column-right; }
+    Mod+J { focus-window-down; }
+    Mod+K { focus-window-up; }
 
-    Alt+Shift+H { move-column-left; }
-    Alt+Shift+L { move-column-right; }
-    Alt+Shift+J { move-window-down; }
-    Alt+Shift+K { move-window-up; }
+    Mod+Shift+H { move-column-left; }
+    Mod+Shift+L { move-column-right; }
+    Mod+Shift+J { move-window-down; }
+    Mod+Shift+K { move-window-up; }
 
-    Alt+Shift+Left { set-column-width "-5%"; }
-    Alt+Shift+Right { set-column-width "+5%"; }
-    Alt+Shift+Up { set-window-height "-10%"; }
-    Alt+Shift+Down { set-window-height "+10%"; }
+    Mod+Shift+Left { set-column-width "-5%"; }
+    Mod+Shift+Right { set-column-width "+5%"; }
+    Mod+Shift+Up { set-window-height "-10%"; }
+    Mod+Shift+Down { set-window-height "+10%"; }
 
-    Alt+1 { focus-workspace 1; }
-    Alt+2 { focus-workspace 2; }
-    Alt+3 { focus-workspace 3; }
-    Alt+4 { focus-workspace 4; }
-    Alt+5 { focus-workspace 5; }
-    Alt+6 { focus-workspace 6; }
-    Alt+7 { focus-workspace 7; }
-    Alt+8 { focus-workspace 8; }
-    Alt+9 { focus-workspace 9; }
-    Alt+0 { focus-workspace 10; }
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+5 { focus-workspace 5; }
+    Mod+6 { focus-workspace 6; }
+    Mod+7 { focus-workspace 7; }
+    Mod+8 { focus-workspace 8; }
+    Mod+9 { focus-workspace 9; }
+    Mod+0 { focus-workspace 10; }
 
-    Alt+Shift+1 { move-column-to-workspace 1; }
-    Alt+Shift+2 { move-column-to-workspace 2; }
-    Alt+Shift+3 { move-column-to-workspace 3; }
-    Alt+Shift+4 { move-column-to-workspace 4; }
-    Alt+Shift+5 { move-column-to-workspace 5; }
-    Alt+Shift+6 { move-column-to-workspace 6; }
-    Alt+Shift+7 { move-column-to-workspace 7; }
-    Alt+Shift+8 { move-column-to-workspace 8; }
-    Alt+Shift+9 { move-column-to-workspace 9; }
-    Alt+Shift+0 { move-column-to-workspace 10; }
+    Mod+Shift+1 { move-column-to-workspace 1; }
+    Mod+Shift+2 { move-column-to-workspace 2; }
+    Mod+Shift+3 { move-column-to-workspace 3; }
+    Mod+Shift+4 { move-column-to-workspace 4; }
+    Mod+Shift+5 { move-column-to-workspace 5; }
+    Mod+Shift+6 { move-column-to-workspace 6; }
+    Mod+Shift+7 { move-column-to-workspace 7; }
+    Mod+Shift+8 { move-column-to-workspace 8; }
+    Mod+Shift+9 { move-column-to-workspace 9; }
+    Mod+Shift+0 { move-column-to-workspace 10; }
 }
