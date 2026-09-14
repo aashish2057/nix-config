@@ -4,7 +4,6 @@
   nix-darwin,
   self,
   mnw,
-  llm-agents,
   nvim-nightly,
   ...
 }: {
@@ -16,7 +15,7 @@
   }:
     nix-darwin.lib.darwinSystem {
       specialArgs = {
-        inherit username self system isWork mnw llm-agents nvim-nightly;
+        inherit username self system isWork mnw nvim-nightly;
         homedir = "/Users/${username}";
       };
       modules = [
@@ -37,7 +36,7 @@
   }:
     nixpkgs.lib.nixosSystem {
       specialArgs = {
-        inherit username hostname system isWork mnw llm-agents nvim-nightly;
+        inherit username hostname system isWork mnw nvim-nightly;
         homedir = "/home/${username}";
       };
       modules = [

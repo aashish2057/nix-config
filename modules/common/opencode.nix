@@ -1,9 +1,8 @@
 {
   lib,
+  pkgs,
   username,
   isWork,
-  llm-agents,
-  system,
   ...
 }: let
   baseSettings = {
@@ -36,7 +35,7 @@
       ];
     };
     formatter = {
-      ruff.disable = true;
+      ruff.disabled = true;
       uv.disabled = true;
     };
     mcp = {
@@ -69,7 +68,7 @@ in {
     {
       programs.opencode = {
         enable = true;
-        package = llm-agents.packages.${system}.opencode;
+        package = pkgs.callPackage ../../pkgs/opencode {};
         context = ./opencode/AGENTS.md;
         commands.review = ./opencode/review.md;
         tui.theme = "ayu";

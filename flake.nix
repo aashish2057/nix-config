@@ -17,8 +17,6 @@
       url = "github:Gerg-L/mnw";
     };
 
-    llm-agents.url = "github:numtide/llm-agents.nix";
-
     nvim-nightly = {
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -31,12 +29,11 @@
     nix-darwin,
     self,
     mnw,
-    llm-agents,
     nvim-nightly,
     ...
   }: let
     systems = import ./lib/systems.nix {
-      inherit nixpkgs home-manager nix-darwin self mnw llm-agents nvim-nightly;
+      inherit nixpkgs home-manager nix-darwin self mnw nvim-nightly;
     };
   in {
     darwinConfigurations = {
