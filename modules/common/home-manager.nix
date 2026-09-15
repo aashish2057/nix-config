@@ -71,6 +71,8 @@
           pkgs.ngrok
           pkgs.docker
           pkgs.google-cloud-sdk
+          pkgs.caddy
+          pkgs.mkcert
         ]
         ++ lib.optionals (username
           == "homelab") [
