@@ -8,6 +8,11 @@
   home-manager.users.${username} = {
     programs.home-manager.enable = true;
 
+    targets.darwin = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
+      copyApps.enable = true;
+      linkApps.enable = false;
+    };
+
     home.sessionVariables = {
       EDITOR = "nvim";
       VISUAL = "nvim";
