@@ -20,6 +20,8 @@
         "redis"
         "unixodbc"
         "postgresql@14"
+        "colima"
+        "docker"
       ];
 
     casks =
