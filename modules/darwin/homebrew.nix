@@ -64,6 +64,9 @@
       autoUpdate = true;
       upgrade = true;
       extraFlags = ["--force-cleanup"];
+      extraEnv = lib.optionalAttrs isWork {
+        HOMEBREW_ACCEPT_EULA = "Y";
+      };
     };
   };
 }
