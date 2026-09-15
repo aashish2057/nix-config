@@ -24,7 +24,6 @@
 
     casks =
       [
-        "raycast"
         "ghostty"
         "obsidian"
         "flux-app"
