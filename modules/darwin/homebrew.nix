@@ -31,6 +31,7 @@
         "flux-app"
         "appcleaner"
         "kitlangton-hex"
+        "tinycast"
       ]
       ++ lib.optionals isWork [
         "slack"
@@ -50,7 +51,12 @@
       ];
 
     taps =
-      []
+      [
+        {
+          name = "abue-ammar/tinycast";
+          trusted = true;
+        }
+      ]
       ++ lib.optionals isWork [
         {
           name = "microsoft/mssql-release";
