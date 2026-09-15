@@ -57,6 +57,15 @@
         enabled = true;
         oauth = {};
       };
+      slack = {
+        type = "remote";
+        url = "https://mcp.slack.com/mcp";
+        enabled = true;
+        oauth = {
+          clientId = "1601185624273.8899143856786";
+          redirectUri = "http://localhost:3118/callback";
+        };
+      };
     };
   };
 
