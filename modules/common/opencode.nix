@@ -77,7 +77,7 @@ in {
     {
       programs.opencode = {
         enable = true;
-        package = pkgs.callPackage ../../pkgs/opencode {};
+        # package = pkgs.callPackage ../../pkgs/opencode {};
         context = ./opencode/AGENTS.md;
         commands.review = ./opencode/review.md;
         tui.theme = "ayu";

@@ -5,6 +5,7 @@
   bun,
   nodejs,
   sysctl,
+  darwin,
   makeBinaryWrapper,
   models-dev,
   ripgrep,
@@ -99,7 +100,7 @@ in
       makeBinaryWrapper
       models-dev
       writableTmpDirAsHomeHook
-    ];
+    ] ++ lib.optional platform.isDarwin darwin.autoSignDarwinBinariesHook;
 
     postPatch = ''
       substituteInPlace packages/script/src/index.ts \
@@ -152,8 +153,9 @@ in
 
     postInstall = lib.optionalString (stdenvNoCC.buildPlatform.canExecute platform) ''
       installShellCompletion --cmd opencode \
-        --bash <($out/bin/opencode completion) \
-        --zsh <(SHELL=/bin/zsh $out/bin/opencode completion)
+        --bash <($out/bin/opencode --completions bash) \
+        --zsh <($out/bin/opencode --completions zsh) \
+        --fish <($out/bin/opencode --completions fish)
     '';
 
     nativeInstallCheckInputs = [
