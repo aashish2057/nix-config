@@ -30,7 +30,7 @@
         "obsidian"
         "flux-app"
         "appcleaner"
-        "kitlangton-hex"
+        "hex"
         "tinycast"
       ]
       ++ lib.optionals isWork [
@@ -54,6 +54,10 @@
       [
         {
           name = "abue-ammar/tinycast";
+          trusted = true;
+        }
+        {
+          name = "anomalyco/tap";
           trusted = true;
         }
       ]
