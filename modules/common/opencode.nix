@@ -80,6 +80,7 @@ in {
         # package = pkgs.callPackage ../../pkgs/opencode {};
         context = ./opencode/AGENTS.md;
         commands.review = ./opencode/review.md;
+        skills.testing = ./opencode/testing;
         tui.theme = "ayu";
         settings = lib.foldl' lib.recursiveUpdate {} [
           baseSettings
