@@ -8,7 +8,12 @@
 
     # Manual installation required with HOMEBREW_ACCEPT_EULA=Y brew install msodbcsql18 mssql-tools18
     brews =
-      []
+      [
+        {
+          name = "rift";
+          start_service = true;
+        }
+      ]
       ++ lib.optionals isWork [
         "msodbcsql18"
         "mssql-tools18"
@@ -52,6 +57,10 @@
 
     taps =
       [
+        {
+          name = "acsandmann/tap";
+          trusted = true;
+        }
         {
           name = "abue-ammar/tinycast";
           trusted = true;
