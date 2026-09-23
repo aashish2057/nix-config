@@ -9,6 +9,7 @@
     ./hardware.nix
     ../../modules/common/nix-core.nix
     ../../modules/common/home-manager.nix
+    ../../modules/common/agents.nix
     ../../modules/common/display-switch.nix
     ../../modules/common/git.nix
     ../../modules/common/jujutsu.nix
@@ -19,7 +20,6 @@
     ../../modules/common/neovim/neovim.nix
     ../../modules/common/ghostty.nix
     ../../modules/common/tmux.nix
-    ../../modules/common/opencode.nix
     ../../modules/common/t3code.nix
     ../../modules/common/ssh.nix
     ../../modules/linux/fonts.nix
@@ -39,6 +39,11 @@
   ];
 
   system.stateVersion = "25.05";
+
+  agents = {
+    claude = true;
+    codex = true;
+  };
 
   hardware.i2c.enable = true;
 
