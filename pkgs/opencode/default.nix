@@ -1,179 +1,82 @@
 {
   lib,
-  stdenvNoCC,
-  fetchFromGitHub,
-  bun,
-  nodejs,
-  sysctl,
-  darwin,
+  stdenv,
+  fetchurl,
   makeBinaryWrapper,
-  models-dev,
+  autoPatchelfHook,
+  unzip,
   ripgrep,
-  installShellFiles,
+  sysctl,
   versionCheckHook,
   writableTmpDirAsHomeHook,
 }: let
-  version = "2.0.3";
-
-  src = fetchFromGitHub {
-    owner = "anomalyco";
-    repo = "opencode";
-    tag = "v${version}";
-    hash = "sha256-wgr8i3nnU3vKbMDPdFri5n+4YJR5qSR3sQWYLcUwBnQ=";
-  };
-
-  nodeModulesHashes = {
-    x86_64-linux = "sha256-euVUyj0CzjCA1nYbN2vKctEPzLkUlNGTK2dMNbackqM=";
-    aarch64-linux = "sha256-qQkjqaxpjAae+rohoWI601QnrgKYghJ+ttqeiQBTwCM=";
-    aarch64-darwin = "sha256-HYWs31TJlDZsDBNmbPARo16r7zNKy9x840uHGcUMYsk=";
-    x86_64-darwin = "sha256-89FOrX813FENk3u8RAHCfyD7voaZWW++Z4Gpa3SkOJs=";
-  };
-
-  platform = stdenvNoCC.hostPlatform;
-  bunCpu =
-    if platform.isAarch64
-    then "arm64"
-    else "x64";
-  bunOs =
-    if platform.isLinux
-    then "linux"
-    else "darwin";
-
-  nodeModules = stdenvNoCC.mkDerivation {
-    pname = "opencode-node_modules";
-    inherit version src;
-
-    impureEnvVars =
-      lib.fetchers.proxyImpureEnvVars
-      ++ [
-        "GIT_PROXY_COMMAND"
-        "SOCKS_SERVER"
-      ];
-
-    nativeBuildInputs = [bun];
-
-    dontConfigure = true;
-
-    buildPhase = ''
-      runHook preBuild
-
-      export BUN_INSTALL_CACHE_DIR=$(mktemp -d)
-      bun install \
-        --cpu="${bunCpu}" \
-        --os="${bunOs}" \
-        --filter '!./' \
-        --filter './packages/cli' \
-        --filter './packages/desktop' \
-        --filter './packages/app' \
-        --frozen-lockfile \
-        --ignore-scripts \
-        --no-progress
-      bun --bun ${src}/nix/scripts/canonicalize-node-modules.ts
-      bun --bun ${src}/nix/scripts/normalize-bun-binaries.ts
-
-      runHook postBuild
-    '';
-
-    installPhase = ''
-      runHook preInstall
-
-      mkdir -p $out
-      find . -type d -name node_modules -exec cp -R --parents {} $out \;
-
-      runHook postInstall
-    '';
-
-    dontFixup = true;
-    outputHashAlgo = "sha256";
-    outputHashMode = "recursive";
-    outputHash = nodeModulesHashes.${platform.system} or (throw "Unsupported system: ${platform.system}");
-  };
-in
-  stdenvNoCC.mkDerivation {
-    pname = "opencode";
-    inherit version src;
-
-    nativeBuildInputs = [
-      bun
-      nodejs
-      installShellFiles
-      makeBinaryWrapper
-      models-dev
-      writableTmpDirAsHomeHook
-    ] ++ lib.optional platform.isDarwin darwin.autoSignDarwinBinariesHook;
-
-    postPatch = ''
-      substituteInPlace packages/script/src/index.ts \
-        --replace-fail 'throw new Error(`This script requires bun@''${expectedBunVersionRange}' \
-                       'console.warn(`Warning: This script requires bun@''${expectedBunVersionRange}'
-    '';
-
-    configurePhase = ''
-      runHook preConfigure
-
-      cp -R ${nodeModules}/. .
-      patchShebangs node_modules
-      patchShebangs packages/*/node_modules
-
-      runHook postConfigure
-    '';
-
-    env = {
-      MODELS_DEV_API_JSON = "${models-dev}/dist/_api.json";
-      OPENCODE_DISABLE_MODELS_FETCH = true;
-      OPENCODE_VERSION = version;
-      OPENCODE_CHANNEL = "prod";
-      NODE_OPTIONS = "--max-old-space-size=4096";
+  version = "1.18.33";
+  sourceMap = {
+    aarch64-darwin = {
+      file = "opencode-darwin-arm64.zip";
+      hash = "sha256-JLEoc+YFs9szh8s1X0O6dFHNYGXBgNjBiGYzN9LutVM=";
     };
+    x86_64-darwin = {
+      file = "opencode-darwin-x64.zip";
+      hash = "sha256-kMfn2f+g2GkcoPFbQqe4m3Lhek0mB0ue8GVZ/4eyIew=";
+    };
+    aarch64-linux = {
+      file = "opencode-linux-arm64.tar.gz";
+      hash = "sha256-xjSGYkYhkkv0O+XAGr0lKIVmGnNIFCJPbXAYijOuqFg=";
+    };
+    x86_64-linux = {
+      file = "opencode-linux-x64.tar.gz";
+      hash = "sha256-5UYSMhOuR5CaQmhpKqS5SVDQEa/pysmTh1OiGU8cFtU=";
+    };
+  };
+  sourceInfo = sourceMap.${stdenv.hostPlatform.system} or (throw "Unsupported system: ${stdenv.hostPlatform.system}");
+in
+  stdenv.mkDerivation {
+    pname = "opencode";
+    inherit version;
 
-    buildPhase = ''
-      runHook preBuild
+    src = fetchurl {
+      url = "https://github.com/anomalyco/opencode/releases/download/v${version}/${sourceInfo.file}";
+      inherit (sourceInfo) hash;
+    };
+    sourceRoot = ".";
 
-      cd packages/cli
-      bun --bun ./script/build.ts --single --skip-install
+    dontBuild = true;
+    dontStrip = true;
 
-      runHook postBuild
-    '';
+    nativeBuildInputs =
+      [makeBinaryWrapper]
+      ++ lib.optionals stdenv.hostPlatform.isLinux [autoPatchelfHook]
+      ++ lib.optionals stdenv.hostPlatform.isDarwin [unzip];
+
+    buildInputs = lib.optionals stdenv.hostPlatform.isLinux [stdenv.cc.cc.lib];
 
     installPhase = ''
       runHook preInstall
 
-      install -Dm755 dist/cli-*/bin/opencode $out/bin/opencode
-
+      install -Dm755 opencode $out/bin/opencode
       wrapProgram $out/bin/opencode \
-        --prefix PATH : ${
-        lib.makeBinPath (
-          [ripgrep]
-          ++ lib.optional platform.isDarwin sysctl
-        )
-      }
+        --set OPENCODE_DISABLE_AUTOUPDATE true \
+        --prefix PATH : ${lib.makeBinPath ([ripgrep] ++ lib.optionals stdenv.hostPlatform.isDarwin [sysctl])}
 
       runHook postInstall
     '';
 
-    postInstall = lib.optionalString (stdenvNoCC.buildPlatform.canExecute platform) ''
-      installShellCompletion --cmd opencode \
-        --bash <($out/bin/opencode --completions bash) \
-        --zsh <($out/bin/opencode --completions zsh) \
-        --fish <($out/bin/opencode --completions fish)
-    '';
-
+    doInstallCheck = true;
     nativeInstallCheckInputs = [
       versionCheckHook
       writableTmpDirAsHomeHook
     ];
-    doInstallCheck = true;
-    versionCheckKeepEnvironment = [
-      "HOME"
-      "OPENCODE_DISABLE_MODELS_FETCH"
-    ];
+    versionCheckKeepEnvironment = ["HOME"];
     versionCheckProgramArg = "--version";
 
     meta = {
-      description = "The open source coding agent";
-      homepage = "https://opencode.ai";
+      description = "AI coding agent built for the terminal";
+      homepage = "https://github.com/anomalyco/opencode";
+      changelog = "https://github.com/anomalyco/opencode/releases/tag/v${version}";
       license = lib.licenses.mit;
+      sourceProvenance = with lib.sourceTypes; [binaryNativeCode];
+      platforms = builtins.attrNames sourceMap;
       mainProgram = "opencode";
-      platforms = builtins.attrNames nodeModulesHashes;
     };
   }
