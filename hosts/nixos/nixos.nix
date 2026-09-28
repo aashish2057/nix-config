@@ -9,6 +9,7 @@
     ./hardware.nix
     ../../modules/common/nix-core.nix
     ../../modules/common/home-manager.nix
+    ../../modules/common/display-switch.nix
     ../../modules/common/git.nix
     ../../modules/common/jujutsu.nix
     ../../modules/common/zsh.nix
