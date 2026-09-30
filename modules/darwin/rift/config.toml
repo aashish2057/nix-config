@@ -12,6 +12,7 @@ window_insertion_point = "next_to_selection"
 
 [settings.layout.scrolling]
 column_width_ratio = 0.5
+preserve_window_sizes = false
 min_column_width_ratio = 0.3
 max_column_width_ratio = 1.0
 alignment = "center"
@@ -26,6 +27,13 @@ right = 0
 [settings.layout.gaps.inner]
 horizontal = 5
 vertical = 5
+
+[settings.ui.menu_bar]
+enabled = true
+show_empty = true
+mode = "active"
+display_style = "label"
+active_label = "index"
 
 [virtual_workspaces]
 enabled = true
