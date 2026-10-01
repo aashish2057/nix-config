@@ -7,7 +7,7 @@ mouse_hides_on_focus = false
 hot_reload = true
 
 [settings.layout]
-mode = "scrolling"
+mode = "bsp"
 window_insertion_point = "next_to_selection"
 
 [settings.layout.scrolling]
