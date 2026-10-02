@@ -3,7 +3,7 @@ pragma ComponentBehavior: Bound
 import Quickshell
 import QtQuick
 
-Row {
+Column {
 	id: root
 
 	required property string output
@@ -22,6 +22,7 @@ Row {
 			required property int modelData
 			readonly property var info: Niri.workspaces.find(w => w.id === modelData)
 
+			anchors.horizontalCenter: parent.horizontalCenter
 			text: info?.idx ?? ""
 			color: info?.is_active ? Theme.highlight : Theme.foreground
 			font.family: Theme.fontFamily

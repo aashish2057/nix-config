@@ -3,7 +3,7 @@ import Quickshell.Wayland
 import Quickshell.Widgets
 import QtQuick
 
-// Floats over windows and slides in and out.
+// A pill on the right edge that floats over windows and slides in and out.
 PanelWindow {
 	id: root
 
@@ -24,44 +24,62 @@ PanelWindow {
 	visible: shown > 0
 	color: "transparent"
 
-	anchors.top: true
+	anchors.right: true
 	exclusionMode: ExclusionMode.Ignore
 	WlrLayershell.namespace: "quickshell:bar"
 
-	// Only the bar takes input, not the gap beside it.
+	// Only the pill takes input, not the gap beside it.
 	mask: Region { item: bar }
 
-	implicitWidth: screen.width * 0.75
-	implicitHeight: bar.height + Theme.screenGap
+	implicitWidth: bar.width + Theme.screenGap
+	implicitHeight: bar.height
 
 	Rectangle {
 		id: bar
 
-		y: -height + root.shown * (height + Theme.screenGap)
-		width: parent.width
-		height: 30
+		x: (1 - root.shown) * (width + Theme.screenGap)
+		width: 40
+		height: content.implicitHeight
 		radius: Theme.radius
 		color: Theme.background
 
-		IconImage {
-			id: nixIcon
+		Column {
+			id: content
 
-			anchors.left: parent.left
-			anchors.leftMargin: Theme.padding
-			anchors.verticalCenter: parent.verticalCenter
-			source: Qt.resolvedUrl("icons/nix.svg")
-			implicitSize: Theme.iconSize
-		}
+			anchors.horizontalCenter: parent.horizontalCenter
+			topPadding: Theme.padding
+			bottomPadding: Theme.padding
+			spacing: Theme.padding
 
-		Workspaces {
-			anchors.left: nixIcon.right
-			anchors.leftMargin: Theme.padding
-			anchors.verticalCenter: parent.verticalCenter
-			output: root.screen.name
-		}
+			IconImage {
+				anchors.horizontalCenter: parent.horizontalCenter
+				source: Qt.resolvedUrl("icons/nix.svg")
+				implicitSize: Theme.iconSize
+			}
 
-		Clock {
-			anchors.centerIn: parent
+			Workspaces {
+				anchors.horizontalCenter: parent.horizontalCenter
+				output: root.screen.name
+			}
+
+			// Separates the workspaces from the date and time.
+			Item {
+				anchors.horizontalCenter: parent.horizontalCenter
+				width: 20
+				height: 25
+
+				Rectangle {
+					anchors.centerIn: parent
+					width: parent.width
+					height: 1
+					color: Theme.foreground
+					opacity: 0.3
+				}
+			}
+
+			Clock {
+				anchors.horizontalCenter: parent.horizontalCenter
+			}
 		}
 	}
 }
