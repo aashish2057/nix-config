@@ -3,25 +3,43 @@ import Quickshell.Wayland
 import Quickshell.Widgets
 import QtQuick
 
+// Floats over windows and slides in and out.
 PanelWindow {
 	id: root
 
 	required property ShellScreen modelData
 	property bool open: true
 
+	// 0 = hidden past the screen edge, 1 = fully shown.
+	property real shown: open ? 1 : 0
+
+	Behavior on shown {
+		NumberAnimation {
+			duration: Theme.slideDuration
+			easing.type: Easing.OutCubic
+		}
+	}
+
 	screen: modelData
-	visible: open
+	visible: shown > 0
 	color: "transparent"
 
 	anchors.top: true
-	margins.top: Theme.screenGap
+	exclusionMode: ExclusionMode.Ignore
 	WlrLayershell.namespace: "quickshell:bar"
 
+	// Only the bar takes input, not the gap beside it.
+	mask: Region { item: bar }
+
 	implicitWidth: screen.width * 0.75
-	implicitHeight: 30
+	implicitHeight: bar.height + Theme.screenGap
 
 	Rectangle {
-		anchors.fill: parent
+		id: bar
+
+		y: -height + root.shown * (height + Theme.screenGap)
+		width: parent.width
+		height: 30
 		radius: Theme.radius
 		color: Theme.background
 

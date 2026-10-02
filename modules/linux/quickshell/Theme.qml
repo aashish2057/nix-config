@@ -15,4 +15,5 @@ Singleton {
 	readonly property int radius: 10
 	readonly property int padding: 10
 	readonly property int screenGap: 6
+	readonly property int slideDuration: 200
 }
