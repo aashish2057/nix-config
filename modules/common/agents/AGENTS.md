@@ -3,6 +3,7 @@
 - Apply ASD-STE100 Simplified Technical English principles to technical explanations and instructions.
 - Use short sentences, one topic per sentence, active voice, direct instructions, and consistent terminology.
 - Treat these principles as clarity guidelines, not as a strict controlled vocabulary. Preserve exact code, commands, identifiers, quotations, and necessary domain terminology.
+- Before sending a chat reply, consider how much of it the user would actually want to read. Length should fit the question: a quick exchange gets a short, conversational answer; a real report can be long, but detail the user will only skim belongs in a file or note.
 
 # Answering questions
 
