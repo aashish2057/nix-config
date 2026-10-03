@@ -4,29 +4,22 @@
   fetchurl,
   makeBinaryWrapper,
   autoPatchelfHook,
-  unzip,
   ripgrep,
   sysctl,
+  wayland,
   versionCheckHook,
   writableTmpDirAsHomeHook,
 }: let
-  version = "1.18.33";
+  version = "2.0.22";
+  # OpenCode 2 ships prebuilt binaries only on npm (@opencode/cli-<platform>).
   sourceMap = {
     aarch64-darwin = {
-      file = "opencode-darwin-arm64.zip";
-      hash = "sha256-JLEoc+YFs9szh8s1X0O6dFHNYGXBgNjBiGYzN9LutVM=";
-    };
-    x86_64-darwin = {
-      file = "opencode-darwin-x64.zip";
-      hash = "sha256-kMfn2f+g2GkcoPFbQqe4m3Lhek0mB0ue8GVZ/4eyIew=";
-    };
-    aarch64-linux = {
-      file = "opencode-linux-arm64.tar.gz";
-      hash = "sha256-xjSGYkYhkkv0O+XAGr0lKIVmGnNIFCJPbXAYijOuqFg=";
+      platform = "darwin-arm64";
+      hash = "sha256-FvX1hR4Pz4bcOMmAQrxQ5fFnMZqZc4l8lIfxey6BARc=";
     };
     x86_64-linux = {
-      file = "opencode-linux-x64.tar.gz";
-      hash = "sha256-5UYSMhOuR5CaQmhpKqS5SVDQEa/pysmTh1OiGU8cFtU=";
+      platform = "linux-x64";
+      hash = "sha256-ZUNMviVvI985eklBA55e7iixo3wbrVN2pSF/WDo1NYM=";
     };
   };
   sourceInfo = sourceMap.${stdenv.hostPlatform.system} or (throw "Unsupported system: ${stdenv.hostPlatform.system}");
@@ -36,28 +29,29 @@ in
     inherit version;
 
     src = fetchurl {
-      url = "https://github.com/anomalyco/opencode/releases/download/v${version}/${sourceInfo.file}";
+      url = "https://registry.npmjs.org/@opencode/cli-${sourceInfo.platform}/-/cli-${sourceInfo.platform}-${version}.tgz";
       inherit (sourceInfo) hash;
     };
-    sourceRoot = ".";
+    sourceRoot = "package";
 
     dontBuild = true;
     dontStrip = true;
 
     nativeBuildInputs =
       [makeBinaryWrapper]
-      ++ lib.optionals stdenv.hostPlatform.isLinux [autoPatchelfHook]
-      ++ lib.optionals stdenv.hostPlatform.isDarwin [unzip];
+      ++ lib.optionals stdenv.hostPlatform.isLinux [autoPatchelfHook];
 
     buildInputs = lib.optionals stdenv.hostPlatform.isLinux [stdenv.cc.cc.lib];
 
+    # Native addons embedded in the Bun executable load libstdc++ and libwayland-client at runtime.
     installPhase = ''
       runHook preInstall
 
-      install -Dm755 opencode $out/bin/opencode
+      install -Dm755 bin/opencode $out/bin/opencode
       wrapProgram $out/bin/opencode \
         --set OPENCODE_DISABLE_AUTOUPDATE true \
-        --prefix PATH : ${lib.makeBinPath ([ripgrep] ++ lib.optionals stdenv.hostPlatform.isDarwin [sysctl])}
+        --prefix PATH : ${lib.makeBinPath ([ripgrep] ++ lib.optionals stdenv.hostPlatform.isDarwin [sysctl])} \
+        ${lib.optionalString stdenv.hostPlatform.isLinux "--prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [stdenv.cc.cc.lib wayland]}"}
 
       runHook postInstall
     '';
@@ -73,7 +67,7 @@ in
     meta = {
       description = "AI coding agent built for the terminal";
       homepage = "https://github.com/anomalyco/opencode";
-      changelog = "https://github.com/anomalyco/opencode/releases/tag/v${version}";
+      changelog = "https://github.com/anomalyco/opencode/commits/v2";
       license = lib.licenses.mit;
       sourceProvenance = with lib.sourceTypes; [binaryNativeCode];
       platforms = builtins.attrNames sourceMap;
