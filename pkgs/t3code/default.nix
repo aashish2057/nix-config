@@ -7,17 +7,17 @@
   undmg,
 }: let
   pname = "t3code";
-  version = "0.0.44";
+  version = "0.0.46-nightly.20261003.2632";
   repo = "https://github.com/pingdotgg/t3code";
 
   sourceMap = {
     x86_64-linux = {
       file = "T3-Code-${version}-x86_64.AppImage";
-      hash = "sha256-urbPKfEwFa9+lm6VPo7Vqa17bmPLhkz0Hj4IFeqFchk=";
+      hash = "sha256-ctP9MAFO2MwrxcqCGVN/0wDjXRPPG9UN1nDGr1+LlXs=";
     };
     aarch64-darwin = {
       file = "T3-Code-${version}-arm64.dmg";
-      hash = "sha256-36UcNI/tTu37MN611OHqYctqketfNCMBofMhD7cbBEo=";
+      hash = "sha256-eJzOVcnYVKySG/pJQMs1xjtTQol6cMI9nXdXkzH32EE=";
     };
   };
 
