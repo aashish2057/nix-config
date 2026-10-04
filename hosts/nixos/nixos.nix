@@ -45,7 +45,10 @@
     codex = true;
   };
 
-  hardware.i2c.enable = true;
+  hardware = {
+    i2c.enable = true;
+    xone.enable = true;
+  };
 
   # Keychron Launcher uses WebHID/WebUSB and needs access to the keyboard's
   # raw HID interface. Keep the permission scoped to Keychron and STM32 DFU.
