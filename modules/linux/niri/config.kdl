@@ -3,6 +3,7 @@ spawn-at-startup "awww" "img" "/home/aashishsharma/Documents/wallpaper3.png"
 spawn-at-startup "sh" "-c" "helium &"
 spawn-at-startup "ghostty"
 spawn-at-startup "obsidian"
+spawn-at-startup "t3code"
 
 input {
     keyboard {
@@ -87,6 +88,7 @@ window-rule {
 workspace "browser"
 workspace "terminal"
 workspace "obsidian"
+workspace "llm"
 
 window-rule {
 	match app-id="helium"
@@ -101,6 +103,11 @@ window-rule {
 window-rule {
 	match app-id="md.Obsidian"
 	open-on-workspace "obsidian"
+}
+
+window-rule {
+	match app-id="com.t3tools.T3Code"
+	open-on-workspace "llm"
 }
 
 binds {
