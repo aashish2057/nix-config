@@ -7,17 +7,17 @@
   bubblewrap,
   versionCheckHook,
 }: let
-  version = "0.159.2";
+  version = "0.160.0";
   sourceMap = {
     aarch64-darwin = {
       file = "codex-aarch64-apple-darwin.tar.gz";
       binary = "codex-aarch64-apple-darwin";
-      hash = "sha256-Al3v/YTLyZ2I75UuWF3GfHyU5Cc/ibo9RffleZdDwTw=";
+      hash = "sha256-B8PHyjdqj3kRFTQvUxON2jfpfPopuBJdBlLZN4SJS10=";
     };
     x86_64-linux = {
       file = "codex-x86_64-unknown-linux-musl.tar.gz";
       binary = "codex-x86_64-unknown-linux-musl";
-      hash = "sha256-JlhrDSRtQaeZsO+O4a3TcPD7ByGzcJNA8o22EjgWFuo=";
+      hash = "sha256-MGhlQX1O56kneFhSkQpSf0Hh4Vmt05CsWuOsy2fUShM=";
     };
   };
   sourceInfo = sourceMap.${stdenvNoCC.hostPlatform.system} or (throw "Unsupported system: ${stdenvNoCC.hostPlatform.system}");
