@@ -73,6 +73,23 @@
       };
     };
   };
+
+  oauthFieldNames = {
+    clientId = "client_id";
+    clientSecret = "client_secret";
+    callbackPort = "callback_port";
+    redirectUri = "redirect_uri";
+  };
+  opencodeMcpServers =
+    lib.mapAttrs (_: server:
+      {
+        type = "remote";
+        inherit (server) url;
+      }
+      // lib.optionalAttrs (server.oauth != {}) {
+        oauth = lib.mapAttrs' (name: lib.nameValuePair (oauthFieldNames.${name} or name)) server.oauth;
+      })
+    mcpServers;
 in {
   options.agents = {
     opencode = lib.mkOption {
@@ -115,11 +132,14 @@ in {
             opencode = lib.mkIf cfg.opencode {
               enable = true;
               package = pkgs.callPackage ../../pkgs/opencode {};
-              enableMcpIntegration = true;
               context = sharedContext;
               skills = sharedSkills;
               tui.theme = "ayu";
-              settings = opencodeSettings;
+              settings =
+                opencodeSettings
+                // lib.optionalAttrs (opencodeMcpServers != {}) {
+                  mcp.servers = opencodeMcpServers;
+                };
             };
 
             claude-code = lib.mkIf cfg.claude {
