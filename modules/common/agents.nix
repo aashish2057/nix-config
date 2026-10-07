@@ -80,16 +80,15 @@
     callbackPort = "callback_port";
     redirectUri = "redirect_uri";
   };
-  opencodeMcpServers =
-    lib.mapAttrs (_: server:
-      {
-        type = "remote";
-        inherit (server) url;
-      }
-      // lib.optionalAttrs (server.oauth != {}) {
-        oauth = lib.mapAttrs' (name: lib.nameValuePair (oauthFieldNames.${name} or name)) server.oauth;
-      })
-    mcpServers;
+  opencodeMcpServers = lib.mapAttrs (_: server:
+    {
+      type = "remote";
+      inherit (server) url;
+    }
+    // lib.optionalAttrs (server.oauth != {}) {
+      oauth = lib.mapAttrs' (name: lib.nameValuePair (oauthFieldNames.${name} or name)) server.oauth;
+    })
+  mcpServers;
 in {
   options.agents = {
     opencode = lib.mkOption {
@@ -152,6 +151,7 @@ in {
 
             codex = lib.mkIf cfg.codex {
               enable = true;
+              mutableSettings = true;
               package = pkgs.callPackage ../../pkgs/codex {};
               enableMcpIntegration = true;
               context = sharedContext;
