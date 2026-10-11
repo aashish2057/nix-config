@@ -7,17 +7,14 @@
     ./hardware.nix
     ../../modules/common/zsh.nix
     ../../modules/common/ghostty.nix
+    ../../modules/linux/sshd.nix
   ];
 
   system.stateVersion = "25.11";
 
-  networking.networkmanager.enable = true;
-
   security.rtkit.enable = true;
 
   users.users.${username}.shell = pkgs.zsh;
-
-  services.tailscale.enable = true;
 
   fonts.packages = [pkgs.nerd-fonts.geist-mono];
 
@@ -40,14 +37,7 @@
     user = username;
   };
 
-  services.openssh = {
-    enable = true;
-    settings = {
-      PermitRootLogin = "no";
-      PasswordAuthentication = true;
-      PubkeyAuthentication = false;
-    };
-  };
+  services.openssh.settings.PubkeyAuthentication = false;
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;

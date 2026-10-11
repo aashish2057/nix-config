@@ -34,9 +34,5 @@
     SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", MODE="0660", GROUP="users", TAG+="uaccess"
   '';
 
-  networking.networkmanager.enable = true;
-
   users.users.${username}.shell = pkgs.zsh;
-
-  services.tailscale.enable = true;
 }
