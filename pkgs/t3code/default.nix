@@ -5,6 +5,11 @@
   appimageTools,
   makeDesktopItem,
   undmg,
+  autoPatchelfHook,
+  makeBinaryWrapper,
+  cloudflared,
+  versionCheckHook,
+  writableTmpDirAsHomeHook,
 }: let
   pname = "t3code";
   version = "0.0.46-nightly.20261008.2833";
@@ -14,6 +19,10 @@
     x86_64-linux = {
       file = "T3-Code-${version}-x86_64.AppImage";
       hash = "sha256-H48f1Im/hHCWZl72jqam9knS+pbxoWDmZkutwbFn9aA=";
+      server = {
+        file = "t3-${version}-linux-x64.tar.gz";
+        hash = "sha256-7dvRnaZ1VDTY/RetvvaXD1RFBPhSLwg7ShmirEuHXWA=";
+      };
     };
     aarch64-darwin = {
       file = "T3-Code-${version}-arm64.dmg";
@@ -45,6 +54,62 @@
     license = lib.licenses.mit;
     platforms = builtins.attrNames sourceMap;
   };
+
+  # Headless `t3` from the same release, so client and server speak the same protocol.
+  server = let
+    serverInfo = sourceInfo.server or (throw "Unsupported system: ${stdenv.hostPlatform.system}");
+  in
+    stdenv.mkDerivation {
+      pname = "t3";
+      inherit version;
+
+      src = fetchurl {
+        url = "${repo}/releases/download/v${version}/${serverInfo.file}";
+        inherit (serverInfo) hash;
+      };
+
+      dontBuild = true;
+      # The executable is a Node single executable application; stripping removes its embedded bundle.
+      dontStrip = true;
+
+      nativeBuildInputs = [
+        autoPatchelfHook
+        makeBinaryWrapper
+      ];
+
+      buildInputs = [stdenv.cc.cc.lib];
+
+      installPhase = ''
+        runHook preInstall
+
+        mkdir -p $out/libexec/t3code $out/bin
+        cp -R . $out/libexec/t3code/
+
+        # t3 resolves node_modules and client next to its executable. Without a
+        # cloudflared here it downloads its own for T3 Connect.
+        makeWrapper $out/libexec/t3code/t3 $out/bin/t3 \
+          --set-default T3CODE_CLOUDFLARED_PATH ${lib.getExe cloudflared}
+
+        runHook postInstall
+      '';
+
+      doInstallCheck = true;
+      nativeInstallCheckInputs = [
+        writableTmpDirAsHomeHook
+        versionCheckHook
+      ];
+      versionCheckKeepEnvironment = ["HOME"];
+      versionCheckProgramArg = "--version";
+
+      meta =
+        commonMeta
+        // {
+          description = "Headless server for T3 Code";
+          sourceProvenance = with lib.sourceTypes; [binaryNativeCode];
+          platforms = builtins.attrNames (lib.filterAttrs (_: info: info ? server) sourceMap);
+          mainProgram = "t3";
+        };
+    };
 in
   if stdenv.hostPlatform.isDarwin
   then
@@ -63,6 +128,8 @@ in
         runHook postInstall
       '';
 
+      passthru = {inherit server;};
+
       meta = commonMeta;
     }
   else
@@ -78,6 +145,8 @@ in
         install -m 444 -D ${src}/.DirIcon "$out/share/icons/hicolor/512x512/apps/${pname}.png"
         install -m 444 -D ${desktopItem}/share/applications/${pname}.desktop "$out/share/applications/${pname}.desktop"
       '';
+
+      passthru = {inherit server;};
 
       meta = commonMeta // {mainProgram = pname;};
     }
