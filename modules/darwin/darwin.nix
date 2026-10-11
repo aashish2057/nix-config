@@ -30,6 +30,8 @@
           [
             "/Applications/Helium.app"
             "/Applications/Ghostty.app"
+            "/Applications/Obsidian.app"
+            "/Users/${username}/Applications/Home Manager Apps/T3 Code (Nightly).app"
           ]
           ++ lib.optionals isWork [
             "/Applications/Slack.app"
