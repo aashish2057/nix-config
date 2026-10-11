@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   username,
   hostname,
@@ -16,34 +15,21 @@
     ../../modules/common/fzf.nix
     ../../modules/common/starship.nix
     ../../modules/common/neovim/neovim.nix
-    ../../modules/common/ghostty.nix
     ../../modules/common/tmux.nix
     ../../modules/linux/i18n.nix
     ../../modules/linux/boot.nix
+    ../../modules/linux/t3code-server.nix
   ];
-
-  hardware.graphics = {
-    enable = true;
-  };
-
-  services.xserver.videoDrivers = ["nvidia"];
-
-  nixpkgs.config.cudaSupport = true;
-  hardware.nvidia = {
-    modesetting.enable = true;
-    powerManagement.enable = false;
-    powerManagement.finegrained = false;
-    open = false;
-    nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
-  };
 
   system.stateVersion = "25.11";
 
+  agents = {
+    claude = true;
+    codex = true;
+  };
+
   networking.hostName = hostname;
   networking.networkmanager.enable = true;
-
-  security.rtkit.enable = true;
 
   users.users.${username} = {
     isNormalUser = true;
@@ -54,28 +40,12 @@
 
   services.tailscale.enable = true;
 
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
-
-  programs.fish.enable = true;
-
-  services.jellyfin = {
-    enable = true;
-    openFirewall = true;
-    user = username;
-  };
-
   services.openssh = {
     enable = true;
     settings = {
       PermitRootLogin = "no";
       PasswordAuthentication = true;
-      PubkeyAuthentication = false;
+      PubkeyAuthentication = true;
     };
   };
-
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
 }
