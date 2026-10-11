@@ -16,16 +16,6 @@
 
   users.users.${username}.shell = pkgs.zsh;
 
-  fonts.packages = [pkgs.nerd-fonts.geist-mono];
-
-  fonts.fontconfig = {
-    enable = true;
-    hinting.enable = true;
-    defaultFonts = {
-      monospace = ["Geist Mono"];
-    };
-  };
-
   services.xserver.xkb = {
     layout = "us";
     variant = "";
