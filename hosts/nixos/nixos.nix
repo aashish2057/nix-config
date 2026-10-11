@@ -5,24 +5,11 @@
 }: {
   imports = [
     ./hardware.nix
-    ../../modules/common/display-switch.nix
     ../../modules/common/zsh.nix
     ../../modules/common/ghostty.nix
-    ../../modules/common/t3code.nix
     ../../modules/common/ssh.nix
-    ../../modules/linux/fonts.nix
-    ../../modules/linux/niri.nix
     ../../modules/linux/nvidia.nix
-    ../../modules/linux/xserver.nix
     ../../modules/linux/boot.nix
-    ../../modules/linux/pipewire.nix
-    ../../modules/linux/mullvad.nix
-    ../../modules/linux/awww.nix
-    ../../modules/linux/sunsetr.nix
-    ../../modules/linux/quickshell.nix
-    ../../modules/linux/steam.nix
-    ../../modules/linux/vicinae.nix
-    ../../modules/linux/voxtype.nix
   ];
 
   profiles.desktop.enable = true;
@@ -48,8 +35,6 @@
   '';
 
   networking.networkmanager.enable = true;
-
-  security.rtkit.enable = true;
 
   users.users.${username}.shell = pkgs.zsh;
 

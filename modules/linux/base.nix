@@ -5,6 +5,7 @@
 }: {
   imports = [
     ./i18n.nix
+    ./desktop.nix
   ];
 
   networking.hostName = hostname;

@@ -1,13 +1,15 @@
 {
-  pkgs,
+  config,
   lib,
   ...
 }: {
-  home-manager.sharedModules = [
-    {
-      services.awww = {
-        enable = true;
-      };
-    }
-  ];
+  config = lib.mkIf config.profiles.desktop.enable {
+    home-manager.sharedModules = [
+      {
+        services.awww = {
+          enable = true;
+        };
+      }
+    ];
+  };
 }
