@@ -20,6 +20,8 @@
       };
       modules = [
         ../hosts/${hostname}/${hostname}.nix
+        ../modules/common/base.nix
+        ../modules/darwin/base.nix
         home-manager.darwinModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
@@ -41,6 +43,8 @@
       };
       modules = [
         ../hosts/${hostname}/${hostname}.nix
+        ../modules/common/base.nix
+        ../modules/linux/base.nix
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;

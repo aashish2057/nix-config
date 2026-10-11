@@ -1,41 +1,22 @@
 {
-  config,
   pkgs,
   username,
-  hostname,
   ...
 }: {
   imports = [
     ./hardware.nix
-    ../../modules/common/nix-core.nix
-    ../../modules/common/home-manager.nix
-    ../../modules/common/agents.nix
     ../../modules/common/zsh.nix
-    ../../modules/common/git.nix
-    ../../modules/common/jujutsu.nix
-    ../../modules/common/fish.nix
-    ../../modules/common/fzf.nix
-    ../../modules/common/starship.nix
-    ../../modules/common/neovim/neovim.nix
     ../../modules/common/ghostty.nix
-    ../../modules/common/tmux.nix
     ../../modules/linux/fonts.nix
-    ../../modules/linux/i18n.nix
   ];
 
   system.stateVersion = "25.11";
 
-  networking.hostName = hostname;
   networking.networkmanager.enable = true;
 
   security.rtkit.enable = true;
 
-  users.users.${username} = {
-    isNormalUser = true;
-    description = "Aashish Sharma";
-    extraGroups = ["networkmanager" "wheel"];
-    shell = pkgs.zsh;
-  };
+  users.users.${username}.shell = pkgs.zsh;
 
   services.tailscale.enable = true;
 
