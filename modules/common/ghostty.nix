@@ -19,7 +19,7 @@
             theme = "Material Ocean";
             font-family = "Berkeley Mono";
             command = "${pkgs.fish}/bin/fish";
-            shell-integration-features = "no-cursor";
+            shell-integration-features = "no-cursor,ssh-env";
             cursor-style = "block";
             cursor-style-blink = false;
             window-theme = "ghostty";
