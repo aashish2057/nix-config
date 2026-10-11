@@ -6,6 +6,7 @@
   imports = [
     ./hardware.nix
     ../../modules/linux/boot.nix
+    ../../modules/linux/obsidian-headless.nix
     ../../modules/linux/sshd.nix
     ../../modules/linux/t3code-server.nix
   ];
