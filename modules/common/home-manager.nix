@@ -5,6 +5,8 @@
   isWork,
   ...
 }: {
+  imports = [./desktop.nix];
+
   home-manager.users.${username} = {
     programs.home-manager.enable = true;
 
@@ -21,12 +23,6 @@
     home = {
       file = lib.optionalAttrs pkgs.stdenv.hostPlatform.isDarwin {
         ".hushlogin".text = "";
-      };
-      pointerCursor = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
-        enable = true;
-        package = pkgs.adwaita-icon-theme;
-        name = "Adwaita";
-        size = 24;
       };
       stateVersion = "25.05";
       packages =
@@ -46,21 +42,9 @@
         ]
         ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
           pkgs.git
-          pkgs.ddcutil
           pkgs.btop
-          (pkgs.callPackage ../../pkgs/helium {
-            enableWideVine = true;
-          })
-          pkgs.wl-clipboard
-          pkgs.prismlauncher
-          pkgs.obsidian
           pkgs.gcc
           pkgs.gnumake
-          pkgs.sunsetr
-          pkgs.wayshot
-          pkgs.satty
-          pkgs.anki
-          pkgs.legcord
         ]
         ++ lib.optionals isWork [
           pkgs.direnv

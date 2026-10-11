@@ -26,6 +26,8 @@
     ../../modules/darwin/rift.nix
   ];
 
+  profiles.desktop.enable = true;
+
   agents = {
     claude = true;
     codex = true;

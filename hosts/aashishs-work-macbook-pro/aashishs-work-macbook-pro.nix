@@ -26,4 +26,6 @@
     ../../modules/darwin/homebrew.nix
     ../../modules/darwin/rift.nix
   ];
+
+  profiles.desktop.enable = true;
 }

@@ -38,6 +38,8 @@
     ../../modules/linux/voxtype.nix
   ];
 
+  profiles.desktop.enable = true;
+
   system.stateVersion = "25.05";
 
   agents = {
