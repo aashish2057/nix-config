@@ -1,19 +1,14 @@
 {
   config,
-  pkgs,
   lib,
   ...
 }: {
   config = lib.mkIf config.profiles.desktop.enable {
-    fonts.packages = with pkgs; [
-      nerd-fonts.geist-mono
-    ];
-
     fonts.fontconfig = {
       enable = true;
       hinting.enable = true;
       defaultFonts = {
-        monospace = ["Geist Mono"];
+        monospace = ["Berkeley Mono"];
       };
     };
   };
