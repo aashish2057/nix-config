@@ -2,22 +2,17 @@
   lib,
   stdenvNoCC,
   fetchurl,
-  makeBinaryWrapper,
-  ripgrep,
-  bubblewrap,
   versionCheckHook,
 }: let
   version = "0.160.1";
   sourceMap = {
     aarch64-darwin = {
-      file = "codex-aarch64-apple-darwin.tar.gz";
-      binary = "codex-aarch64-apple-darwin";
-      hash = "sha256-ZwrysEnZyVr7dNfaOF8wxQM9E6BxdQAd2JWMUZRJhNA=";
+      file = "codex-package-aarch64-apple-darwin.tar.gz";
+      hash = "sha256-9zUn7gnG24aay7N7cJhmsznqdO+R0t4lXpx07JYMYxQ=";
     };
     x86_64-linux = {
-      file = "codex-x86_64-unknown-linux-musl.tar.gz";
-      binary = "codex-x86_64-unknown-linux-musl";
-      hash = "sha256-kiZYG+WS0Y9+f3QKNS/bY6ph5F459+ubCdOIjIS7oz8=";
+      file = "codex-package-x86_64-unknown-linux-musl.tar.gz";
+      hash = "sha256-NAgBVlkGpwKPa6qpq2hTrdrvIh8AFqFBenwf/dlsIfA=";
     };
   };
   sourceInfo = sourceMap.${stdenvNoCC.hostPlatform.system} or (throw "Unsupported system: ${stdenvNoCC.hostPlatform.system}");
@@ -33,14 +28,16 @@ in
     sourceRoot = ".";
 
     dontBuild = true;
-    nativeBuildInputs = [makeBinaryWrapper];
+    dontFixup = true;
 
+    # Codex needs the complete package layout (codex-package.json, codex-path,
+    # codex-resources) next to its entrypoint to install the app-server daemon.
     installPhase = ''
       runHook preInstall
 
-      install -Dm755 ${sourceInfo.binary} $out/bin/codex
-      wrapProgram $out/bin/codex \
-        --prefix PATH : ${lib.makeBinPath ([ripgrep] ++ lib.optionals stdenvNoCC.hostPlatform.isLinux [bubblewrap])}
+      mkdir -p $out/lib/codex $out/bin
+      cp -r bin codex-package.json codex-path codex-resources $out/lib/codex/
+      ln -s $out/lib/codex/bin/codex $out/bin/codex
 
       runHook postInstall
     '';
