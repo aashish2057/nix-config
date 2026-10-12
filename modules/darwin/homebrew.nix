@@ -44,7 +44,6 @@
         "datagrip"
         "rider"
         "modern-csv"
-        "visual-studio-code"
       ]
       ++ lib.optionals (!isWork) [
         "legcord"
