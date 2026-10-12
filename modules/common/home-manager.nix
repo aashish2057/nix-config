@@ -57,7 +57,7 @@
           pkgs.uv
           pkgs.ngrok
           pkgs.docker
-          pkgs.google-cloud-sdk
+          (pkgs.google-cloud-sdk.withExtraComponents [pkgs.google-cloud-sdk.components.cloud-run-proxy])
           pkgs.caddy
           pkgs.mkcert
         ]
