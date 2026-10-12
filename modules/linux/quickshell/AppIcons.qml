@@ -11,6 +11,7 @@ Singleton {
 		"com.mitchellh.ghostty": "ghostty",
 		"com.t3tools.T3Code": "t3_code",
 		"helium": "helium",
+		"legcord": "discord",
 		"md.obsidian.Obsidian": "obsidian",
 		"steam": "steam"
 	})
