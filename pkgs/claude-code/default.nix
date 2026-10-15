@@ -13,15 +13,15 @@
   versionCheckHook,
   writableTmpDirAsHomeHook,
 }: let
-  version = "2.1.292";
+  version = "2.1.300";
   sourceMap = {
     aarch64-darwin = {
       file = "claude-darwin-arm64.tar.gz";
-      hash = "sha256-en3MUIaWogk9/GkDmLhiF/ErB4Cbe9U0wv3k9BeIFVY=";
+      hash = "sha256-wYsHIXEpCPvusW9alTOKSWjbf5jDAxtoTkAvRyuSN1E=";
     };
     x86_64-linux = {
       file = "claude-linux-x64.tar.gz";
-      hash = "sha256-cEXNeQsse4zGFp0GGuxydNN6ag2O0xim/4hoJiQzsfk=";
+      hash = "sha256-EeRZxDaKSFVNWqXqv39thKL/euL3IQeVOU9g3tZjP1Y=";
     };
   };
   sourceInfo = sourceMap.${stdenvNoCC.hostPlatform.system} or (throw "Unsupported system: ${stdenvNoCC.hostPlatform.system}");
