@@ -10,16 +10,16 @@
   versionCheckHook,
   writableTmpDirAsHomeHook,
 }: let
-  version = "2.0.26";
+  version = "2.0.29";
   # OpenCode 2 ships prebuilt binaries only on npm (@opencode/cli-<platform>).
   sourceMap = {
     aarch64-darwin = {
       platform = "darwin-arm64";
-      hash = "sha256-e03cpeY9OKHSrd02gnCEPCOuugCWE9/Q4zhS05uGEHY=";
+      hash = "sha256-5PeaFufm/9fx4EB+EPV2hbudvGcO0rwlxbjdoU9pLhU=";
     };
     x86_64-linux = {
       platform = "linux-x64";
-      hash = "sha256-ChFuAzoCgEdB1GRDN9ASvfWiSqwzo0wMllNNLVOWERk=";
+      hash = "sha256-FLWmY4oaCTrJ1IRZnIRLEMKbRF0EhEtoLMxmjOJlMKI=";
     };
   };
   sourceInfo = sourceMap.${stdenv.hostPlatform.system} or (throw "Unsupported system: ${stdenv.hostPlatform.system}");
