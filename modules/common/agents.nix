@@ -137,7 +137,7 @@ in {
               settings =
                 opencodeSettings
                 // lib.optionalAttrs (opencodeMcpServers != {}) {
-                  mcp.servers = opencodeMcpServers;
+                  mcp = opencodeMcpServers;
                 };
             };
 
