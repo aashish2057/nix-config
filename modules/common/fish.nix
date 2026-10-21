@@ -9,6 +9,11 @@
     {
       programs.fish = {
         enable = true;
+        shellInit = ''
+          if set -q REX_BIN_DIR
+              fish_add_path --move --path $REX_BIN_DIR
+          end
+        '';
         interactiveShellInit =
           ''
             set -g fish_greeting

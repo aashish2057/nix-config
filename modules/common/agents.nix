@@ -48,7 +48,20 @@
       };
     };
 
-  mcpServers = lib.optionalAttrs isWork {
+  mcpServers =
+    if isWork
+    then workMcpServers
+    else personalMcpServers;
+
+  personalMcpServers = {
+    superlogical = {
+      url = "https://www.superlogical.com/rex/community-mcp";
+      enabled = true;
+      oauth = {};
+    };
+  };
+
+  workMcpServers = {
     atlassian = {
       url = "https://mcp.atlassian.com/v1/mcp";
       enabled = true;

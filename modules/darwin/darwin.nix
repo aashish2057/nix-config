@@ -29,7 +29,7 @@
         persistent-apps =
           [
             "/Applications/Helium.app"
-            "/Applications/Ghostty.app"
+            "/Applications/Rex Beta.app"
             "/Applications/Obsidian.app"
             "/Users/${username}/Applications/Home Manager Apps/T3 Code (Nightly).app"
           ]
