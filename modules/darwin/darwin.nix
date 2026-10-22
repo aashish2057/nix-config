@@ -31,7 +31,7 @@
             "/Applications/Helium.app"
             "/Applications/Rex Beta.app"
             "/Applications/Obsidian.app"
-            "/Users/${username}/Applications/Home Manager Apps/T3 Code (Nightly).app"
+            "/Users/${username}/Applications/Home Manager Apps/T3 Code (Beta).app"
           ]
           ++ lib.optionals isWork [
             "/Applications/Slack.app"
