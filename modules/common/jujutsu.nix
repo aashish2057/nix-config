@@ -8,6 +8,7 @@
       programs.jujutsu = {
         enable = true;
         settings = {
+          git.private-commits = "description(glob:'local:*') | description(glob:'private:*')";
           user = {
             name = "aashish2057";
             email =
