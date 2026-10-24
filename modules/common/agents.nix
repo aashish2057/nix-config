@@ -146,7 +146,7 @@ in {
               package = pkgs.callPackage ../../pkgs/opencode {};
               context = sharedContext;
               skills = sharedSkills;
-              tui.theme = "ayu";
+              cli.theme.name = "ayu";
               settings =
                 opencodeSettings
                 // lib.optionalAttrs (opencodeMcpServers != {}) {

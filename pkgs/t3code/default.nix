@@ -88,9 +88,18 @@
         # t3 resolves node_modules and client next to its executable. Without a
         # cloudflared here it downloads its own for T3 Connect.
         makeWrapper $out/libexec/t3code/t3 $out/bin/t3 \
-          --set-default T3CODE_CLOUDFLARED_PATH ${lib.getExe cloudflared}
+          --set-default T3CODE_CLOUDFLARED_PATH ${lib.getExe cloudflared} \
+          --prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [stdenv.cc.cc.lib]}
 
         runHook postInstall
+      '';
+
+      # patchelf >= 0.19 corrupts the single executable application when it sets
+      # an RPATH, so only the interpreter of t3 is patched. The wrapper supplies libstdc++.
+      dontAutoPatchelf = true;
+      postFixup = ''
+        autoPatchelf $out/libexec/t3code/node_modules $out/libexec/t3code/resource-monitor
+        patchelf --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" $out/libexec/t3code/t3
       '';
 
       doInstallCheck = true;
