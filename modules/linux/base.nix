@@ -17,5 +17,10 @@
     extraGroups = ["networkmanager" "wheel"];
   };
 
-  services.tailscale.enable = true;
+  services.tailscale = {
+    enable = true;
+    # Tailscale SSH: tailscaled serves SSH on the tailnet, authorized by the
+    # tailnet policy's `ssh` rules.
+    extraSetFlags = ["--ssh"];
+  };
 }

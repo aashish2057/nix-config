@@ -7,7 +7,6 @@
     ./hardware.nix
     ../../modules/linux/boot.nix
     ../../modules/linux/obsidian-headless.nix
-    ../../modules/linux/sshd.nix
     ../../modules/linux/t3code-server.nix
   ];
 
@@ -19,6 +18,4 @@
   };
 
   users.users.${username}.shell = pkgs.fish;
-
-  services.openssh.settings.PubkeyAuthentication = true;
 }
