@@ -10,9 +10,13 @@
     ../../modules/common/ssh.nix
     ../../modules/linux/nvidia.nix
     ../../modules/linux/boot.nix
+    ../../modules/linux/t3code-server.nix
   ];
 
   profiles.desktop.enable = true;
+
+  # Run headless: GDM would otherwise suspend the machine at the login screen.
+  services.displayManager.gdm.autoSuspend = false;
 
   system.stateVersion = "25.05";
 

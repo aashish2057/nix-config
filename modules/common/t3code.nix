@@ -9,7 +9,7 @@
       {
         programs.t3code = {
           enable = true;
-          package = pkgs.callPackage ../../pkgs/t3code {};
+          package = lib.mkDefault (pkgs.callPackage ../../pkgs/t3code {});
         };
       }
     ];
