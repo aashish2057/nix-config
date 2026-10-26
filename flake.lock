@@ -130,13 +130,31 @@
         "type": "github"
       }
     },
+    "rex": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1793018865,
+        "narHash": "sha256-hux31yxz82WG93cdd2S5V/axXwnmsDdup1T8O1/S+tI=",
+        "type": "tarball",
+        "url": "https://pkgs.superlogical.com/rex/nix/snapshot/0.0.1793018865-gefd6aa.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://pkgs.superlogical.com/rex/nix/snapshot.tar.gz"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
         "mnw": "mnw",
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs",
-        "nvim-nightly": "nvim-nightly"
+        "nvim-nightly": "nvim-nightly",
+        "rex": "rex"
       }
     }
   },

@@ -21,6 +21,11 @@
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    rex = {
+      url = "https://pkgs.superlogical.com/rex/nix/snapshot.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs @ {
@@ -30,10 +35,11 @@
     self,
     mnw,
     nvim-nightly,
+    rex,
     ...
   }: let
     systems = import ./lib/systems.nix {
-      inherit nixpkgs home-manager nix-darwin self mnw nvim-nightly;
+      inherit nixpkgs home-manager nix-darwin self mnw nvim-nightly rex;
     };
   in {
     darwinConfigurations = {

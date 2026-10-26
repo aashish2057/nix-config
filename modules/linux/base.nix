@@ -6,6 +6,7 @@
   imports = [
     ./i18n.nix
     ./desktop.nix
+    ./rex-server.nix
   ];
 
   networking.hostName = hostname;
