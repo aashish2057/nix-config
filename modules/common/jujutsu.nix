@@ -41,6 +41,7 @@
             ll = ["log" "-r" "all()" "--limit" "20"];
             lll = ["log" "-r" "all()"];
             tug = ["bookmark" "move" "--from" "heads(::@- & bookmarks())" "--to" "@-"];
+            restack = ["rebase" "-s" "roots(trunk()..mutable())" "-o" "trunk()"];
           };
         };
       };
