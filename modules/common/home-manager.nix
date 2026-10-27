@@ -60,6 +60,7 @@
           (pkgs.google-cloud-sdk.withExtraComponents [pkgs.google-cloud-sdk.components.cloud-run-proxy])
           pkgs.caddy
           pkgs.mkcert
+          pkgs._1password-cli
         ]
         ++ lib.optionals (username
           == "homelab") [
