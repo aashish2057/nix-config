@@ -68,7 +68,7 @@
       oauth = {};
     };
     datadog = {
-      url = "https://mcp.us3.datadoghq.com/api/unstable/mcp-server/mcp";
+      url = "https://mcp.us3.datadoghq.com/v1/mcp";
       enabled = true;
       oauth = {};
     };
