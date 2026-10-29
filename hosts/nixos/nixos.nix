@@ -1,8 +1,4 @@
-{
-  pkgs,
-  username,
-  ...
-}: {
+{...}: {
   imports = [
     ./hardware.nix
     ../../modules/common/zsh.nix
@@ -37,6 +33,4 @@
     SUBSYSTEM=="usb", ATTRS{idVendor}=="3434", ATTRS{idProduct}=="d049", MODE="0660", GROUP="users", TAG+="uaccess"
     SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", MODE="0660", GROUP="users", TAG+="uaccess"
   '';
-
-  users.users.${username}.shell = pkgs.zsh;
 }

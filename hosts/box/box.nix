@@ -1,8 +1,4 @@
-{
-  pkgs,
-  username,
-  ...
-}: {
+{...}: {
   imports = [
     ./hardware.nix
     ../../modules/linux/boot.nix
@@ -16,6 +12,4 @@
     claude = true;
     codex = true;
   };
-
-  users.users.${username}.shell = pkgs.fish;
 }

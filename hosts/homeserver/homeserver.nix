@@ -1,8 +1,4 @@
-{
-  pkgs,
-  username,
-  ...
-}: {
+{username, ...}: {
   imports = [
     ./hardware.nix
     ../../modules/common/zsh.nix
@@ -13,8 +9,6 @@
   system.stateVersion = "25.11";
 
   security.rtkit.enable = true;
-
-  users.users.${username}.shell = pkgs.zsh;
 
   services.xserver.xkb = {
     layout = "us";

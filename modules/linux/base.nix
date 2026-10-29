@@ -1,4 +1,5 @@
 {
+  pkgs,
   username,
   hostname,
   ...
@@ -16,6 +17,7 @@
     isNormalUser = true;
     description = "Aashish Sharma";
     extraGroups = ["networkmanager" "wheel"];
+    shell = pkgs.fish;
   };
 
   services.tailscale = {
