@@ -1,6 +1,5 @@
 {lib, ...}: {
   imports = [
-    ./display-switch.nix
     ./t3code.nix
   ];
 
