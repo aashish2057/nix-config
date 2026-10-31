@@ -12,21 +12,21 @@
   writableTmpDirAsHomeHook,
 }: let
   pname = "t3code";
-  version = "0.1.3";
+  version = "0.1.6";
   repo = "https://github.com/pingdotgg/t3code";
 
   sourceMap = {
     x86_64-linux = {
       file = "T3-Code-${version}-x86_64.AppImage";
-      hash = "sha256-gBzOSC0ghdob+6HQ4wHAotdafI0O/SSGXCJhlINC3yE=";
+      hash = "sha256-CeJQcgjHeTCbOWvoRq6h2UUUS9eAYGiZwvSByW3fNNA=";
       server = {
         file = "t3-${version}-linux-x64.tar.gz";
-        hash = "sha256-Y80PBUfu9iu07OJ/p3m7+eK6hTHMaFQlaLqeeIONxoQ=";
+        hash = "sha256-fPMdqQ3uQfUk3VtnnrttQEY3yl2dxv2LwBlRHVe7d+Y=";
       };
     };
     aarch64-darwin = {
       file = "T3-Code-${version}-arm64.dmg";
-      hash = "sha256-/ILhs9lVE7MhVElbxbI4D4bnRVI320nWx6nKBFRQ5Ng=";
+      hash = "sha256-2zWe3TLdPUfyKkiFWnQZQjNZge0HALrM7FYbd/yHAK4=";
     };
   };
 
