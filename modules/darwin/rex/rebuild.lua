@@ -8,6 +8,7 @@ local rex = rex
 -- On success the session closes itself. On failure it reports why and leaves a
 -- shell in the repo.
 local script = [[
+# fish
 # Without this, fish stays the foreground program and Rex shows its icon.
 status job-control full
 
@@ -33,7 +34,15 @@ jj restack; or fail "Restack failed"
 test -z "$(jj log -r 'conflicts() & @' --no-graph -T change_id)"; or fail "Conflicts after restack"
 
 report working "Building"
-$nh build .; or fail "Build failed"
+set out (mktemp -d)/result
+$nh build --out-link $out .; or fail "Build failed"
+
+# Nothing to switch if the build is the system this host runs now.
+if test (readlink -f $out) = (readlink -f /run/current-system)
+  report done "Already up to date"
+  $REX_BIN_DIR/rex kill $REX_SESSION
+  exit
+end
 
 if not sudo -nv 2>/dev/null
   report blocked:kind=auth "Password needed to switch"
