@@ -5,10 +5,14 @@ Usage: python3 - VM_GATE HOST_GATE < ccdb.py > out.tar
 Writes a tar stream to stdout. `illumos-vm ccdb` unpacks it into the host gate.
 The tar holds:
   - compile_commands.json, from the compiler logs in /build/ccdb, with VM
-    paths changed to host paths.
-  - every generated header (untracked *.h, proto area included). A header
-    that is a copy of a tracked file is a symlink to that file, so "go to
-    definition" opens the source, not the copy.
+    paths changed to host paths and the flags changed for clang.
+  - every generated include file (untracked *.h, *.def, *.ndl, ..., proto
+    area included). One that is a copy of a tracked file is a symlink to
+    that file, so "go to definition" opens the source, not the copy.
+  - the symlinks the build makes to header directories (for example
+    machine -> ... in the boot loader).
+  - .cache/illumos-sysroot: the VM's system headers (/usr/include and the
+    other include directories outside the gate that the build uses).
 """
 
 import io
@@ -35,6 +39,9 @@ MATCH_GCC = [
     "-U_LARGEFILE64_SOURCE",
     "-D__illumos__",
 ]
+# In C++ mode the illumos g++ defines the four as clang does, and also
+# __STDC_VERSION__, which libstdc++ needs.
+MATCH_GXX = ["-D__illumos__", "-D__STDC_VERSION__=199901L"]
 SKIP_DIRS = ("log/", "packages/")
 
 # GCC flags that clang rejects. Found by testing every flag in a full build.
@@ -61,20 +68,12 @@ GCC_ONLY = {
 }
 # Old Sun-style code (#pragma align, K&R calls) that clang warns about.
 QUIET = ["-Wno-unknown-pragmas", "-Wno-ignored-pragmas", "-Wno-deprecated-non-prototype"]
-
-
-def clang_args(args):
-    out = []
-    for a in args:
-        if a in GCC_ONLY:
-            continue
-        # -nostdinc also hides clang's own headers (stddef.h, stdarg.h).
-        # -nostdlibinc hides only the system headers, which is what the
-        # build wants.
-        out.append("-nostdlibinc" if a == "-nostdinc" else to_host(a))
-    return out
+# The VM's system headers go here in the host gate (.cache/ is ignored).
+SYSROOT = ".cache/illumos-sysroot"
+HEADER_EXT = (".h", ".hh", ".hpp", ".inc", ".def")
 
 vm_gate, host_gate = sys.argv[1].rstrip("/"), sys.argv[2].rstrip("/")
+host_sysroot = host_gate + "/" + SYSROOT
 
 
 def to_host(s):
@@ -87,7 +86,69 @@ def git(*args, stdin=None):
     ).stdout
 
 
-def compile_commands():
+def tracked_files():
+    """Map of blob hash to path, and the set of paths, for tracked files."""
+    by_hash, paths = {}, set()
+    for line in git("ls-files", "-s", "-z").split(b"\0"):
+        if line:
+            meta, path = line.decode().split("\t", 1)
+            by_hash.setdefault(meta.split()[1], path)
+            paths.add(path)
+    return by_hash, paths
+
+
+def outside_gate(d):
+    return d.startswith("/") and not d.startswith(vm_gate + "/") and d != vm_gate
+
+
+def cxx_dirs():
+    """The C++ standard library directories of the build's g++."""
+    err = subprocess.run(
+        ["/opt/gcc-10/bin/g++", "-m64", "-xc++", "-E", "-v", "/dev/null"],
+        capture_output=True, text=True,
+    ).stderr
+    dirs, inside = [], False
+    for line in err.splitlines():
+        if line.startswith("#include <...>"):
+            inside = True
+        elif line.startswith("End of search list"):
+            break
+        elif inside and "/c++/" in line:
+            dirs.append(os.path.normpath(line.strip()))
+    return dirs
+
+
+CXX_DIRS = cxx_dirs()
+
+
+def clang_args(name, args, system_dirs):
+    out = []
+    if name == "g++":
+        for d in CXX_DIRS:
+            out += ["-isystem", host_sysroot + d]
+            system_dirs.add(d)
+    for a in args:
+        if a in GCC_ONLY:
+            continue
+        if a == "-nostdinc":
+            # -nostdinc also hides clang's own headers (stddef.h, stdarg.h).
+            # -nostdlibinc hides only the system headers, as the build wants.
+            out.append("-nostdlibinc")
+        elif a.startswith("-I") and outside_gate(a[2:]):
+            d = os.path.normpath(a[2:])
+            if os.path.isdir(d):
+                system_dirs.add(d)
+                out.append("-I" + host_sysroot + d)
+        else:
+            out.append(to_host(a))
+    if "-nostdinc" not in args:
+        # GCC searches the VM's /usr/include last. Do the same with the copy.
+        out += ["-idirafter", host_sysroot + "/usr/include"]
+        system_dirs.add("/usr/include")
+    return out
+
+
+def compile_commands(tracked_paths, system_dirs, build_dirs):
     # DEBUG and non-DEBUG, 32- and 64-bit builds compile most files more than
     # once. Keep one entry per file: prefer 64-bit, then DEBUG, then newest.
     best = {}
@@ -106,53 +167,107 @@ def compile_commands():
         if src is None:
             continue
         path = os.path.normpath(os.path.join(cwd, src))
-        if not path.startswith(vm_gate + "/"):
+        # Skip sources the build generates. They aren't in the host gate.
+        if os.path.relpath(path, vm_gate) not in tracked_paths:
             continue
         score = ("-m64" in args, "-DDEBUG" in args, entry.stat().st_mtime)
         if path not in best or score > best[path][0]:
             best[path] = (score, cwd, name, args)
 
+    # Build directories (for example amd64/) hold no tracked files, so the
+    # host gate lacks them. clangd needs them to exist.
+    tracked_dirs = {os.path.dirname(p) for p in tracked_paths}
+    build_dirs.update(
+        rel for rel in (os.path.relpath(cwd, vm_gate) for _, cwd, _, _ in best.values())
+        if not rel.startswith("..") and rel not in tracked_dirs
+    )
+
     db = [
         {
             "directory": to_host(cwd),
             "file": to_host(path),
-            "arguments": [name, TARGET] + MATCH_GCC + clang_args(args) + QUIET,
+            "arguments": [name, TARGET]
+            + (MATCH_GXX if name == "g++" else MATCH_GCC)
+            + clang_args(name, args, system_dirs)
+            + QUIET,
         }
         for path, (_, cwd, name, args) in sorted(best.items())
     ]
     return json.dumps(db, indent=1).encode()
 
 
-def generated_headers():
-    paths = [
+def untracked():
+    return [
         p.decode()
-        for p in git("ls-files", "-o", "-z", "--", "*.h").split(b"\0")
+        for p in git("ls-files", "-o", "-z").split(b"\0")
         if p and not p.decode().startswith(SKIP_DIRS)
     ]
-    tracked = {}
-    for line in git("ls-files", "-s", "-z").split(b"\0"):
-        if line:
-            meta, path = line.decode().split("\t", 1)
-            tracked.setdefault(meta.split()[1], path)
-    hashes = git("hash-object", "--stdin-paths", stdin="\n".join(paths).encode()).decode().split()
-    return [(p, tracked.get(h)) for p, h in zip(paths, hashes)]
+
+
+def add_symlink(out, path, target):
+    info = tarfile.TarInfo(path)
+    info.type = tarfile.SYMTYPE
+    info.linkname = target
+    out.addfile(info)
+
+
+def add_generated(out, by_hash):
+    paths = untracked()
+    # Generated include files: headers, plus yacc .def and mlrpc .ndl files.
+    headers = [p for p in paths if p.endswith(HEADER_EXT + (".ndl",))]
+    hashes = git("hash-object", "--stdin-paths", stdin="\n".join(headers).encode()).decode().split()
+    for path, h in zip(headers, hashes):
+        source = by_hash.get(h)
+        if source:
+            add_symlink(out, path, os.path.relpath(source, os.path.dirname(path)))
+        else:
+            out.add(os.path.join(vm_gate, path), arcname=path)
+    # Symlinks the build makes to header directories.
+    for path in paths:
+        full = os.path.join(vm_gate, path)
+        if os.path.islink(full) and os.path.isdir(full):
+            target = os.readlink(full)
+            if target.startswith(vm_gate + "/"):
+                target = os.path.relpath(target, os.path.dirname(full))
+            add_symlink(out, path, target)
+
+
+def add_system_headers(out, system_dirs):
+    # Skip directories inside another copied directory.
+    dirs = sorted(system_dirs)
+    dirs = [d for d in dirs if not any(d.startswith(p + "/") for p in dirs)]
+    for top in dirs:
+        for root, _, files in os.walk(top, followlinks=True):
+            for name in files:
+                # C++ headers like <cstdarg> have no extension.
+                if top != "/usr/include" and top not in CXX_DIRS and not name.endswith(HEADER_EXT):
+                    continue
+                full = os.path.join(root, name)
+                real = os.path.realpath(full)
+                if not os.path.isfile(real):
+                    continue
+                info = out.gettarinfo(real, arcname=SYSROOT + full)
+                with open(real, "rb") as f:
+                    out.addfile(info, f)
 
 
 def main():
+    by_hash, tracked_paths = tracked_files()
+    system_dirs, build_dirs = set(), set()
     out = tarfile.open(fileobj=sys.stdout.buffer, mode="w|")
-    data = compile_commands()
+    data = compile_commands(tracked_paths, system_dirs, build_dirs)
     info = tarfile.TarInfo("compile_commands.json")
     info.size = len(data)
     info.mtime = int(time.time())
     out.addfile(info, io.BytesIO(data))
-    for path, source in generated_headers():
-        if source:
-            info = tarfile.TarInfo(path)
-            info.type = tarfile.SYMTYPE
-            info.linkname = os.path.relpath(source, os.path.dirname(path))
-            out.addfile(info)
-        else:
-            out.add(os.path.join(vm_gate, path), arcname=path)
+    for d in sorted(build_dirs):
+        info = tarfile.TarInfo(d)
+        info.type = tarfile.DIRTYPE
+        info.mode = 0o755
+        info.mtime = int(time.time())
+        out.addfile(info)
+    add_generated(out, by_hash)
+    add_system_headers(out, system_dirs)
     out.close()
 
 

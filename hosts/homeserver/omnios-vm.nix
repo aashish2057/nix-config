@@ -261,7 +261,7 @@
             sed '/^# illumos-vm ccdb begin$/,/^# illumos-vm ccdb end$/d' "$exclude" 2>/dev/null || true
             echo "# illumos-vm ccdb begin"
             printf '%s\n' /compile_commands.json /.nvim.lua /.cache/
-            tar -tf "$tmp" | grep -v -e '^proto/' -e '^compile_commands.json$' | sed 's|^|/|' || true
+            tar -tf "$tmp" | grep -v -e '^proto/' -e '^\.cache/' -e '^compile_commands.json$' | sed 's|^|/|' || true
             echo "# illumos-vm ccdb end"
           } > "$exclude.new"
           mv "$exclude.new" "$exclude"
@@ -317,13 +317,19 @@ in {
             dhcp_hosts = [{inherit mac name ip;}];
           });
           active = true;
+          restart = false;
         }
       ];
 
+      # restart = false: a switch never stops the running VM (NixVirt's
+      # default stops it hard, and kills any build). A changed definition
+      # applies at the next VM start: virsh -c qemu:///system shutdown omnios,
+      # then start omnios.
       domains = [
         {
           definition = lib.domain.writeXML domain;
           active = true;
+          restart = false;
         }
       ];
     };
