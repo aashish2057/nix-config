@@ -26,6 +26,11 @@
       url = "https://pkgs.superlogical.com/rex/nix/snapshot.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixvirt = {
+      url = "https://flakehub.com/f/AshleyYakeley/NixVirt/*.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs @ {
@@ -36,10 +41,11 @@
     mnw,
     nvim-nightly,
     rex,
+    nixvirt,
     ...
   }: let
     systems = import ./lib/systems.nix {
-      inherit nixpkgs home-manager nix-darwin self mnw nvim-nightly rex;
+      inherit nixpkgs home-manager nix-darwin self mnw nvim-nightly rex nixvirt;
     };
   in {
     darwinConfigurations = {

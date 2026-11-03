@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   imports = [
     ./hardware.nix
+    ./omnios-vm.nix
     ../../modules/linux/sshd.nix
   ];
 

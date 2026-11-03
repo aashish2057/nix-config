@@ -6,6 +6,7 @@
   mnw,
   nvim-nightly,
   rex,
+  nixvirt,
   ...
 }: {
   mkDarwinSystem = {
@@ -39,7 +40,7 @@
   }:
     nixpkgs.lib.nixosSystem {
       specialArgs = {
-        inherit username hostname system isWork mnw nvim-nightly rex;
+        inherit username hostname system isWork mnw nvim-nightly rex nixvirt;
         homedir = "/home/${username}";
       };
       modules = [
