@@ -186,98 +186,20 @@
     };
   };
 
-  # Host-side helper for the illumos workflow.
+  # Host-side helper for the illumos workflow. The script is illumos/illumos-vm.sh;
+  # these lines give it the VM address and the paths of the scripts it copies.
   illumos-vm = pkgs.writeShellApplication {
     name = "illumos-vm";
     runtimeInputs = [pkgs.openssh pkgs.git pkgs.libvirt pkgs.coreutils pkgs.gnutar pkgs.gnused pkgs.gnugrep];
-    # Commands for the VM are built on the host on purpose.
-    excludeShellChecks = ["SC2029"];
+    # On purpose: some commands for the VM expand on the host (SC2029),
+    # others only in the VM (SC2016).
+    excludeShellChecks = ["SC2029" "SC2016"];
     text = ''
       vm=${devUser}@${ip}
-      gate=''${ILLUMOS_GATE:-$HOME/Dev/illumos-gate}
-      remote_gate=/build/illumos-gate
-      ssh_opts=(-o StrictHostKeyChecking=accept-new)
-
-      run() { ssh "''${ssh_opts[@]}" "$vm" "$@"; }
-
-      usage() {
-        cat <<EOF
-      Usage: illumos-vm COMMAND
-
-        ssh [ARGS]     SSH to the VM as ${devUser}
-        console        Attach to the VM's serial console (exit with Ctrl-])
-        sync [REV]     Push REV (default @-) to $remote_gate in the VM and check it out
-        build [-i]     Run a nightly build in the VM (-i: incremental)
-        ccdb           Copy compile_commands.json and generated headers to the gate
-        onu            Install the last build into a new boot environment and reboot
-      EOF
-      }
-
-      case "''${1:-}" in
-        ssh)
-          shift
-          run "$@"
-          ;;
-        console)
-          exec virsh -c qemu:///system console ${name}
-          ;;
-        sync)
-          rev=''${2:-@-}
-          commit=$(jj -R "$gate" log --no-graph -r "$rev" -T commit_id)
-          run "test -d $remote_gate/.git || git init -q $remote_gate"
-          GIT_SSH_COMMAND="ssh ''${ssh_opts[*]}" \
-            git -C "$gate" push -f "ssh://$vm$remote_gate" "$commit:refs/heads/vm-build"
-          run "cd $remote_gate && git checkout -q -f --detach vm-build && git log -1 --oneline"
-          ;;
-        build)
-          flags=""
-          [ "''${2:-}" = "-i" ] && flags="-i"
-          # A full build starts a new compiler log for `illumos-vm ccdb`.
-          [ -z "$flags" ] && run "rm -rf /build/ccdb"
-          run "mkdir -p /build/ccdb /build/ccdb-bin \
-            && cat > /build/ccdb-bin/gcc && chmod +x /build/ccdb-bin/gcc \
-            && ln -sf gcc /build/ccdb-bin/g++" < ${./illumos/cc-wrapper.sh}
-          # The first build makes illumos.sh from the OmniOS env file and
-          # points the primary compilers at the logging wrapper.
-          run "cd $remote_gate \
-            && { test -f illumos.sh || { cp /opt/onbld/env/omnios-illumos-gate illumos.sh \
-              && printf '%s\n' '# Log compiles for illumos-vm ccdb.' \
-                'export PRIMARY_CC=gcc10,/build/ccdb-bin/gcc,gnu' \
-                'export PRIMARY_CCC=gcc10,/build/ccdb-bin/g++,gnu' >> illumos.sh; }; } \
-            && ./usr/src/tools/scripts/nightly $flags ./illumos.sh; \
-            status=\$?; cat \$(ls -td log/log.* | head -1)/mail_msg 2>/dev/null | tail -40; exit \$status"
-          ;;
-        ccdb)
-          # Copy compile_commands.json and generated headers to the host gate.
-          gate=$(realpath "$gate")
-          tmp=$(mktemp)
-          trap 'rm -f "$tmp"' EXIT
-          run "python3 - $remote_gate $gate" < ${./illumos/ccdb.py} > "$tmp"
-          # Hide the new files from jj before they appear. The gate's
-          # .gitignore already covers proto/.
-          exclude=$gate/.git/info/exclude
-          mkdir -p "$(dirname "$exclude")"
-          {
-            sed '/^# illumos-vm ccdb begin$/,/^# illumos-vm ccdb end$/d' "$exclude" 2>/dev/null || true
-            echo "# illumos-vm ccdb begin"
-            printf '%s\n' /compile_commands.json /.nvim.lua /.cache/
-            tar -tf "$tmp" | grep -v -e '^proto/' -e '^\.cache/' -e '^compile_commands.json$' | sed 's|^|/|' || true
-            echo "# illumos-vm ccdb end"
-          } > "$exclude.new"
-          mv "$exclude.new" "$exclude"
-          tar -xf "$tmp" -C "$gate"
-          echo "compile_commands.json: $(grep -c '"file"' "$gate/compile_commands.json") files"
-          ;;
-        onu)
-          be="nightly-$(date -u +%Y%m%d-%H%MZ)"
-          run "cd $remote_gate \
-            && pfexec ./usr/src/tools/proto/root_i386-nd/opt/onbld/bin/onu -t $be -d packages/i386/nightly \
-            && pfexec reboot"
-          ;;
-        *)
-          usage
-          ;;
-      esac
+      domain=${name}
+      cc_wrapper=${./illumos/cc-wrapper.sh}
+      ccdb_script=${./illumos/ccdb.py}
+      ${builtins.readFile ./illumos/illumos-vm.sh}
     '';
   };
 in {
