@@ -17,13 +17,62 @@ import os
 import subprocess
 import sys
 import tarfile
+import time
 
 LOG_DIR = "/build/ccdb"
 SOURCE_EXT = (".c", ".cc", ".cpp", ".cxx")
 # The host clangd defaults to a Linux target. This gives it the illumos
 # macros (__sun, __SVR4) and the correct type sizes.
 TARGET = "--target=x86_64-pc-solaris2.11"
+# Make clang's built-in macros match the illumos GCC. Clang's Solaris target
+# defines these four, so kernel headers take the wrong branches (for example
+# <sys/time.h> includes <time.h>). They come before the build's own flags, so
+# a file that sets one of them on purpose still gets it.
+MATCH_GCC = [
+    "-U__EXTENSIONS__",
+    "-U_XOPEN_SOURCE",
+    "-U_LARGEFILE_SOURCE",
+    "-U_LARGEFILE64_SOURCE",
+    "-D__illumos__",
+]
 SKIP_DIRS = ("log/", "packages/")
+
+# GCC flags that clang rejects. Found by testing every flag in a full build.
+GCC_ONLY = {
+    "-ffloat-store",
+    "-fno-aggressive-loop-optimizations",
+    "-fno-clone-functions",
+    "-fno-inline-functions-called-once",
+    "-fno-inline-small-functions",
+    "-fno-ipa-cp",
+    "-fno-ipa-icf",
+    "-fno-reorder-blocks-and-partition",
+    "-fno-reorder-functions",
+    "-fno-shrink-wrap",
+    "-fno-unit-at-a-time",
+    "-mindirect-branch-register",
+    "-mindirect-branch=thunk-extern",
+    "-msave-args",
+    "-Wno-clobbered",
+    "-Wno-dangling-pointer",
+    "-Wno-maybe-uninitialized",
+    # Show warnings as warnings in the editor, not as errors.
+    "-Werror",
+}
+# Old Sun-style code (#pragma align, K&R calls) that clang warns about.
+QUIET = ["-Wno-unknown-pragmas", "-Wno-ignored-pragmas", "-Wno-deprecated-non-prototype"]
+
+
+def clang_args(args):
+    out = []
+    for a in args:
+        if a in GCC_ONLY:
+            continue
+        # -nostdinc also hides clang's own headers (stddef.h, stdarg.h).
+        # -nostdlibinc hides only the system headers, which is what the
+        # build wants.
+        out.append("-nostdlibinc" if a == "-nostdinc" else to_host(a))
+    return out
 
 vm_gate, host_gate = sys.argv[1].rstrip("/"), sys.argv[2].rstrip("/")
 
@@ -67,7 +116,7 @@ def compile_commands():
         {
             "directory": to_host(cwd),
             "file": to_host(path),
-            "arguments": [name, TARGET] + [to_host(a) for a in args],
+            "arguments": [name, TARGET] + MATCH_GCC + clang_args(args) + QUIET,
         }
         for path, (_, cwd, name, args) in sorted(best.items())
     ]
@@ -94,6 +143,7 @@ def main():
     data = compile_commands()
     info = tarfile.TarInfo("compile_commands.json")
     info.size = len(data)
+    info.mtime = int(time.time())
     out.addfile(info, io.BytesIO(data))
     for path, source in generated_headers():
         if source:

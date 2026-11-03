@@ -14,7 +14,9 @@
     pkgs = nixpkgs.legacyPackages.${system};
   in {
     devShells.${system}.default = pkgs.mkShellNoCC {
-      packages = [pkgs.clang-tools];
+      # The unwrapped clangd. The clang-tools wrapper adds Linux glibc
+      # headers, which clash with the illumos headers.
+      packages = [pkgs.llvmPackages.clang-unwrapped];
     };
   };
 }
