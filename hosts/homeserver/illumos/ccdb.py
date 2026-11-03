@@ -266,6 +266,13 @@ def main():
         info.mode = 0o755
         info.mtime = int(time.time())
         out.addfile(info)
+    # Hide .cache (the system headers and clangd's index) from git, jj, and
+    # fff. fff reads .gitignore files but not .git/info/exclude.
+    data = b"# Made by illumos-vm ccdb.\n*\n"
+    info = tarfile.TarInfo(SYSROOT.split("/")[0] + "/.gitignore")
+    info.size = len(data)
+    info.mtime = int(time.time())
+    out.addfile(info, io.BytesIO(data))
     add_generated(out, by_hash)
     add_system_headers(out, system_dirs)
     out.close()
