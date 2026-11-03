@@ -61,12 +61,6 @@
           pkgs.caddy
           pkgs.mkcert
           pkgs._1password-cli
-        ]
-        ++ lib.optionals (username
-          == "homelab") [
-          pkgs.jellyfin
-          pkgs.jellyfin-web
-          pkgs.jellyfin-ffmpeg
         ];
     };
   };
