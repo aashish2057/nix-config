@@ -189,7 +189,7 @@
   # Host-side helper for the illumos workflow.
   illumos-vm = pkgs.writeShellApplication {
     name = "illumos-vm";
-    runtimeInputs = [pkgs.openssh pkgs.git pkgs.libvirt pkgs.coreutils];
+    runtimeInputs = [pkgs.openssh pkgs.git pkgs.libvirt pkgs.coreutils pkgs.gnutar pkgs.gnused pkgs.gnugrep];
     # Commands for the VM are built on the host on purpose.
     excludeShellChecks = ["SC2029"];
     text = ''
@@ -208,6 +208,7 @@
         console        Attach to the VM's serial console (exit with Ctrl-])
         sync [REV]     Push REV (default @-) to $remote_gate in the VM and check it out
         build [-i]     Run a nightly build in the VM (-i: incremental)
+        ccdb           Copy compile_commands.json and generated headers to the gate
         onu            Install the last build into a new boot environment and reboot
       EOF
       }
@@ -231,10 +232,41 @@
         build)
           flags=""
           [ "''${2:-}" = "-i" ] && flags="-i"
+          # A full build starts a new compiler log for `illumos-vm ccdb`.
+          [ -z "$flags" ] && run "rm -rf /build/ccdb"
+          run "mkdir -p /build/ccdb /build/ccdb-bin \
+            && cat > /build/ccdb-bin/gcc && chmod +x /build/ccdb-bin/gcc \
+            && ln -sf gcc /build/ccdb-bin/g++" < ${./illumos/cc-wrapper.sh}
+          # The first build makes illumos.sh from the OmniOS env file and
+          # points the primary compilers at the logging wrapper.
           run "cd $remote_gate \
-            && { test -f illumos.sh || cp /opt/onbld/env/omnios-illumos-gate illumos.sh; } \
+            && { test -f illumos.sh || { cp /opt/onbld/env/omnios-illumos-gate illumos.sh \
+              && printf '%s\n' '# Log compiles for illumos-vm ccdb.' \
+                'export PRIMARY_CC=gcc10,/build/ccdb-bin/gcc,gnu' \
+                'export PRIMARY_CCC=gcc10,/build/ccdb-bin/g++,gnu' >> illumos.sh; }; } \
             && ./usr/src/tools/scripts/nightly $flags ./illumos.sh; \
             status=\$?; cat \$(ls -td log/log.* | head -1)/mail_msg 2>/dev/null | tail -40; exit \$status"
+          ;;
+        ccdb)
+          # Copy compile_commands.json and generated headers to the host gate.
+          gate=$(realpath "$gate")
+          tmp=$(mktemp)
+          trap 'rm -f "$tmp"' EXIT
+          run "python3 - $remote_gate $gate" < ${./illumos/ccdb.py} > "$tmp"
+          # Hide the new files from jj before they appear. The gate's
+          # .gitignore already covers proto/.
+          exclude=$gate/.git/info/exclude
+          mkdir -p "$(dirname "$exclude")"
+          {
+            sed '/^# illumos-vm ccdb begin$/,/^# illumos-vm ccdb end$/d' "$exclude" 2>/dev/null || true
+            echo "# illumos-vm ccdb begin"
+            printf '%s\n' /compile_commands.json /.nvim.lua /.cache/
+            tar -tf "$tmp" | grep -v -e '^proto/' -e '^compile_commands.json$' | sed 's|^|/|' || true
+            echo "# illumos-vm ccdb end"
+          } > "$exclude.new"
+          mv "$exclude.new" "$exclude"
+          tar -xf "$tmp" -C "$gate"
+          echo "compile_commands.json: $(grep -c '"file"' "$gate/compile_commands.json") files"
           ;;
         onu)
           be="nightly-$(date -u +%Y%m%d-%H%MZ)"
