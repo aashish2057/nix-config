@@ -9,6 +9,10 @@
 
   system.stateVersion = "25.11";
 
+  # Let box act as a Tailscale subnet router (turns on IP forwarding).
+  # The advertised route is set by hand with `tailscale set`.
+  services.tailscale.useRoutingFeatures = "server";
+
   agents = {
     claude = true;
     codex = true;
