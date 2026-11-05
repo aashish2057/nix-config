@@ -1,4 +1,4 @@
-# Home Assistant for the smart lights (Tapo bulbs).
+# Home Assistant for the smart lights (Tapo bulbs) and Shelly smart plugs.
 # Reachable only over the tailnet: http://box:8123
 {config, ...}: let
   cfg = config.services.home-assistant;
@@ -11,6 +11,8 @@ in {
       "isal"
       # TP-Link Kasa and Tapo devices, controlled over the local network.
       "tplink"
+      # Shelly smart plugs (router and servers), controlled over the local network.
+      "shelly"
     ];
     config = {
       default_config = {};
