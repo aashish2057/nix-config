@@ -4,15 +4,15 @@
   fetchurl,
   versionCheckHook,
 }: let
-  version = "0.164.0";
+  version = "0.167.0";
   sourceMap = {
     aarch64-darwin = {
       file = "codex-package-aarch64-apple-darwin.tar.gz";
-      hash = "sha256-3ZnpCSJwaRpnvd574ErCg96p2o6Gy941bCzIUaeSBfo=";
+      hash = "sha256-r0XtRdlA15mICWIsHAKW0wmO19f61pUoRCLCKL1FRRc=";
     };
     x86_64-linux = {
       file = "codex-package-x86_64-unknown-linux-musl.tar.gz";
-      hash = "sha256-PsVQUxCWCNUDj35QdQ99Jfdo39dA/vBxqnEOJVm2Oqw=";
+      hash = "sha256-O7916D3mtYrtKPLPbjOtQj7DH9RwChRXuUvlV+pafG4=";
     };
   };
   sourceInfo = sourceMap.${stdenvNoCC.hostPlatform.system} or (throw "Unsupported system: ${stdenvNoCC.hostPlatform.system}");
