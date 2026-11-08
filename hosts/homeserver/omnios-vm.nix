@@ -4,7 +4,9 @@
 # boot: it sets the hostname, adds the dev user and SSH keys, installs the
 # illumos build tools, and creates /build.
 #
-# Use `illumos-vm` on the host to reach it (ssh, console, sync, build, onu).
+# The tools to build illumos-gate in it (illumos-vm, clangd, Neovim
+# settings) live in github.com/aashish2057/dev-tools, under illumos/. They
+# work from any machine:  nix develop ~/Dev/dev-tools/illumos
 {
   config,
   pkgs,
@@ -185,28 +187,10 @@
       };
     };
   };
-
-  # Host-side helper for the illumos workflow. The script is illumos/illumos-vm.sh;
-  # these lines give it the VM address and the paths of the scripts it copies.
-  illumos-vm = pkgs.writeShellApplication {
-    name = "illumos-vm";
-    runtimeInputs = [pkgs.openssh pkgs.git pkgs.libvirt pkgs.coreutils pkgs.gnutar pkgs.gnused pkgs.gnugrep];
-    # On purpose: some commands for the VM expand on the host (SC2029),
-    # others only in the VM (SC2016).
-    excludeShellChecks = ["SC2029" "SC2016"];
-    text = ''
-      vm=${devUser}@${ip}
-      domain=${name}
-      cc_wrapper=${./illumos/cc-wrapper.sh}
-      ccdb_script=${./illumos/ccdb.py}
-      ${builtins.readFile ./illumos/illumos-vm.sh}
-    '';
-  };
 in {
   imports = [nixvirt.nixosModules.default];
 
   users.users.${username}.extraGroups = ["libvirtd"];
-  environment.systemPackages = [illumos-vm];
 
   # Copy the cloud image to the VM's disk once, then grow it to 200 GB.
   systemd.services."${name}-disk" = {
