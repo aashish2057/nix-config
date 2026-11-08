@@ -52,7 +52,7 @@
         InitialKeyRepeat = 15;
         KeyRepeat = 3;
         "com.apple.swipescrolldirection" = false;
-        _HIHideMenuBar = true;
+        _HIHideMenuBar = false;
       };
       WindowManager = {
         EnableStandardClickToShowDesktop = false;
