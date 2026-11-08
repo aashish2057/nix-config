@@ -82,6 +82,10 @@
       installPhase = ''
         runHook preInstall
 
+        # ffi-rs ships glibc and musl builds. Only the glibc build loads here, and
+        # autoPatchelf cannot find a musl libc for the other one.
+        rm -r node_modules/@yuuang/ffi-rs-linux-x64-musl
+
         mkdir -p $out/libexec/t3code $out/bin
         cp -R . $out/libexec/t3code/
 
