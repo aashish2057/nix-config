@@ -44,6 +44,7 @@
         "datagrip"
         "rider"
         "modern-csv"
+        "1password"
       ]
       ++ lib.optionals (!isWork) [
         "legcord"
