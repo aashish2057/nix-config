@@ -3,6 +3,7 @@
     ../../modules/common/zsh.nix
     ../../modules/common/ghostty.nix
     ../../modules/common/mise.nix
+    ../../modules/darwin/t3-connect-http2.nix
   ];
 
   profiles.desktop.enable = true;
