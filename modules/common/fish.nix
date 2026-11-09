@@ -18,7 +18,6 @@
           ''
             set -g fish_greeting
             set -g fish_autocd 1
-            set -gx OPENCODE_ENABLE_EXA 1
             source (COMPLETE=fish jj | psub)
             fish_add_path ~/.npm-global/bin
             fish_add_path /opt/homebrew/bin

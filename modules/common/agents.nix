@@ -13,35 +13,27 @@
     testing = ./agents/testing;
   };
 
+  rule = action: resource: effect: {inherit action resource effect;};
+  shell = rule "shell";
+
   opencodeSettings =
     {
-      permission = {
-        external_directory = {
-          "$HOME/Dev/**" = "allow";
-        };
-        bash = {
-          "terraform *" = "deny";
-          "terraform fmt*" = "allow";
-          "terraform init" = "allow";
-          "terraform validate" = "allow";
-          "terraform plan -lock=false" = "allow";
-          "terraform import*" = "ask";
-          "az *" = "ask";
-          "az resource list*" = "allow";
-          "az resource show*" = "allow";
-        };
-        websearch = "allow";
-      };
-      autoupdate = false;
+      permissions = [
+        (rule "external_directory" "$HOME/Dev/**" "allow")
+        (rule "websearch" "*" "allow")
+        (shell "terraform *" "deny")
+        (shell "terraform fmt*" "allow")
+        (shell "terraform init" "allow")
+        (shell "terraform validate" "allow")
+        (shell "terraform plan -lock=false" "allow")
+        (shell "terraform import*" "ask")
+        (shell "az *" "ask")
+        (shell "az resource list*" "allow")
+        (shell "az resource show*" "allow")
+      ];
+      update = "disable";
     }
     // lib.optionalAttrs isWork {
-      lsp = {
-        pyright.disabled = true;
-        csharp.command = [
-          "Microsoft.CodeAnalysis.LanguageServer"
-          "--stdio"
-        ];
-      };
       formatter = {
         ruff.disabled = true;
         uv.disabled = true;
@@ -98,6 +90,9 @@
       type = "remote";
       inherit (server) url;
     }
+    // lib.optionalAttrs (!server.enabled) {
+      disabled = true;
+    }
     // lib.optionalAttrs (server.oauth != {}) {
       oauth = lib.mapAttrs' (name: lib.nameValuePair (oauthFieldNames.${name} or name)) server.oauth;
     })
@@ -150,7 +145,7 @@ in {
               settings =
                 opencodeSettings
                 // lib.optionalAttrs (opencodeMcpServers != {}) {
-                  mcp = opencodeMcpServers;
+                  mcp.servers = opencodeMcpServers;
                 };
             };
 
