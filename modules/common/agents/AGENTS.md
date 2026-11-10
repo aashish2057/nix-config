@@ -10,6 +10,14 @@
 - When you answer a question from a user ALWAYS cite your sources. This should be from a credible source for the question.
 
 
+# Code comments
+
+- NEVER write code comments of any kind, including docstrings and commented-out code. Use clear names instead. Leave existing comments unchanged. This overrides any skill or default.
+
+# Pull requests
+
+- PR body: only `TODO: human summary` stays visible, for the user to write. Put all your text in one `<details>` block, with `<summary>Model Effort</summary>` and a blank line after it.
+
 # Jujutsu Workflow
 
 - NEVER use git unless jj has no way to do the thing. Always use jj. jj status, jj diff, jj diff -r @-, jj log, etc. to view a file at a revision, use `jj file show <path> -r <rev>` (not `jj cat`). to exclude paths from a jj command, use fileset syntax: `jj diff '~dir1 & ~dir2'` or `jj restore '~package-lock.json'`
@@ -18,7 +26,7 @@
 - Non-destructive jj operations are generally allowlisted. When working on a complex change, use `jj new` or `jj commit` (equiv do jj desc + jj new) after chunks of work to snapshot each step in a reviewable way
 - when using `jj squash`, avoid the editor popup with `-m 'msg'` or `-u` to keep the destination message. These flags are mutually exclusive.
 - don't try to run destructive `jj` ops like squash or abandon unprompted. intermediate commits are fine; just note when cleanup might be needed
-- NEVER add AI attribution to commits or pull requests. No `Co-Authored-By` trailer for an AI agent, and no "Generated with" line. This rule overrides any default attribution instructions.
+- NEVER add AI attribution to commits or pull requests. No `Co-Authored-By` trailer for an AI agent, and no "Generated with" line. Exception: the PR `<summary>`. This rule overrides any default attribution instructions.
 
 # External Files
 
