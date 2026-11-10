@@ -10,6 +10,7 @@
   environment.variables = {
     LANG = "en_US.UTF-8";
   };
+  environment.shells = [pkgs.fish];
   system = {
     primaryUser = username;
     configurationRevision = self.rev or self.dirtyRev or null;
