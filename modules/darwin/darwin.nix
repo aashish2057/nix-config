@@ -11,6 +11,11 @@
     LANG = "en_US.UTF-8";
   };
   environment.shells = [pkgs.fish];
+  users.knownUsers = [username];
+  users.users.${username} = {
+    uid = 501;
+    shell = pkgs.fish;
+  };
   system = {
     primaryUser = username;
     configurationRevision = self.rev or self.dirtyRev or null;
