@@ -31,6 +31,11 @@
       url = "https://flakehub.com/f/AshleyYakeley/NixVirt/*.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    bootvine = {
+      url = "git+https://codeberg.org/wvhulle/bootvine";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs @ {
@@ -42,10 +47,11 @@
     nvim-nightly,
     rex,
     nixvirt,
+    bootvine,
     ...
   }: let
     systems = import ./lib/systems.nix {
-      inherit nixpkgs home-manager nix-darwin self mnw nvim-nightly rex nixvirt;
+      inherit nixpkgs home-manager nix-darwin self mnw nvim-nightly rex nixvirt bootvine;
     };
   in {
     darwinConfigurations = {

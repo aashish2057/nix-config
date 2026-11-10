@@ -8,6 +8,7 @@
     ./i18n.nix
     ./desktop.nix
     ./rex-server.nix
+    ./bootvine.nix
   ];
 
   networking.hostName = hostname;
