@@ -16,7 +16,8 @@
 
 # Pull requests
 
-- PR body: only `TODO: human summary` stays visible, for the user to write. Put all your text in one `<details>` block, with `<summary>Model Effort</summary>` and a blank line after it.
+- PR body: the first line is `TODO: human summary`, for the user to write. Put all your text after it in one `<details>` block.
+- The `<summary>` names the model, the effort level and the tool, then a blank line. Example: `<summary>Opus 5.5 · medium · Claude Code</summary>`. This summary is the only AI attribution in the PR. Add no "Generated with" line.
 
 # Jujutsu Workflow
 
