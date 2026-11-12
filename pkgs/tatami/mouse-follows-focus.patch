@@ -1,0 +1,254 @@
+diff --git a/src/config.zig b/src/config.zig
+index 0fee098c37..c71f3d30bc 100644
+--- a/src/config.zig
++++ b/src/config.zig
+@@ -160,6 +160,7 @@
+     TooManyCommands,
+     TooManyRules,
+     BadGap,
++    BadMouse,
+     BadRule,
+     BadAction,
+     BadMode,
+@@ -171,6 +172,7 @@
+     gap_inner: i32,
+     gap_outer: i32,
+     gap_toggle: i32,
++    mouse_follows_focus: bool,
+     bindings: [bindings_max]Binding,
+     bindings_count: u32,
+     rules: [rules_max]Rule,
+@@ -183,6 +185,7 @@
+         config.gap_inner = 0;
+         config.gap_outer = 0;
+         config.gap_toggle = 10;
++        config.mouse_follows_focus = false;
+         config.bindings_count = 0;
+         config.rules_count = 0;
+         config.strings = .{};
+@@ -304,9 +307,20 @@
+         if (std.mem.eql(u8, directive, "gap")) return config.load_gap(rest);
+         if (std.mem.eql(u8, directive, "bind")) return config.load_binding(rest);
+         if (std.mem.eql(u8, directive, "rule")) return config.load_rule(rest);
++        if (std.mem.eql(u8, directive, "mouse")) return config.load_mouse(rest);
+         return error.UnknownDirective;
+     }
+ 
++    fn load_mouse(config: *Config, rest: []const u8) LineError!void {
++        if (std.mem.eql(u8, rest, "follows-focus")) {
++            config.mouse_follows_focus = true;
++        } else if (std.mem.eql(u8, rest, "stays")) {
++            config.mouse_follows_focus = false;
++        } else {
++            return error.BadMouse;
++        }
++    }
++
+     fn load_gap(config: *Config, rest: []const u8) LineError!void {
+         const space = std.mem.indexOfAny(u8, rest, " \t") orelse return error.BadGap;
+         const value = stdx.parse_int(command.trim(rest[space..])) orelse return error.BadGap;
+diff --git a/src/engine.zig b/src/engine.zig
+index d671a8a5be..2dde15d57a 100644
+--- a/src/engine.zig
++++ b/src/engine.zig
+@@ -420,6 +420,7 @@
+     guard_until_ms: u64,
+     /// Set when we can no longer be sure where OS focus is; answered by focus_reported.
+     focus_stale: bool,
++    mouse_warp_to: WindowId,
+     /// Set by quit. A stopped engine ignores every event.
+     stopped: bool,
+     /// Between adoption begin and end. Frames are not sent meanwhile.
+@@ -454,6 +455,7 @@
+         engine.shown_seq = 0;
+         engine.slot_seq = 0;
+         engine.focused_window = 0;
++        engine.mouse_warp_to = 0;
+         engine.focused_monitor = 0;
+         engine.recent_monitor = 0;
+         engine.recent_workspace = 0;
+@@ -498,6 +500,8 @@
+         if (engine.stopped) return engine.effects[0..0];
+         const focus_before = engine.focused_window;
+         const workspace_before = engine.workspace_current();
++        const follow_moves = engine.config.mouse_follows_focus and event == .command;
++        const focused_frame_before = if (follow_moves) engine.focused_target() else null;
+         engine.stats.events += 1;
+         switch (event) {
+             .monitors_changed => |list| engine.on_monitors_changed(list),
+@@ -521,6 +525,8 @@
+             .tick => engine.on_tick(),
+         }
+         engine.arrange();
++        if (follow_moves) engine.mouse_follow_move(focused_frame_before);
++        engine.mouse_warp_emit();
+         if (engine.focus_stale) {
+             engine.focus_stale = false;
+             engine.emit(.query_focus);
+@@ -1242,7 +1248,33 @@
+         const in_sync = engine.focused_window == window.id and
+             engine.focus_pending_count == 0 and engine.os_focus == window.id;
+         engine.focus_state_set(window);
+-        if (!in_sync) engine.focus_emit(window);
++        if (in_sync) return;
++        engine.focus_emit(window);
++        if (engine.config.mouse_follows_focus) engine.mouse_warp_to = window.id;
++    }
++
++    fn focused_target(engine: *Engine) ?Rect {
++        const window = engine.window_find(engine.focused_window) orelse return null;
++        return engine.window_target(window);
++    }
++
++    fn mouse_follow_move(engine: *Engine, before: ?Rect) void {
++        const after = engine.focused_target() orelse return;
++        if (before) |frame| {
++            if (frame.eql(after)) return;
++        }
++        engine.mouse_warp_to = engine.focused_window;
++    }
++
++    fn mouse_warp_emit(engine: *Engine) void {
++        const id = engine.mouse_warp_to;
++        if (id == 0) return;
++        engine.mouse_warp_to = 0;
++        if (id != engine.focused_window) return;
++        const window = engine.window_find(id) orelse return;
++        if (!engine.workspace_visible(window.workspace)) return;
++        const target = engine.window_target(window) orelse return;
++        engine.emit(.{ .warp_mouse = target });
+     }
+ 
+     /// Asks the OS to focus the window and remembers the request until it is confirmed.
+diff --git a/src/scenarios.zig b/src/scenarios.zig
+index 21ecaad77c..2ee0d11fab 100644
+--- a/src/scenarios.zig
++++ b/src/scenarios.zig
+@@ -800,3 +800,92 @@
+     os.settle();
+     try testing.expectEqual(@as(u8, 0), engine.window_find(b).?.workspace);
+ }
++
++test "with mouse follows-focus a focus command puts the mouse on the window it focuses" {
++    const os = boot("mouse follows-focus");
++    const app = os.app_launch("Ghostty", "com.mitchellh.ghostty");
++    const a = open(os, app, .{});
++    _ = open(os, app, .{});
++    os.settle();
++    const warps_before = os.mouse_warps;
++    os.command_run("focus west");
++    os.settle();
++    try testing.expectEqual(a, engine.focused_window);
++    try testing.expectEqual(warps_before + 1, os.mouse_warps);
++    try testing.expect(os.mouse_warp_last.eql(left_half));
++}
++
++test "with mouse follows-focus a swap puts the mouse where the focused window lands" {
++    const os = boot("mouse follows-focus");
++    const app = os.app_launch("Ghostty", "com.mitchellh.ghostty");
++    const a = open(os, app, .{});
++    _ = open(os, app, .{});
++    os.settle();
++    os.command_run("focus west");
++    os.settle();
++    const warps_before = os.mouse_warps;
++    os.command_run("swap east");
++    os.settle();
++    try testing.expectEqual(a, engine.focused_window);
++    try expect_frame(right_half, a);
++    try testing.expect(os.mouse_warps > warps_before);
++    try testing.expect(os.mouse_warp_last.eql(right_half));
++}
++
++test "with mouse follows-focus a workspace switch puts the mouse on the window it focuses" {
++    const os = boot("mouse follows-focus");
++    const app = os.app_launch("Ghostty", "com.mitchellh.ghostty");
++    const a = open(os, app, .{});
++    os.settle();
++    os.command_run("workspace 2");
++    os.settle();
++    const b = open(os, app, .{});
++    os.settle();
++    const warps_before = os.mouse_warps;
++    os.command_run("workspace 1");
++    os.settle();
++    try testing.expectEqual(a, engine.focused_window);
++    try testing.expect(os.mouse_warps > warps_before);
++    try testing.expect(os.mouse_warp_last.eql(screen));
++    _ = b;
++}
++
++test "with mouse follows-focus a click does not move the mouse" {
++    const os = boot("mouse follows-focus");
++    const app = os.app_launch("Ghostty", "com.mitchellh.ghostty");
++    const a = open(os, app, .{});
++    _ = open(os, app, .{});
++    os.settle();
++    const warps_before = os.mouse_warps;
++    os.window_click(a);
++    os.settle();
++    try testing.expectEqual(a, engine.focused_window);
++    try testing.expectEqual(warps_before, os.mouse_warps);
++}
++
++test "without mouse follows-focus focus commands leave the mouse alone" {
++    const os = boot("");
++    const app = os.app_launch("Ghostty", "com.mitchellh.ghostty");
++    _ = open(os, app, .{});
++    _ = open(os, app, .{});
++    os.settle();
++    os.command_run("focus west");
++    os.command_run("focus east");
++    os.command_run("workspace 2");
++    os.command_run("workspace 1");
++    os.settle();
++    try testing.expectEqual(@as(u64, 0), os.mouse_warps);
++}
++
++test "with mouse follows-focus a query does not move the mouse" {
++    const os = boot("mouse follows-focus");
++    const app = os.app_launch("Ghostty", "com.mitchellh.ghostty");
++    _ = open(os, app, .{});
++    _ = open(os, app, .{});
++    os.settle();
++    const warps_before = os.mouse_warps;
++    os.command_run("query windows");
++    os.command_run("query workspaces");
++    os.settle();
++    try testing.expectEqual(warps_before, os.mouse_warps);
++}
+diff --git a/src/sim.zig b/src/sim.zig
+index feb6620bdd..e409624910 100644
+--- a/src/sim.zig
++++ b/src/sim.zig
+@@ -261,6 +261,8 @@
+     delivered: u64,
+     frames_set: u64,
+     settles: u64,
++    mouse_warps: u64,
++    mouse_warp_last: Rect,
+ 
+     pub fn init(simulator: *Simulator, engine: *Engine, options: Options) void {
+         simulator.options = options;
+@@ -283,6 +285,8 @@
+         simulator.delivered = 0;
+         simulator.frames_set = 0;
+         simulator.settles = 0;
++        simulator.mouse_warps = 0;
++        simulator.mouse_warp_last = Rect.zero;
+         simulator.step(.{ .monitors_changed = simulator.monitors });
+     }
+ 
+@@ -416,7 +420,11 @@
+                 .focus_window => |focus| simulator.perform_focus(focus.id),
+                 .close_window => |close| simulator.window_close(close.id),
+                 .query_focus => simulator.push(0, .{ .at_ms = 0, .seq = 0, .kind = .focus_report }),
+-                .warp_mouse, .exec, .reload, .quit => {},
++                .warp_mouse => |area| {
++                    simulator.mouse_warps += 1;
++                    simulator.mouse_warp_last = area;
++                },
++                .exec, .reload, .quit => {},
+             }
+         }
+         simulator.delivered += 1;
