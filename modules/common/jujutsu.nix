@@ -9,6 +9,7 @@
         enable = true;
         settings = {
           git.private-commits = "description(glob:'local:*') | description(glob:'private:*')";
+          snapshot.auto-update-stale = true;
           user = {
             name = "aashish2057";
             email =
