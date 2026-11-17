@@ -1,0 +1,36 @@
+diff --git a/src/macos/shell.zig b/src/macos/shell.zig
+index 9464315f9d..387ca0a72d 100644
+--- a/src/macos/shell.zig
++++ b/src/macos/shell.zig
+@@ -546,13 +546,21 @@
+ fn tabs_check(focused_id: u32) void {
+     const focused = window_find(focused_id) orelse return;
+     if (app_hidden(focused.pid)) return;
++    if (engine.window_find(focused_id)) |known| {
++        if (known.fullscreen) return;
++    }
+     const frame = ax.frame_get(focused.element) catch return;
++    var focused_fullscreen: ?bool = null;
+     for (&windows) |*other| {
+         if (other.id == 0 or other.id == focused_id or other.pid != focused.pid) continue;
+         const known = engine.window_find(other.id) orelse continue;
+-        if (known.tab_of != 0 or known.minimized) continue;
++        if (known.tab_of != 0 or known.minimized or known.fullscreen) continue;
+         if (!known.actual.eql(frame)) continue;
+         if (ax.on_screen(other.id)) continue;
++        if (focused_fullscreen == null) {
++            focused_fullscreen = ax.bool_get(focused.element, ax.names.fullscreen);
++        }
++        if (focused_fullscreen.?) return;
+         dispatch(.{ .window_tab_changed = .{ .id = other.id, .tab_of = focused_id } });
+     }
+ }
+@@ -652,7 +660,7 @@
+     for (&windows) |*other| {
+         if (other.id == 0 or other.id == id or other.pid != pid) continue;
+         const known = engine.window_find(other.id) orelse continue;
+-        if (known.minimized or !known.actual.eql(frame)) continue;
++        if (known.minimized or known.fullscreen or !known.actual.eql(frame)) continue;
+         if (!ax.on_screen(other.id)) return other.id;
+     }
+     return 0;

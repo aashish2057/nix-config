@@ -16,7 +16,10 @@ stdenv.mkDerivation {
     hash = "sha256-PeqdygLg2aSIewovBn71SRPeRCeu3wZeeDVmqR9geRk=";
   };
 
-  patches = [./mouse-follows-focus.patch];
+  patches = [
+    ./mouse-follows-focus.patch
+    ./fullscreen-not-a-tab.patch
+  ];
 
   nativeBuildInputs = [zig_0_17.hook];
 
