@@ -1,33 +1,33 @@
 diff --git a/src/config.zig b/src/config.zig
-index 0fee098c37..c71f3d30bc 100644
+index 6d08004c6f..f37c136ace 100644
 --- a/src/config.zig
 +++ b/src/config.zig
-@@ -160,6 +160,7 @@
-     TooManyCommands,
+@@ -183,6 +183,7 @@
      TooManyRules,
      BadGap,
+     BadBorder,
 +    BadMouse,
      BadRule,
      BadAction,
      BadMode,
-@@ -171,6 +172,7 @@
-     gap_inner: i32,
-     gap_outer: i32,
-     gap_toggle: i32,
+@@ -199,6 +200,7 @@
+     border_radius: i32,
+     /// 0xAARRGGBB.
+     border_color: u32,
 +    mouse_follows_focus: bool,
      bindings: [bindings_max]Binding,
      bindings_count: u32,
      rules: [rules_max]Rule,
-@@ -183,6 +185,7 @@
-         config.gap_inner = 0;
-         config.gap_outer = 0;
-         config.gap_toggle = 10;
+@@ -214,6 +216,7 @@
+         config.border_width = 0;
+         config.border_radius = 0;
+         config.border_color = 0xff4c7899;
 +        config.mouse_follows_focus = false;
          config.bindings_count = 0;
          config.rules_count = 0;
          config.strings = .{};
-@@ -304,9 +307,20 @@
-         if (std.mem.eql(u8, directive, "gap")) return config.load_gap(rest);
+@@ -336,9 +339,20 @@
+         if (std.mem.eql(u8, directive, "border")) return config.load_border(rest);
          if (std.mem.eql(u8, directive, "bind")) return config.load_binding(rest);
          if (std.mem.eql(u8, directive, "rule")) return config.load_rule(rest);
 +        if (std.mem.eql(u8, directive, "mouse")) return config.load_mouse(rest);
@@ -48,10 +48,10 @@ index 0fee098c37..c71f3d30bc 100644
          const space = std.mem.indexOfAny(u8, rest, " \t") orelse return error.BadGap;
          const value = stdx.parse_int(command.trim(rest[space..])) orelse return error.BadGap;
 diff --git a/src/engine.zig b/src/engine.zig
-index d671a8a5be..2dde15d57a 100644
+index fcb5d31301..52ed4b3a42 100644
 --- a/src/engine.zig
 +++ b/src/engine.zig
-@@ -420,6 +420,7 @@
+@@ -431,6 +431,7 @@
      guard_until_ms: u64,
      /// Set when we can no longer be sure where OS focus is; answered by focus_reported.
      focus_stale: bool,
@@ -59,7 +59,7 @@ index d671a8a5be..2dde15d57a 100644
      /// Set by quit. A stopped engine ignores every event.
      stopped: bool,
      /// Between adoption begin and end. Frames are not sent meanwhile.
-@@ -454,6 +455,7 @@
+@@ -465,6 +466,7 @@
          engine.shown_seq = 0;
          engine.slot_seq = 0;
          engine.focused_window = 0;
@@ -67,7 +67,7 @@ index d671a8a5be..2dde15d57a 100644
          engine.focused_monitor = 0;
          engine.recent_monitor = 0;
          engine.recent_workspace = 0;
-@@ -498,6 +500,8 @@
+@@ -509,6 +511,8 @@
          if (engine.stopped) return engine.effects[0..0];
          const focus_before = engine.focused_window;
          const workspace_before = engine.workspace_current();
@@ -76,7 +76,7 @@ index d671a8a5be..2dde15d57a 100644
          engine.stats.events += 1;
          switch (event) {
              .monitors_changed => |list| engine.on_monitors_changed(list),
-@@ -521,6 +525,8 @@
+@@ -532,6 +536,8 @@
              .tick => engine.on_tick(),
          }
          engine.arrange();
@@ -85,7 +85,7 @@ index d671a8a5be..2dde15d57a 100644
          if (engine.focus_stale) {
              engine.focus_stale = false;
              engine.emit(.query_focus);
-@@ -1242,7 +1248,33 @@
+@@ -1256,7 +1262,33 @@
          const in_sync = engine.focused_window == window.id and
              engine.focus_pending_count == 0 and engine.os_focus == window.id;
          engine.focus_state_set(window);
@@ -121,10 +121,10 @@ index d671a8a5be..2dde15d57a 100644
  
      /// Asks the OS to focus the window and remembers the request until it is confirmed.
 diff --git a/src/scenarios.zig b/src/scenarios.zig
-index 21ecaad77c..2ee0d11fab 100644
+index 03891e7d88..00e8545144 100644
 --- a/src/scenarios.zig
 +++ b/src/scenarios.zig
-@@ -800,3 +800,92 @@
+@@ -898,3 +898,92 @@
      os.settle();
      try testing.expectEqual(@as(u8, 0), engine.window_find(b).?.workspace);
  }
@@ -218,10 +218,10 @@ index 21ecaad77c..2ee0d11fab 100644
 +    try testing.expectEqual(warps_before, os.mouse_warps);
 +}
 diff --git a/src/sim.zig b/src/sim.zig
-index feb6620bdd..e409624910 100644
+index 2677b299c7..814791fe73 100644
 --- a/src/sim.zig
 +++ b/src/sim.zig
-@@ -261,6 +261,8 @@
+@@ -262,6 +262,8 @@
      delivered: u64,
      frames_set: u64,
      settles: u64,
@@ -230,7 +230,7 @@ index feb6620bdd..e409624910 100644
  
      pub fn init(simulator: *Simulator, engine: *Engine, options: Options) void {
          simulator.options = options;
-@@ -283,6 +285,8 @@
+@@ -284,6 +286,8 @@
          simulator.delivered = 0;
          simulator.frames_set = 0;
          simulator.settles = 0;
@@ -239,7 +239,7 @@ index feb6620bdd..e409624910 100644
          simulator.step(.{ .monitors_changed = simulator.monitors });
      }
  
-@@ -416,7 +420,11 @@
+@@ -417,7 +421,11 @@
                  .focus_window => |focus| simulator.perform_focus(focus.id),
                  .close_window => |close| simulator.window_close(close.id),
                  .query_focus => simulator.push(0, .{ .at_ms = 0, .seq = 0, .kind = .focus_report }),

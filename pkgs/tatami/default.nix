@@ -7,13 +7,13 @@
 }:
 stdenv.mkDerivation {
   pname = "tatami";
-  version = "0-unstable-2026-11-11";
+  version = "0-unstable-2026-11-16";
 
   src = fetchFromGitHub {
     owner = "gakonst";
     repo = "tatami";
-    rev = "1cb357ae026a9a888ebe67dd4a9af9b4b835edd1";
-    hash = "sha256-9I18PEwAE+JnBFZKezO7cs59JDlNA3WX30Nqh2j5YKs=";
+    rev = "5844cf51dc92a02ade565046ecbd2879f7859ab2";
+    hash = "sha256-PeqdygLg2aSIewovBn71SRPeRCeu3wZeeDVmqR9geRk=";
   };
 
   patches = [./mouse-follows-focus.patch];
