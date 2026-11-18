@@ -78,6 +78,7 @@
       ];
 
       buildInputs = [stdenv.cc.cc.lib];
+      autoPatchelfIgnoreMissingDeps = ["libvulkan.so.1"];
 
       installPhase = ''
         runHook preInstall
