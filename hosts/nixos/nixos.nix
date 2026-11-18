@@ -19,6 +19,7 @@
   agents = {
     claude = true;
     codex = true;
+    grok = true;
   };
 
   hardware = {

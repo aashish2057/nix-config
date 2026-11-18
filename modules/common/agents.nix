@@ -114,6 +114,7 @@ in {
 
     claude = lib.mkEnableOption "Claude Code";
     codex = lib.mkEnableOption "Codex";
+    grok = lib.mkEnableOption "Grok Build";
   };
 
   config =
@@ -167,6 +168,8 @@ in {
               settings.check_for_update_on_startup = false;
             };
           };
+
+          home.packages = lib.optionals cfg.grok [pkgs.grok-build];
 
           home.file = lib.mkIf cfg.cursor (
             {
